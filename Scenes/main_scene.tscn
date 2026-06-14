@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="2_6ev3c"]
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_huasi"]
 [ext_resource type="Texture2D" uid="uid://bv8g2acg7rq5h" path="res://Assets/Visual/Gundam/portrait_placeholder.png" id="2_maf8m"]
+[ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="5_m1efj"]
 [ext_resource type="PackedScene" uid="uid://caad16wajmi5r" path="res://Scenes/Prefabs/table.tscn" id="7_maf8m"]
+[ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2ia5b"]
 size = Vector2(128, 128)
@@ -24,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_iacmt")
 script = ExtResource("2_huasi")
+level = ExtResource("3_m1efj")
 
 [node name="BG" type="Control" parent="." unique_id=874234324]
 layout_mode = 1
@@ -32,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="." unique_id=935409973]
@@ -178,6 +182,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TableContainer" unique_id=1365365625]
 layout_mode = 0
@@ -213,6 +218,33 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CustomerQueue" type="Control" parent="." unique_id=1491381192]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 0)
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CustomerQueue" unique_id=902208456]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 0)
+mouse_filter = 2
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 128
+
+[node name="CustomerTimer" type="Timer" parent="CustomerQueue" unique_id=131248599]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
+
+[node name="CustomerContainer" type="Node2D" parent="." unique_id=2090199969]
+unique_name_in_owner = true
+position = Vector2(1707, 66)
+script = ExtResource("10_76v2p")

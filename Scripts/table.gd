@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 class_name Table
 
 @onready var maid_spot: Marker2D = %MaidSpot
@@ -9,7 +9,9 @@ var assigned_maid: Maid
 
 func assign_customer(customer: Customer):
 	assigned_customer = customer
+	customer.reparent(self, true)
 	customer.global_position = customer_spot.global_position
+	customer.can_drag = false
 
 func assign_maid(maid: Maid):
 	assigned_maid = maid
