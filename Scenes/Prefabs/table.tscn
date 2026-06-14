@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://j03vy0mxoci0" path="res://Scripts/table.gd" id="1_qieex"]
 [ext_resource type="Texture2D" uid="uid://lf3lhc7av7y3" path="res://Assets/Visual/Table/table.png" id="2_0wqgb"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqgb"]
+size = Vector2(200, 128)
+
 [node name="Table" type="Control" unique_id=1867058605]
 custom_minimum_size = Vector2(240, 128)
 layout_mode = 3
@@ -23,3 +26,9 @@ position = Vector2(77, 70)
 [node name="CustomerSpot" type="Marker2D" parent="." unique_id=1390835832]
 unique_name_in_owner = true
 position = Vector2(165, 69)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1147953561]
+position = Vector2(119, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=737414314]
+shape = SubResource("RectangleShape2D_0wqgb")

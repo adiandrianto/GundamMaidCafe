@@ -211,3 +211,8 @@ layout_mode = 2
 
 [node name="Table6" parent="TableContainer/MarginContainer/GridContainer" unique_id=1283241818 instance=ExtResource("7_maf8m")]
 layout_mode = 2
+
+[node name="CustomerQueue" type="Control" parent="." unique_id=1491381192]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
