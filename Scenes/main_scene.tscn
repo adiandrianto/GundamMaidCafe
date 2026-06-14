@@ -191,30 +191,26 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 460
 theme_override_constants/margin_top = 320
 
-[node name="GridContainer" type="GridContainer" parent="TableContainer/MarginContainer" unique_id=1177323165]
-custom_minimum_size = Vector2(720, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/h_separation = 128
-theme_override_constants/v_separation = 128
-columns = 3
+[node name="GridContainer" type="GridContainer" parent="TableContainer" unique_id=1177323165]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 365.0
+offset_right = 1619.0
+offset_bottom = 877.0
+theme_override_constants/h_separation = 512
+theme_override_constants/v_separation = 256
+columns = 2
 
-[node name="Table" parent="TableContainer/MarginContainer/GridContainer" unique_id=726679584 instance=ExtResource("7_maf8m")]
-layout_mode = 2
-
-[node name="Table2" parent="TableContainer/MarginContainer/GridContainer" unique_id=80726755 instance=ExtResource("7_maf8m")]
-layout_mode = 2
-
-[node name="Table3" parent="TableContainer/MarginContainer/GridContainer" unique_id=1867058605 instance=ExtResource("7_maf8m")]
+[node name="Table" parent="TableContainer/GridContainer" unique_id=726679584 instance=ExtResource("7_maf8m")]
 layout_mode = 2
 
-[node name="Table4" parent="TableContainer/MarginContainer/GridContainer" unique_id=297247139 instance=ExtResource("7_maf8m")]
+[node name="Table2" parent="TableContainer/GridContainer" unique_id=80726755 instance=ExtResource("7_maf8m")]
 layout_mode = 2
 
-[node name="Table5" parent="TableContainer/MarginContainer/GridContainer" unique_id=264422529 instance=ExtResource("7_maf8m")]
+[node name="Table3" parent="TableContainer/GridContainer" unique_id=1867058605 instance=ExtResource("7_maf8m")]
 layout_mode = 2
 
-[node name="Table6" parent="TableContainer/MarginContainer/GridContainer" unique_id=1283241818 instance=ExtResource("7_maf8m")]
+[node name="Table4" parent="TableContainer/GridContainer" unique_id=297247139 instance=ExtResource("7_maf8m")]
 layout_mode = 2
 
 [node name="CustomerQueue" type="Control" parent="." unique_id=1491381192]

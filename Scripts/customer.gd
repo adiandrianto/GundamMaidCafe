@@ -15,14 +15,13 @@ func _ready() -> void:
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-
 			var clicked = get_area_under_mouse()
 
 			if clicked == self:
-				dragging = true
+				begin_drag()
 
 		elif event.button_index == MOUSE_BUTTON_LEFT and !event.pressed:
-			dragging = false
+			end_drag()
 
 func get_area_under_mouse() -> Area2D:
 	var space = get_world_2d().direct_space_state
@@ -46,17 +45,29 @@ func get_area_under_mouse() -> Area2D:
 				
 func _process(_delta):
 	if dragging:
-		print("dragging")
 		global_position = get_global_mouse_position()
-		give_outline()
-	else:
-		remove_outline()
-		if table_entered == null:
-			if queue:
-				queue.update_layout()
-		else:
-			table_entered.assign_customer(self)
 
+func begin_drag():
+	dragging = true
+	give_outline()
+	queue.update_layout()
+
+	reparent(get_tree().current_scene, true)
+
+func end_drag():
+	dragging = false
+	remove_outline()
+	if table_entered:
+		table_entered.assign_customer(self)
+	else:
+		return_to_queue()
+
+func return_to_queue():
+	if get_parent() != queue:
+		reparent(queue, true)
+
+	queue.update_layout()
+	
 func give_outline():
 	if not sprite:
 		return

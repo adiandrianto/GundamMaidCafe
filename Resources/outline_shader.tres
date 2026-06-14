@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1_2dnte")
-shader_parameter/width = 2
+shader_parameter/width = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/flickering_speed = 0.0
 shader_parameter/minimal_flickering_alpha = 0.89999997615814

@@ -7,4 +7,4 @@ func update_layout():
 		var customer = get_child(i)
 
 		customer.position = Vector2(0, i * spacing)
-		#customer.input_pickable = (i == 0)
+		customer.input_pickable = (i == 0)
