@@ -1,3 +1,25 @@
 [gd_scene format=3 uid="uid://caad16wajmi5r"]
 
-[node name="Table" type="Node2D" unique_id=726679584]
+[ext_resource type="Script" uid="uid://j03vy0mxoci0" path="res://Scripts/table.gd" id="1_qieex"]
+[ext_resource type="Texture2D" uid="uid://lf3lhc7av7y3" path="res://Assets/Visual/Table/table.png" id="2_0wqgb"]
+
+[node name="Table" type="Control" unique_id=1867058605]
+custom_minimum_size = Vector2(240, 128)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qieex")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1014653670]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 128.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_0wqgb")
+
+[node name="MaidSpot" type="Marker2D" parent="." unique_id=383507012]
+unique_name_in_owner = true
+position = Vector2(77, 70)
+
+[node name="CustomerSpot" type="Marker2D" parent="." unique_id=1390835832]
+unique_name_in_owner = true
+position = Vector2(165, 69)
