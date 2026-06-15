@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://cwcitmbloxqrx"]
 
 [ext_resource type="Script" uid="uid://dmfkyjq1v5qk8" path="res://Scripts/maid.gd" id="1_41gos"]
+[ext_resource type="Texture2D" uid="uid://cxmrklwtgy4hw" path="res://Assets/Visual/Mecha/knightcafe_.jpg" id="2_sdxu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p824h"]
+size = Vector2(502, 499)
 
 [node name="Maid" type="Node2D" unique_id=1908233674]
+position = Vector2(25, 25)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_41gos")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1321282435]
+offset_left = -250.0
+offset_top = -249.0
+offset_right = 250.0
+offset_bottom = 251.0
+texture = ExtResource("2_sdxu0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="TextureRect" unique_id=740238539]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Area2D" unique_id=17229634]
+position = Vector2(251, 249.5)
+shape = SubResource("RectangleShape2D_p824h")

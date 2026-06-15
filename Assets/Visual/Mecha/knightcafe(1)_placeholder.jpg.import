@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv8g2acg7rq5h"
-path="res://.godot/imported/portrait_placeholder.png-d8118f3b5d460731f0282f2dd07efdb2.ctex"
+uid="uid://bvg3uvwigod5k"
+path="res://.godot/imported/knightcafe(1)_placeholder.jpg-8da3c58b471e5b801a8a603366bbbbb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/Gundam/portrait_placeholder.png"
-dest_files=["res://.godot/imported/portrait_placeholder.png-d8118f3b5d460731f0282f2dd07efdb2.ctex"]
+source_file="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg"
+dest_files=["res://.godot/imported/knightcafe(1)_placeholder.jpg-8da3c58b471e5b801a8a603366bbbbb1.ctex"]
 
 [params]
 
