@@ -1,7 +1,7 @@
 extends TextureProgressBar
 
 @onready var jarum: TextureRect = %JarumJam
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = %LevelTimer
 
 func _process(delta: float) -> void:
 	jarum.rotation_degrees = -(value / 100) * 360

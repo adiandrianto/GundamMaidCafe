@@ -170,11 +170,6 @@ rotation = -6.2831855
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("5_m1efj")
 
-[node name="Timer" type="Timer" parent="UI/UpperContainer/HBoxContainer/TimerProgress" unique_id=407583532]
-wait_time = 12.0
-one_shot = true
-autostart = true
-
 [node name="TableContainer" type="Control" parent="." unique_id=1944359191]
 layout_mode = 1
 anchors_preset = 15
@@ -237,10 +232,14 @@ theme_override_constants/margin_right = 128
 
 [node name="CustomerTimer" type="Timer" parent="CustomerQueue" unique_id=131248599]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 5.0
 autostart = true
 
 [node name="CustomerContainer" type="Node2D" parent="." unique_id=2090199969]
 unique_name_in_owner = true
-position = Vector2(1707, 66)
+position = Vector2(1804, 387)
 script = ExtResource("10_76v2p")
+
+[node name="LevelTimer" type="Timer" parent="." unique_id=407583532]
+unique_name_in_owner = true
+one_shot = true

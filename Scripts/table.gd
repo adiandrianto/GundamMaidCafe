@@ -11,7 +11,7 @@ func assign_customer(customer: Customer):
 	assigned_customer = customer
 	customer.reparent(self, true)
 	customer.global_position = customer_spot.global_position
-	customer.can_drag = false
+	customer.input_pickable = false
 
 func assign_maid(maid: Maid):
 	assigned_maid = maid
