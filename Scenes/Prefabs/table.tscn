@@ -1,34 +1,30 @@
 [gd_scene format=3 uid="uid://caad16wajmi5r"]
 
 [ext_resource type="Script" uid="uid://j03vy0mxoci0" path="res://Scripts/table.gd" id="1_qieex"]
-[ext_resource type="Texture2D" uid="uid://lf3lhc7av7y3" path="res://Assets/Visual/Table/table.png" id="2_0wqgb"]
+[ext_resource type="Texture2D" uid="uid://butq0gcvivy4u" path="res://Assets/table.png" id="2_0wqgb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqgb"]
 size = Vector2(200, 128)
 
-[node name="Table" type="Control" unique_id=1867058605]
-custom_minimum_size = Vector2(240, 128)
-layout_mode = 3
-anchors_preset = 0
+[node name="Table" type="Area2D" unique_id=144276520]
 script = ExtResource("1_qieex")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1014653670]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 128.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
+[node name="TextureRect" type="Sprite2D" parent="." unique_id=1566828146]
+z_index = 1
 texture = ExtResource("2_0wqgb")
 
 [node name="MaidSpot" type="Marker2D" parent="." unique_id=383507012]
 unique_name_in_owner = true
-position = Vector2(77, 70)
+position = Vector2(-40, -61)
 
 [node name="CustomerSpot" type="Marker2D" parent="." unique_id=1390835832]
 unique_name_in_owner = true
-position = Vector2(165, 69)
+position = Vector2(40, -57)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1147953561]
-position = Vector2(119, 65)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=737414314]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=737414314]
+position = Vector2(1, 3)
 shape = SubResource("RectangleShape2D_0wqgb")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=957278989]
+position = Vector2(-87, -53)
+vertices = PackedVector2Array(207, 115, -19, 115, -19, -3, 207, -3)

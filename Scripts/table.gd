@@ -1,4 +1,4 @@
-extends Control
+extends Area2D
 class_name Table
 
 @onready var maid_spot: Marker2D = %MaidSpot

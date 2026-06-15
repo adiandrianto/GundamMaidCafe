@@ -1,6 +1,25 @@
 [gd_scene format=3 uid="uid://cwcitmbloxqrx"]
 
 [ext_resource type="Script" uid="uid://dmfkyjq1v5qk8" path="res://Scripts/maid.gd" id="1_41gos"]
+[ext_resource type="Texture2D" uid="uid://mi2oqc2rfbgv" path="res://Assets/Visual/Gundam/maid_placeholder-export.png" id="2_sdxu0"]
 
-[node name="Maid" type="Node2D" unique_id=1908233674]
+[sub_resource type="CircleShape2D" id="CircleShape2D_p824h"]
+radius = 37.93
+
+[node name="Maid" type="CharacterBody2D" unique_id=57393834]
 script = ExtResource("1_41gos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1468342271]
+shape = SubResource("CircleShape2D_p824h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=208034570]
+texture = ExtResource("2_sdxu0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=865547115]
+path_desired_distance = 100.0
+path_max_distance = 200.0
+simplify_path = true
+radius = 32.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.92691845, 0.5136337, 0.8735077, 1)

@@ -33,7 +33,7 @@ func get_area_under_mouse() -> Area2D:
 
 	var results = space.intersect_point(query)
 
-	if results.is_empty():
+	if results.is_empty() || results[0].collider is not Customer :
 		return null
 
 	return results[0].collider
@@ -70,10 +70,10 @@ func remove_outline():
 		mat.set_shader_parameter("width", 0)
 	
 func _on_area_entered(area: Area2D) -> void:
-	if area.get_parent() is not Table:
+	if area is not Table:
 		return
-	table_entered = area.get_parent()
+	table_entered = area
 
 func _on_area_exited(area: Area2D) -> void:
-	if area.get_parent() is Table:
+	if area is Table:
 		table_entered = null
