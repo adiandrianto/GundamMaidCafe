@@ -3,22 +3,16 @@
 [ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="1_bwjpn"]
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_ibmi3"]
 [ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_4blnk"]
+[ext_resource type="Script" uid="uid://8tq1j1app160" path="res://Scripts/UI/maidlist.gd" id="4_4blnk"]
 [ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="4_bwjpn"]
 [ext_resource type="Texture2D" uid="uid://bvg3uvwigod5k" path="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg" id="4_ibmi3"]
+[ext_resource type="Script" uid="uid://dmfkyjq1v5qk8" path="res://Scripts/maid.gd" id="5_4qg1e"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="6_040rt"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="7_dhrl2"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="8_i0miu"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="9_6bfml"]
 [ext_resource type="PackedScene" uid="uid://caad16wajmi5r" path="res://Scenes/Prefabs/table.tscn" id="10_0g4ye"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="11_soh27"]
-
-[sub_resource type="GDScript" id="GDScript_ibmi3"]
-script/source = "extends Node
-
-var maid_index: int
-
-
-"
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2ia5b"]
 size = Vector2(128, 128)
@@ -60,6 +54,7 @@ offset_bottom = 1032.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_bottom = 32
+script = ExtResource("4_4blnk")
 
 [node name="MaidListPanel" type="PanelContainer" parent="UI/MaidList" unique_id=1294003327]
 custom_minimum_size = Vector2(200, 800)
@@ -75,18 +70,22 @@ theme_override_constants/margin_bottom = 16
 [node name="GridContainer" type="GridContainer" parent="UI/MaidList/MaidListPanel/MarginContainer" unique_id=191298460]
 layout_mode = 2
 columns = 2
-script = SubResource("GDScript_ibmi3")
 
-[node name="Panel" type="Panel" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=24340548]
+[node name="Panel" type="Panel" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=24340548 node_paths=PackedStringArray("maid")]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 script = ExtResource("4_bwjpn")
+maid = NodePath("Maid")
 
 [node name="MaidIcon" type="TextureRect" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer/Panel" unique_id=1573581971]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_ibmi3")
+
+[node name="Maid" type="Node2D" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer/Panel" unique_id=333396026]
+script = ExtResource("5_4qg1e")
+metadata/_custom_type_script = "uid://dmfkyjq1v5qk8"
 
 [node name="Panel2" type="Panel" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1903317497]
 custom_minimum_size = Vector2(128, 128)
