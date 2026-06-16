@@ -11,6 +11,7 @@ const TABLE_SCENE = preload("uid://caad16wajmi5r")
 @onready var customer_timer: Timer = %CustomerTimer
 @onready var level_timer: Timer = %LevelTimer
 
+@onready var close_sign: TextureRect = %CloseSign
 var table_columns := 3
 
 func _ready() -> void:
@@ -66,5 +67,6 @@ func _arrange_tables():
 			table_container.add_child(table)
 
 			table.global_position = area_pos + Vector2( start_x + (col + 0.5) * cell_width, (row + 0.5) * cell_height )
+
 func _level_finished():
-	pass # scoring
+	close_sign.texture  = preload("res://Assets/Visual/closed.png")

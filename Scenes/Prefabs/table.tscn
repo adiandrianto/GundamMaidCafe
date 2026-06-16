@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://caad16wajmi5r"]
 
 [ext_resource type="Script" uid="uid://j03vy0mxoci0" path="res://Scripts/table.gd" id="1_qieex"]
-[ext_resource type="Texture2D" uid="uid://butq0gcvivy4u" path="res://Assets/table.png" id="2_0wqgb"]
+[ext_resource type="Texture2D" uid="uid://dk6gs05p0a2ng" path="res://Assets/Visual/Table/table_top.png" id="2_h1myl"]
+[ext_resource type="Texture2D" uid="uid://bkgtaoay4lk5b" path="res://Assets/Visual/Table/table_mid.png" id="3_hijgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqgb"]
 size = Vector2(200, 128)
@@ -9,9 +10,14 @@ size = Vector2(200, 128)
 [node name="Table" type="Area2D" unique_id=144276520]
 script = ExtResource("1_qieex")
 
-[node name="TextureRect" type="Sprite2D" parent="." unique_id=1566828146]
-z_index = 1
-texture = ExtResource("2_0wqgb")
+[node name="Top" type="Sprite2D" parent="." unique_id=1566828146]
+position = Vector2(-1, -68)
+texture = ExtResource("2_h1myl")
+
+[node name="Bottom" type="Sprite2D" parent="." unique_id=1646072642]
+z_index = 3
+position = Vector2(0, 28)
+texture = ExtResource("3_hijgu")
 
 [node name="MaidSpot" type="Marker2D" parent="." unique_id=383507012]
 unique_name_in_owner = true
