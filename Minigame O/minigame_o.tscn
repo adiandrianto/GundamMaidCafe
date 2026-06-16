@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6voidpbr24bo"]
 
 [ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Minigame O/veg.tscn" id="1_dhqqs"]
-[ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Minigame O/new_gd_script.gd" id="1_n67nu"]
+[ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Minigame O/object.gd" id="1_n67nu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jj4"]
 

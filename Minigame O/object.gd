@@ -22,12 +22,11 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			var object = raycast_check_for_object()
-			object.z_index = 2
 			if object:
+				object.z_index += 1
 				object_being_dragged = object
 		else:
 			var object = raycast_check_for_object()
-			object.z_index = 1
 			object_being_dragged = null
 
 
