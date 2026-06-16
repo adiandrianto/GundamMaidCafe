@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://b6voidpbr24bo"]
+
+[ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Minigame O/veg.tscn" id="1_dhqqs"]
+[ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Minigame O/new_gd_script.gd" id="1_n67nu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jj4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_que8l"]
+bg_color = Color(0.35531357, 0.35531357, 0.35531345, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lxmc"]
+bg_color = Color(0.58646464, 0.79100376, 0.37044996, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ybrk"]
+bg_color = Color(1, 0.43167043, 0.39184394, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4hmq"]
+bg_color = Color(0.84470487, 0.4345054, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uto06"]
+bg_color = Color(0.8268656, 0.81192, 0.8306355, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n67nu"]
+bg_color = Color(0.4313402, 0.43134028, 0.43134007, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbccp"]
+bg_color = Color(0.37036434, 0.37036452, 0.37036446, 1)
+
+[node name="Minigame_O" type="Control" unique_id=1442840663]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=861327845]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -672.88635
+offset_top = -417.0
+offset_right = 672.88635
+offset_bottom = 417.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1214026354]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j8jj4")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=159455681]
+layout_mode = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer" unique_id=737884429]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_que8l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer" unique_id=2068126746]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer" unique_id=29220080]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=523633382]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4lxmc")
+
+[node name="Panel2" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1895180724]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ybrk")
+
+[node name="Panel3" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=220917286]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_h4hmq")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer" unique_id=1825307938]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 35
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=275197291]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uto06")
+
+[node name="Panel2" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=549369162]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n67nu")
+
+[node name="Button" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/Panel2" unique_id=1024188471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+theme_override_styles/hover = SubResource("StyleBoxFlat_wbccp")
+text = "Serve"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=734038055]
+script = ExtResource("1_n67nu")
+
+[node name="Object" parent="Node2D" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
+y_sort_enabled = true
+position = Vector2(414, 249)
+
+[node name="Object2" parent="Node2D" unique_id=1540574857 instance=ExtResource("1_dhqqs")]
+y_sort_enabled = true
+position = Vector2(539, 250)
