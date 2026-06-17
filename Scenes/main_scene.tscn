@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/open.png" id="10_drdnd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
-vertices = PackedVector2Array(1456.0078, 193.96875, 1457.9766, 684.02344, 181.14063, 690.96875, 194.85938, 187.02344)
+vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(190, 182, 1461, 189, 1463, 689, 176, 696)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-103, 298, 1461, 300, 1463, 689, -108, 686)])
 agent_radius = 5.0
 
 [node name="Level" type="Node" unique_id=633166089]
@@ -191,15 +191,12 @@ autostart = true
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TableContainer" type="Node2D" parent="." unique_id=548928484]
-unique_name_in_owner = true
-
 [node name="TableArea" type="Control" parent="." unique_id=128824394]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(1100, 360)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 710.0
+offset_left = 551.0
 offset_top = 528.0
 offset_right = 1810.0
 offset_bottom = 888.0
@@ -208,3 +205,11 @@ offset_bottom = 888.0
 unique_name_in_owner = true
 position = Vector2(402, 215)
 navigation_polygon = SubResource("NavigationPolygon_m1efj")
+
+[node name="TableContainer" type="Node2D" parent="NavRegion" unique_id=548928484]
+unique_name_in_owner = true
+position = Vector2(-402, -215)
+
+[node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
+unique_name_in_owner = true
+position = Vector2(373, 427)

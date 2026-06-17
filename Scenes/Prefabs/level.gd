@@ -1,7 +1,8 @@
 extends Node
 
-const CUSTOMER_SCENE = preload("uid://c45ii4qayngo0")
-const TABLE_SCENE = preload("uid://caad16wajmi5r")
+const CUSTOMER_PREFAB = preload("uid://c45ii4qayngo0")
+const TABLE_PREFAB = preload("uid://caad16wajmi5r")
+const MAID_PREFAB = preload("uid://cwcitmbloxqrx")
 
 @export var level: LevelParam
 
@@ -10,9 +11,12 @@ const TABLE_SCENE = preload("uid://caad16wajmi5r")
 @onready var customer_container: Node2D = %CustomerContainer
 @onready var customer_timer: Timer = %CustomerTimer
 @onready var level_timer: Timer = %LevelTimer
+@onready var maid_spawn_point: Marker2D = %MaidSpawnPoint
 
 @onready var close_sign: TextureRect = %CloseSign
 var table_columns := 3
+
+var selected_table: Table = null
 
 func _ready() -> void:
 	customer_timer.timeout.connect(_customer_come)
@@ -21,12 +25,16 @@ func _ready() -> void:
 	level_timer.start()
 	_arrange_tables()
 	_customer_come()
+	
+	selected_table = table_container.get_child(2)
+	await get_tree().create_timer(1).timeout
+	_maid_come_to_table(MAID_PREFAB.instantiate(), selected_table)
 
 func _customer_come():
 	if level.total_customer <= 0:
 		print("no more customer")
 		return
-	var customer: Customer = CUSTOMER_SCENE.instantiate()
+	var customer: Customer = CUSTOMER_PREFAB.instantiate()
 	customer_container.add_child(customer)
 	customer_container.update_layout()
 	
@@ -63,10 +71,20 @@ func _arrange_tables():
 			if idx >= count:
 				break
 
-			var table = TABLE_SCENE.instantiate()
+			var table = TABLE_PREFAB.instantiate()
 			table_container.add_child(table)
 
 			table.global_position = area_pos + Vector2( start_x + (col + 0.5) * cell_width, (row + 0.5) * cell_height )
-
+	%NavRegion.bake_navigation_polygon()
+	
+func _maid_come_to_table(maid: Maid, table: Table) -> void:
+	if selected_table == null: 
+		return
+		
+	add_child(maid)
+	maid.global_position = maid_spawn_point.global_position
+	maid.walk_to_table(table)
+	
+	
 func _level_finished():
 	close_sign.texture  = preload("res://Assets/Visual/closed.png")

@@ -1,15 +1,19 @@
 extends Area2D
 class_name Customer
 
+const CUSTOMER_1 = preload("uid://dkoxvrdk6qc28")
+const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
+
 signal put_down
 
 @onready var sprite: Sprite2D = %Sprite
 
 var table_entered: Table = null
-var dragging := false
-#var queue: Node2D
+var dragging: bool = false
 
 func _ready() -> void:
+	_randomize_customer_number()
+		
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
 
@@ -68,7 +72,15 @@ func remove_outline():
 	var mat := sprite.material as ShaderMaterial
 	if mat:
 		mat.set_shader_parameter("width", 0)
+
+func _randomize_customer_number() -> void:
+	var customer_num = [1,2].pick_random()
 	
+	if customer_num == 1:
+		sprite.texture = CUSTOMER_1
+	else:
+		sprite.texture = CUSTOMER_2
+		
 func _on_area_entered(area: Area2D) -> void:
 	if area is not Table:
 		return
