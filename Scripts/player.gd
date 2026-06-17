@@ -1,20 +1,18 @@
 extends CharacterBody2D
-class_name Maid
+class_name Player
 
-# @onready var sprite: Sprite2D = %Sprite
-@export var maidName: String
-@export var maidPersonality: String
+const SPEED := 500.0
+
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite
-
-var table_entered: Table = null
 var direction := Vector2.ZERO
-var dragging := false
-var can_drag := true
 
-const SPEED := 400.0
-
-func _physics_process(delta: float) -> void:
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			navigation_agent.target_position = get_global_mouse_position()
+			
+func _physics_process(_delta: float) -> void:
 	if navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
 
@@ -31,13 +29,10 @@ func _physics_process(delta: float) -> void:
 	_update_animation(direction)
 	move_and_slide()
 
-func walk_to_table(table: Table):
-	navigation_agent.target_position = table.maid_spot.global_position
-	
 func _update_animation(dir: Vector2):
 	if not anim:
 		return
-
+	
 	if abs(dir.x) > abs(dir.y):
 		if dir.x > 0:
 			anim.play("right")
@@ -48,3 +43,6 @@ func _update_animation(dir: Vector2):
 			anim.play("down")
 		else:
 			anim.play("up")
+		
+	
+	

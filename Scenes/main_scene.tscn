@@ -3,22 +3,29 @@
 [ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="1_iacmt"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="2_6ev3c"]
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_huasi"]
-[ext_resource type="Texture2D" uid="uid://bv8g2acg7rq5h" path="res://Assets/Visual/Mecha/portrait_placeholder.png" id="2_maf8m"]
 [ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
-[ext_resource type="Script" uid="uid://dmfkyjq1v5qk8" path="res://Scripts/maid.gd" id="5_76v2p"]
+[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/portrait.jpg" id="4_mai8y"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="5_m1efj"]
-[ext_resource type="PackedScene" uid="uid://caad16wajmi5r" path="res://Scenes/Prefabs/table.tscn" id="7_maf8m"]
+[ext_resource type="Texture2D" uid="uid://cjli8y6vfwlp8" path="res://Assets/Visual/bg.png" id="9_76v2p"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
+[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/open.png" id="10_drdnd"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2ia5b"]
-size = Vector2(128, 128)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
+vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-103, 298, 1461, 300, 1463, 689, -108, 686)])
+agent_radius = 5.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_52fb6"]
-size = Vector2(256, 128)
+[node name="Level" type="Node" unique_id=633166089]
+script = ExtResource("2_huasi")
+level = ExtResource("3_m1efj")
 
-[node name="Level" type="Control" unique_id=1820310275]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
+layer = 3
+
+[node name="UI" type="Control" parent="UILayer" unique_id=935409973]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,130 +33,107 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_iacmt")
-script = ExtResource("2_huasi")
-level = ExtResource("3_m1efj")
 
-[node name="BG" type="Control" parent="." unique_id=874234324]
+[node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="UI" type="Control" parent="." unique_id=935409973]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MaidList" type="MarginContainer" parent="UI" unique_id=2088886791]
-layout_mode = 1
-offset_right = 336.0
+offset_right = 264.0
 offset_bottom = 1032.0
-theme_override_constants/margin_left = 32
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 200
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MaidListPanel" type="PanelContainer" parent="UI/MaidList" unique_id=1294003327]
-custom_minimum_size = Vector2(200, 800)
+[node name="MaidListPanel" type="PanelContainer" parent="UILayer/UI/MaidList" unique_id=1294003327]
+custom_minimum_size = Vector2(160, 800)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MaidList/MaidListPanel" unique_id=539526337]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/MaidList/MaidListPanel" unique_id=539526337]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="ItemList" type="ItemList" parent="UI/MaidList/MaidListPanel/MarginContainer" unique_id=657498090]
+[node name="ItemList" type="ItemList" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer" unique_id=657498090]
 layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
 auto_width = true
 item_count = 5
-max_columns = 2
-item_0/icon = ExtResource("2_maf8m")
-item_1/icon = ExtResource("2_maf8m")
-item_2/icon = ExtResource("2_maf8m")
-item_3/icon = ExtResource("2_maf8m")
-item_4/icon = ExtResource("2_maf8m")
+item_0/icon = ExtResource("4_mai8y")
+item_1/icon = ExtResource("4_mai8y")
+item_2/icon = ExtResource("4_mai8y")
 
-[node name="Maid" type="Node2D" parent="UI/MaidList/MaidListPanel/MarginContainer/ItemList" unique_id=901279708]
-script = ExtResource("5_76v2p")
-metadata/_custom_type_script = "uid://dmfkyjq1v5qk8"
-
-[node name="UpperContainer" type="MarginContainer" parent="UI" unique_id=1126750196]
+[node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1
-offset_right = 584.0
-offset_bottom = 160.0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UpperContainer" unique_id=627021523]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="DayTexture" type="TextureRect" parent="UI/UpperContainer/HBoxContainer" unique_id=1468314356]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_2ia5b")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UpperContainer/HBoxContainer/DayTexture" unique_id=1790414617]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -292.0
+offset_right = 292.0
+offset_bottom = 154.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="UI/UpperContainer/HBoxContainer/DayTexture/VBoxContainer" unique_id=142163728]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer" unique_id=627021523]
+layout_mode = 2
+
+[node name="DayContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1790414617]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/DayContainer" unique_id=142163728]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Day"
 
-[node name="DayLabel" type="Label" parent="UI/UpperContainer/HBoxContainer/DayTexture/VBoxContainer" unique_id=538932913]
+[node name="DayLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/DayContainer" unique_id=538932913]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "1"
 
-[node name="Goal" type="TextureRect" parent="UI/UpperContainer/HBoxContainer" unique_id=1389141441]
+[node name="GoalContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=683685058]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_52fb6")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UpperContainer/HBoxContainer/Goal" unique_id=683685058]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UpperContainer/HBoxContainer/Goal/VBoxContainer" unique_id=567597413]
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=567597413]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="UI/UpperContainer/HBoxContainer/Goal/VBoxContainer/HBoxContainer" unique_id=2088499103]
+[node name="Label" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=2088499103]
 layout_mode = 2
 text = "Goal : "
 
-[node name="GoalLabel" type="Label" parent="UI/UpperContainer/HBoxContainer/Goal/VBoxContainer/HBoxContainer" unique_id=787618044]
+[node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=787618044]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_iacmt")
 text = "123"
 
-[node name="IncomeLabel" type="Label" parent="UI/UpperContainer/HBoxContainer/Goal/VBoxContainer" unique_id=443870063]
+[node name="IncomeLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=443870063]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "333"
 
-[node name="TimerProgress" type="TextureProgressBar" parent="UI/UpperContainer/HBoxContainer" unique_id=821193855]
+[node name="LevelDurationLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1216051790]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "02.00"
+
+[node name="TimerProgress" type="TextureProgressBar" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=821193855]
+visible = false
 layout_mode = 2
 value = 7.0
 fill_mode = 5
@@ -157,7 +141,7 @@ texture_under = ExtResource("2_6ev3c")
 texture_progress = ExtResource("3_maf8m")
 script = ExtResource("4_huasi")
 
-[node name="JarumJam" type="TextureRect" parent="UI/UpperContainer/HBoxContainer/TimerProgress" unique_id=317627819]
+[node name="JarumJam" type="TextureRect" parent="UILayer/UI/UpperContainer/HBoxContainer/TimerProgress" unique_id=317627819]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -175,77 +159,57 @@ rotation = -6.2831855
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("5_m1efj")
 
-[node name="Timer" type="Timer" parent="UI/UpperContainer/HBoxContainer/TimerProgress" unique_id=407583532]
-wait_time = 12.0
-one_shot = true
-autostart = true
+[node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
+layer = -1
 
-[node name="TableContainer" type="Control" parent="." unique_id=1944359191]
-layout_mode = 1
+[node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("9_76v2p")
 
-[node name="MarginContainer" type="MarginContainer" parent="TableContainer" unique_id=1365365625]
-layout_mode = 0
+[node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
+unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/margin_left = 460
-theme_override_constants/margin_top = 320
+texture = ExtResource("10_drdnd")
 
-[node name="GridContainer" type="GridContainer" parent="TableContainer" unique_id=1177323165]
-layout_mode = 0
-offset_left = 627.0
-offset_top = 365.0
-offset_right = 1619.0
-offset_bottom = 877.0
-theme_override_constants/h_separation = 512
-theme_override_constants/v_separation = 256
-columns = 2
-
-[node name="Table" parent="TableContainer/GridContainer" unique_id=726679584 instance=ExtResource("7_maf8m")]
-layout_mode = 2
-
-[node name="Table2" parent="TableContainer/GridContainer" unique_id=80726755 instance=ExtResource("7_maf8m")]
-layout_mode = 2
-
-[node name="Table3" parent="TableContainer/GridContainer" unique_id=1867058605 instance=ExtResource("7_maf8m")]
-layout_mode = 2
-
-[node name="Table4" parent="TableContainer/GridContainer" unique_id=297247139 instance=ExtResource("7_maf8m")]
-layout_mode = 2
-
-[node name="CustomerQueue" type="Control" parent="." unique_id=1491381192]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-pivot_offset_ratio = Vector2(1, 0)
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CustomerQueue" unique_id=902208456]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -64.0
-offset_bottom = 64.0
-grow_horizontal = 0
-pivot_offset_ratio = Vector2(1, 0)
-mouse_filter = 2
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 128
-
-[node name="CustomerTimer" type="Timer" parent="CustomerQueue" unique_id=131248599]
+[node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
 unique_name_in_owner = true
-wait_time = 2.0
+position = Vector2(1754, 474)
+script = ExtResource("10_76v2p")
+
+[node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
+unique_name_in_owner = true
+wait_time = 5.0
 autostart = true
 
-[node name="CustomerContainer" type="Node2D" parent="." unique_id=2090199969]
+[node name="LevelTimer" type="Timer" parent="." unique_id=407583532]
 unique_name_in_owner = true
-position = Vector2(1707, 66)
-script = ExtResource("10_76v2p")
+one_shot = true
+
+[node name="TableArea" type="Control" parent="." unique_id=128824394]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1100, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 551.0
+offset_top = 528.0
+offset_right = 1810.0
+offset_bottom = 888.0
+
+[node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
+unique_name_in_owner = true
+position = Vector2(402, 215)
+navigation_polygon = SubResource("NavigationPolygon_m1efj")
+
+[node name="TableContainer" type="Node2D" parent="NavRegion" unique_id=548928484]
+unique_name_in_owner = true
+position = Vector2(-402, -215)
+
+[node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
+unique_name_in_owner = true
+position = Vector2(373, 427)

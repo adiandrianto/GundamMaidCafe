@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://crj5qti72rjym" path="res://Assets/Visual/Cutomer/customer_placeholder-export.png" id="1_c1v3n"]
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1rta"]
-radius = 28.0
-height = 100.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_678vv"]
+size = Vector2(140, 100)
 
 [node name="Customer" type="Area2D" unique_id=1912775747]
+input_pickable = false
 script = ExtResource("1_678vv")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=385557896]
@@ -17,7 +17,7 @@ material = ExtResource("2_678vv")
 texture = ExtResource("1_c1v3n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621003456]
-shape = SubResource("CapsuleShape2D_g1rta")
+shape = SubResource("RectangleShape2D_678vv")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -4,7 +4,17 @@ extends Node2D
 
 func update_layout():
 	for i in range(get_child_count()):
-		var customer = get_child(i)
+		var customer = get_child(i) as Customer
+		
+		if not customer.put_down.is_connected(_back_to_queue):
+			customer.put_down.connect(_back_to_queue.bind(customer))
+			
+		if customer.dragging: 
+			continue
 
-		customer.position = Vector2(0, i * spacing)
+		customer.position = Vector2(0, -(i * spacing))
 		customer.input_pickable = (i == 0)
+
+func _back_to_queue(customer: Customer):
+	move_child(customer, 0) # move to front of queue
+	update_layout()
