@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://8tq1j1app160" path="res://Scripts/UI/maidlist.gd" id="4_4blnk"]
 [ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="4_bwjpn"]
 [ext_resource type="Texture2D" uid="uid://bvg3uvwigod5k" path="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg" id="4_ibmi3"]
-[ext_resource type="Script" uid="uid://dmfkyjq1v5qk8" path="res://Scripts/maid.gd" id="5_4qg1e"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="6_040rt"]
+[ext_resource type="PackedScene" uid="uid://cwcitmbloxqrx" path="res://Scenes/Prefabs/maid.tscn" id="7_4blnk"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="7_dhrl2"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="8_i0miu"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="9_6bfml"]
@@ -83,9 +83,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_ibmi3")
 
-[node name="Maid" type="Node2D" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer/Panel" unique_id=333396026]
-script = ExtResource("5_4qg1e")
-metadata/_custom_type_script = "uid://dmfkyjq1v5qk8"
+[node name="Maid" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer/Panel" unique_id=57393834 instance=ExtResource("7_4blnk")]
 
 [node name="Panel2" type="Panel" parent="UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1903317497]
 custom_minimum_size = Vector2(128, 128)
@@ -238,16 +236,12 @@ theme_override_constants/v_separation = 256
 columns = 2
 
 [node name="Table" parent="TableContainer/GridContainer" unique_id=726679584 instance=ExtResource("10_0g4ye")]
-layout_mode = 2
 
 [node name="Table2" parent="TableContainer/GridContainer" unique_id=80726755 instance=ExtResource("10_0g4ye")]
-layout_mode = 2
 
 [node name="Table3" parent="TableContainer/GridContainer" unique_id=1867058605 instance=ExtResource("10_0g4ye")]
-layout_mode = 2
 
 [node name="Table4" parent="TableContainer/GridContainer" unique_id=297247139 instance=ExtResource("10_0g4ye")]
-layout_mode = 2
 
 [node name="CustomerQueue" type="Control" parent="." unique_id=1491381192]
 layout_mode = 1
