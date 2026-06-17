@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="4_m0fjm"]
 [ext_resource type="Texture2D" uid="uid://dk6gs05p0a2ng" path="res://Assets/Visual/Table/table_top.png" id="5_e5djd"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="5_vnrjx"]
+[ext_resource type="AudioStream" uid="uid://ckbtpyjhw7kyb" path="res://Assets/Audio/MiniGame/freesound_community-tada-fanfare-a-6313.mp3" id="7_e5djd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnrjx"]
 
@@ -54,9 +55,13 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "234234"
 
 [node name="BeatBar" type="TextureProgressBar" parent="Panel/UI" unique_id=80944353]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -72,7 +77,20 @@ layout_mode = 2
 texture = ExtResource("5_e5djd")
 
 [node name="Beat" type="AudioStreamPlayer" parent="." unique_id=41465659]
+unique_name_in_owner = true
 stream = ExtResource("2_xek5f")
+autoplay = true
+
+[node name="Fanfare" type="AudioStreamPlayer" parent="." unique_id=486824226]
+unique_name_in_owner = true
+stream = ExtResource("7_e5djd")
+
+[node name="Missed" type="AudioStreamPlayer" parent="." unique_id=722007523]
+unique_name_in_owner = true
+autoplay = true
+
+[node name="Matched" type="AudioStreamPlayer" parent="." unique_id=2070254847]
+unique_name_in_owner = true
 autoplay = true
 
 [node name="Shaker" type="TextureButton" parent="." unique_id=530728170]

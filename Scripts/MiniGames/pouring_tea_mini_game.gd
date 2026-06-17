@@ -1,5 +1,7 @@
 extends Control
 
+signal finished(score: int)
+
 @onready var tea_progress_bar: TextureProgressBar = %TeaProgressBar
 @onready var tea_surface: TextureRect = %TeaSurface
 @onready var score_label: Label = %ScoreLabel
@@ -29,16 +31,19 @@ func _input(event):
 			_evaluate_result()
 
 func _process(delta: float) -> void:
-	if is_pouring:
-		tea_level += fill_speed * delta
-		tea_level = min(tea_level, tea_progress_bar.max_value)
+	if tea_progress_bar.value <= 87:
+		if is_pouring:
+			tea_level += fill_speed * delta
+			tea_level = min(tea_level, tea_progress_bar.max_value)
+			turbulence = move_toward(turbulence, 12.0, 1000.0 * delta)
+		else:
+			turbulence = move_toward(turbulence, 1.0, 10.0 * delta)
 
-		turbulence = move_toward(turbulence, 12.0, 1000.0 * delta)
+		tea_progress_bar.value = tea_level
+		update_surface_position()
 	else:
-		turbulence = move_toward(turbulence, 1.0, 10.0 * delta)
-
-	tea_progress_bar.value = tea_level
-	update_surface_position()
+		_evaluate_result()
+		
 	if mat:
 		mat.set_shader_parameter("wave_strength", max(turbulence, 5.0))
 		mat.set_shader_parameter("wave_speed", max(turbulence,3.0))
@@ -49,11 +54,21 @@ func update_surface_position():
 	tea_surface.position.y = tea_progress_bar.position.y + height - (ratio * height)
 	
 func _evaluate_result():
+	set_process_input(false)
+	var score: int
+
 	if tea_level >= 76 and tea_level <= 80:
-		score_label.text = "Perfect!"
+		score = 10
+		score_label.text = "Perfect! " + str(score)
 		await get_tree().create_timer(0.2).timeout
 		$Fanfare.play()
 	elif tea_level > 80:
-		score_label.text = "Overflow!"
+		score = min(abs(10 - (tea_level - 80)), 1)
+		score_label.text = "Overflow! " + str(score)
 	else:
-		score_label.text = "Too Little!"
+		score = max((10 - abs(tea_level - 76)), 1)
+		score_label.text = "Too Little! " + str(score)
+	
+	
+	 
+	finished.emit(score)

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/shake_rhythm_beat_loop.ogg-12397a3e6ee93438a5
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=105.0
 beat_count=0
