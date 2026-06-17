@@ -2,9 +2,9 @@ extends Control
 
 @onready var tea_progress_bar: TextureProgressBar = %TeaProgressBar
 @onready var tea_surface: TextureRect = %TeaSurface
-#@onready var glass: TextureRect = %Glass
+@onready var score_label: Label = %ScoreLabel
 
-var fill_speed:= 40.0
+var fill_speed:= 35.0
 var tea_level: float = 0.0
 var is_pouring: bool = false
 var turbulence := 1.0
@@ -12,6 +12,7 @@ var bar_height := 300.0
 var mat: ShaderMaterial
 
 func _ready() -> void:
+	score_label.text = ""
 	tea_progress_bar.value = 0
 	mat = tea_surface.material
 	
@@ -32,18 +33,15 @@ func _process(delta: float) -> void:
 		tea_level += fill_speed * delta
 		tea_level = min(tea_level, tea_progress_bar.max_value)
 
-		turbulence = move_toward(turbulence, 6.0, 15.0 * delta)
+		turbulence = move_toward(turbulence, 12.0, 1000.0 * delta)
 	else:
-		turbulence = move_toward(
-			turbulence,
-			1.0,
-			10.0 * delta
-		)
+		turbulence = move_toward(turbulence, 1.0, 10.0 * delta)
 
 	tea_progress_bar.value = tea_level
 	update_surface_position()
 	if mat:
-		mat.set_shader_parameter( "amplitude", turbulence )
+		mat.set_shader_parameter("wave_strength", max(turbulence, 5.0))
+		mat.set_shader_parameter("wave_speed", max(turbulence,3.0))
 		
 func update_surface_position():
 	var ratio := tea_level / tea_progress_bar.max_value
@@ -51,9 +49,11 @@ func update_surface_position():
 	tea_surface.position.y = tea_progress_bar.position.y + height - (ratio * height)
 	
 func _evaluate_result():
-	if tea_level >= 75 and tea_level <= 85:
-		print("Perfect!")
-	elif tea_level > 85:
-		print("Overflow!")
+	if tea_level >= 76 and tea_level <= 80:
+		score_label.text = "Perfect!"
+		await get_tree().create_timer(0.2).timeout
+		$Fanfare.play()
+	elif tea_level > 80:
+		score_label.text = "Overflow!"
 	else:
-		print("Too Little!")
+		score_label.text = "Too Little!"

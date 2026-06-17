@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ckwtfeti5ncb"
-path="res://.godot/imported/Pouring Liquid 4.wav-756dc32b557d809310e84026288546cd.sample"
+path="res://.godot/imported/Pouring Liquid 4.wav-b6d0ca3e9ec23cbebc6fc68cfe32de29.sample"
 
 [deps]
 
-source_file="res://Assets/Audio/Pouring Liquid 4.wav"
-dest_files=["res://.godot/imported/Pouring Liquid 4.wav-756dc32b557d809310e84026288546cd.sample"]
+source_file="res://Assets/Audio/MiniGame/Pouring Liquid 4.wav"
+dest_files=["res://.godot/imported/Pouring Liquid 4.wav-b6d0ca3e9ec23cbebc6fc68cfe32de29.sample"]
 
 [params]
 
