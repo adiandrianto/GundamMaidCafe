@@ -3,13 +3,16 @@
 [ext_resource type="Script" uid="uid://dkgx2c7uaka0h" path="res://Scripts/customer.gd" id="1_678vv"]
 [ext_resource type="Texture2D" uid="uid://crj5qti72rjym" path="res://Assets/Visual/Cutomer/customer_placeholder-export.png" id="1_c1v3n"]
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
+[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/portrait.jpg" id="5_8njvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_678vv"]
 size = Vector2(140, 100)
 
-[node name="Customer" type="Area2D" unique_id=1912775747]
+[node name="Customer" type="Area2D" unique_id=1912775747 node_paths=PackedStringArray("maid_popup", "dialogue_popup")]
 input_pickable = false
 script = ExtResource("1_678vv")
+maid_popup = NodePath("UI/MaidPrompt")
+dialogue_popup = NodePath("UI/Dialogue")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=385557896]
 unique_name_in_owner = true
@@ -19,5 +22,48 @@ texture = ExtResource("1_c1v3n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621003456]
 shape = SubResource("RectangleShape2D_678vv")
 
+[node name="UI" type="Control" parent="." unique_id=184253736]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="MaidPrompt" type="Button" parent="UI" unique_id=758706848]
+visible = false
+layout_mode = 0
+offset_left = -67.0
+offset_top = -183.0
+offset_right = 61.0
+offset_bottom = -55.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/MaidPrompt" unique_id=508755555]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 126.0
+offset_bottom = 126.0
+texture = ExtResource("5_8njvi")
+expand_mode = 1
+
+[node name="Dialogue" type="Panel" parent="UI" unique_id=349901802]
+visible = false
+layout_mode = 0
+offset_left = -86.0
+offset_top = -125.0
+offset_right = 73.0
+offset_bottom = -63.0
+mouse_filter = 2
+
+[node name="DialogueText" type="Label" parent="UI/Dialogue" unique_id=403510665]
+layout_mode = 0
+offset_right = 159.0
+offset_bottom = 62.0
+text = "I need someone cute to cheer me up"
+autowrap_mode = 2
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="pressed" from="UI/MaidPrompt" to="." method="_on_maid_prompt_pressed"]

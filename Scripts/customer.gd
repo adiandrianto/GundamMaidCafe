@@ -7,9 +7,13 @@ const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
 signal put_down
 
 @onready var sprite: Sprite2D = %Sprite
+@export var maid_popup: Button
+@export var dialogue_popup: Panel
 
 var table_entered: Table = null
 var dragging: bool = false
+var customerPreference: GlobalConstants.Personality
+var request_maid: bool = false
 
 func _ready() -> void:
 	_randomize_customer_number()
@@ -51,10 +55,14 @@ func begin_drag():
 	give_outline()
 
 func end_drag():
+	if not dragging:
+		return
 	dragging = false
 	remove_outline()
 	if table_entered:
 		table_entered.assign_customer(self)
+		request_maid = true
+		popup_maid()
 	else:
 		emit_signal("put_down")
 	
@@ -89,3 +97,17 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if area is Table:
 		table_entered = null
+
+
+func _on_maid_prompt_pressed() -> void:
+	maid_popup.hide()
+	print("ordering")
+	dialogue_popup.show()
+	await get_tree().create_timer(1.0).timeout
+	dialogue_popup.hide()
+	
+
+func popup_maid() -> void:
+	if request_maid == true:
+		maid_popup.show()
+		print("maid request")

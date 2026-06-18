@@ -6,6 +6,7 @@ class_name Table
 
 var assigned_customer: Customer
 var assigned_maid: Maid
+var table_order: GlobalConstants.Food
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return data is Maid

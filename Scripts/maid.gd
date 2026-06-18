@@ -3,7 +3,7 @@ class_name Maid
 
 # @onready var sprite: Sprite2D = %Sprite
 @export var maidName: String
-@export var maidPersonality: int
+@export var maidPersonality: GlobalConstants.Personality
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite
 
