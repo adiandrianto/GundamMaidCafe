@@ -107,7 +107,7 @@ func _on_maid_prompt_pressed() -> void:
 	dialogue_popup.show()
 	await get_tree().create_timer(1.0).timeout
 	dialogue_popup.hide()
-	
+
 
 func popup_maid() -> void:
 	if request_maid == true:

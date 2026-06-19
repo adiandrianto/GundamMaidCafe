@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bcoafo2w7e5cl"]
 
 [ext_resource type="Script" uid="uid://k25gy8vxyd80" path="res://Scripts/MiniGames/pouring_tea_mini_game.gd" id="1_pl3cu"]
-[ext_resource type="Texture2D" uid="uid://ecmkrmioect4" path="res://Assets/Visual/water.png" id="2_g2gns"]
-[ext_resource type="Texture2D" uid="uid://ubotchyjp4ao" path="res://Assets/Visual/glass.png" id="3_phype"]
+[ext_resource type="Texture2D" uid="uid://ecmkrmioect4" path="res://Assets/Visual/MiniGame/PourTea/water.png" id="2_g2gns"]
+[ext_resource type="Texture2D" uid="uid://ubotchyjp4ao" path="res://Assets/Visual/MiniGame/PourTea/glass.png" id="3_phype"]
 [ext_resource type="Shader" uid="uid://dcnw38q6bs0f" path="res://Scenes/water.gdshader" id="4_x71aj"]
-[ext_resource type="Texture2D" uid="uid://5kv2rwerojsv" path="res://Assets/Visual/tea_surface.png" id="5_654xn"]
+[ext_resource type="Texture2D" uid="uid://5kv2rwerojsv" path="res://Assets/Visual/MiniGame/PourTea/tea_surface.png" id="5_654xn"]
 [ext_resource type="AudioStream" uid="uid://ckwtfeti5ncb" path="res://Assets/Audio/MiniGame/Pouring Liquid 4.wav" id="6_654xn"]
 [ext_resource type="AudioStream" uid="uid://ckbtpyjhw7kyb" path="res://Assets/Audio/MiniGame/freesound_community-tada-fanfare-a-6313.mp3" id="7_654xn"]
 
@@ -71,14 +71,11 @@ text = "asdawdasdawdasd"
 [node name="Done" type="TextureButton" parent="Panel" unique_id=586799864]
 layout_mode = 2
 
-[node name="TeaContainer" type="Control" parent="Panel" unique_id=363378437]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="TeaContainer" type="Node2D" parent="Panel" unique_id=574680546]
+position = Vector2(400, 353)
 
 [node name="TeaProgressBar" type="TextureProgressBar" parent="Panel/TeaContainer" unique_id=1801374376]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -100,7 +97,6 @@ texture_progress = ExtResource("2_g2gns")
 unique_name_in_owner = true
 z_index = 1
 material = SubResource("ShaderMaterial_pl3cu")
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -119,7 +115,6 @@ stretch_mode = 2
 [node name="TeaSurface" type="TextureRect" parent="Panel/TeaContainer" unique_id=233850578]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_2yq2x")
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -136,11 +131,10 @@ texture = ExtResource("5_654xn")
 
 [node name="ColorRect" type="ColorRect" parent="Panel/TeaContainer" unique_id=1069590458]
 custom_minimum_size = Vector2(800, 100)
-layout_mode = 0
-offset_left = -400.0
-offset_top = 193.0
-offset_right = 400.0
-offset_bottom = 293.0
+offset_left = -401.0
+offset_top = 247.0
+offset_right = 399.0
+offset_bottom = 347.0
 
 [node name="Pouring" type="AudioStreamPlayer" parent="." unique_id=1653198617]
 stream = ExtResource("6_654xn")
