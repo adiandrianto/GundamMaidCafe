@@ -35,6 +35,7 @@ func _customer_come():
 		print("no more customer")
 		return
 	var customer: Customer = CUSTOMER_PREFAB.instantiate()
+	customer.z_index = -customer_container.get_child_count()
 	customer_container.add_child(customer)
 	customer_container.update_layout()
 	
