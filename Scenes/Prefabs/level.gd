@@ -49,10 +49,10 @@ func _arrange_tables():
 	var columns = ceili(sqrt(count))
 	var rows = ceili(float(count) / columns)
 
-	var rect := table_area.get_global_rect()
+	var rect: Rect2 = table_area.get_global_rect()
 
-	var area_pos := rect.position
-	var area_size := rect.size
+	var area_pos: Vector2 = rect.position
+	var area_size: Vector2 = rect.size
 
 	var cell_width: float = area_size.x / columns
 	var cell_height: float = area_size.y / rows
@@ -73,18 +73,16 @@ func _arrange_tables():
 
 			var table = TABLE_PREFAB.instantiate()
 			table_container.add_child(table)
-
 			table.global_position = area_pos + Vector2( start_x + (col + 0.5) * cell_width, (row + 0.5) * cell_height )
 	%NavRegion.bake_navigation_polygon()
 	
 func _maid_come_to_table(maid: Maid, table: Table) -> void:
 	if selected_table == null: 
 		return
-		
+
 	add_child(maid)
 	maid.global_position = maid_spawn_point.global_position
 	maid.walk_to_table(table)
-	
 	
 func _level_finished():
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")
