@@ -8,7 +8,7 @@ signal put_down
 
 @onready var sprite: Sprite2D = %Sprite
 
-var table_entered: Table = null
+var table_entered: Array[Table] = [] #ada bug kl lewat area 2 kali tidak ke assign di table jadi hrs pakai Array
 var dragging: bool = false
 
 var total_person: int
@@ -56,8 +56,10 @@ func end_drag():
 	dragging = false
 	remove_outline()
 	if table_entered:
-		table_entered.assign_customer(self)
+		print("Assigned to table")
+		table_entered[0].assign_customer(self)
 	else:
+		print("NO TABLE!")
 		emit_signal("put_down")
 	
 func give_outline():
@@ -86,9 +88,10 @@ func _randomize_customer_number() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is not Table:
 		return
-	table_entered = area
+	table_entered.push_front(area)
 	print(table_entered)
 
 func _on_area_exited(area: Area2D) -> void:
 	if area is Table:
-		table_entered = null
+		if table_entered.has(area):
+			table_entered.erase(area)
