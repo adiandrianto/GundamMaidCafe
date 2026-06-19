@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_4blnk"]
 [ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="4_bwjpn"]
 [ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/portrait.jpg" id="5_4blnk"]
+[ext_resource type="Texture2D" uid="uid://bvg3uvwigod5k" path="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg" id="5_tnimv"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="6_040rt"]
 [ext_resource type="PackedScene" uid="uid://cwcitmbloxqrx" path="res://Scenes/Prefabs/maid.tscn" id="7_4blnk"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="7_dhrl2"]
@@ -58,28 +59,25 @@ theme_override_constants/margin_bottom = 8
 
 [node name="GridContainer" type="GridContainer" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer" unique_id=122858569]
 layout_mode = 2
-theme_override_constants/h_separation = 4
-theme_override_constants/v_separation = 200
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 10
 
-[node name="Maid0" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1206577989]
+[node name="Maid0" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1206577989 node_paths=PackedStringArray("maid")]
 layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("5_4blnk")
+texture_pressed = ExtResource("5_tnimv")
 script = ExtResource("4_bwjpn")
+maid = NodePath("../../../../../../../MaidSpawnPoint/Maid")
 
-[node name="MaidIcon" type="TextureRect" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer/Maid0" unique_id=1529296574]
-layout_mode = 0
-offset_right = 192.0
-offset_bottom = 192.0
-texture = ExtResource("5_4blnk")
-
-[node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602]
+[node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602 node_paths=PackedStringArray("maid")]
 layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("5_4blnk")
+texture_pressed = ExtResource("5_tnimv")
 script = ExtResource("4_bwjpn")
-
-[node name="MaidIcon" type="TextureRect" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer/Maid1" unique_id=784010719]
-layout_mode = 0
-offset_right = 192.0
-offset_bottom = 192.0
-texture = ExtResource("5_4blnk")
+maidIndex = 1
+maid = NodePath("../../../../../../../MaidSpawnPoint/Maid2")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1
@@ -232,5 +230,9 @@ unique_name_in_owner = true
 position = Vector2(373, 427)
 
 [node name="Maid" parent="MaidSpawnPoint" unique_id=57393834 instance=ExtResource("7_4blnk")]
+visible = false
+position = Vector2(-340, -214)
+
+[node name="Maid2" parent="MaidSpawnPoint" unique_id=1161719473 instance=ExtResource("7_4blnk")]
 visible = false
 position = Vector2(-340, -214)
