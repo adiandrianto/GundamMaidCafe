@@ -10,6 +10,13 @@ const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
 
 var assigned_customer: Customer
 var assigned_maid: Maid
+var table_order: GlobalConstants.Food
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return data is Maid
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	assign_maid(data)
 
 func assign_customer(customer: Customer):
 	assigned_customer = customer
@@ -25,3 +32,4 @@ func assign_customer(customer: Customer):
 func assign_maid(maid: Maid):
 	assigned_maid = maid
 	maid.global_position = maid_spot.global_position
+	print("Assigned maid to table")

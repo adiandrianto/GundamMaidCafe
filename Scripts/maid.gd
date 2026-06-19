@@ -1,11 +1,18 @@
 extends CharacterBody2D
 class_name Maid
 
-const SPEED := 400.0
-
+# @onready var sprite: Sprite2D = %Sprite
+@export var maidName: String
+@export var maidPersonality: GlobalConstants.Personality
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite
+
+var table_entered: Table = null
 var direction := Vector2.ZERO
+var dragging := false
+var can_drag := true
+
+const SPEED := 400.0
 
 func _physics_process(delta: float) -> void:
 	if navigation_agent.is_navigation_finished():

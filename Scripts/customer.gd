@@ -7,11 +7,13 @@ const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
 signal put_down
 
 @onready var sprite: Sprite2D = %Sprite
+@export var maid_popup: Button
+@export var dialogue_popup: Panel
 
-var table_entered: Array[Table] = [] #ada bug kl lewat area 2 kali tidak ke assign di table jadi hrs pakai Array
+var table_entered: Table = null
 var dragging: bool = false
-
-var total_person: int
+var customerPreference: GlobalConstants.Personality
+var request_maid: bool = false
 
 func _ready() -> void:
 	_randomize_customer_number()
@@ -53,13 +55,15 @@ func begin_drag():
 	give_outline()
 
 func end_drag():
+	if not dragging:
+		return
 	dragging = false
 	remove_outline()
 	if table_entered:
-		print("Assigned to table")
-		table_entered[0].assign_customer(self)
+		table_entered.assign_customer(self)
+		request_maid = true
+		popup_maid()
 	else:
-		print("NO TABLE!")
 		emit_signal("put_down")
 	
 func give_outline():
@@ -78,9 +82,9 @@ func remove_outline():
 		mat.set_shader_parameter("width", 0)
 
 func _randomize_customer_number() -> void:
-	total_person = [1,2].pick_random()
+	var customer_num = [1,2].pick_random()
 	
-	if total_person == 1:
+	if customer_num == 1:
 		sprite.texture = CUSTOMER_1
 	else:
 		sprite.texture = CUSTOMER_2
@@ -88,10 +92,22 @@ func _randomize_customer_number() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is not Table:
 		return
-	table_entered.push_front(area)
-	print(table_entered)
+	table_entered = area
 
 func _on_area_exited(area: Area2D) -> void:
 	if area is Table:
-		if table_entered.has(area):
-			table_entered.erase(area)
+		table_entered = null
+
+
+func _on_maid_prompt_pressed() -> void:
+	maid_popup.hide()
+	print("ordering")
+	dialogue_popup.show()
+	await get_tree().create_timer(1.0).timeout
+	dialogue_popup.hide()
+	
+
+func popup_maid() -> void:
+	if request_maid == true:
+		maid_popup.show()
+		print("maid request")
