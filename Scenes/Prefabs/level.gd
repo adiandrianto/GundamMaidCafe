@@ -87,4 +87,4 @@ func _maid_come_to_table(maid: Maid, table: Table) -> void:
 	
 	
 func _level_finished():
-	close_sign.texture  = preload("res://Assets/Visual/closed.png")
+	close_sign.texture  = preload("uid://dh58rpyvq2rcy")

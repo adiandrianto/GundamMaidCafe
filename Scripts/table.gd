@@ -1,8 +1,12 @@
 extends Area2D
 class_name Table
 
+const CUSTOMER_1_SITTING = preload("uid://j7qi843et0h6")
+const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
+
 @onready var maid_spot: Marker2D = %MaidSpot
 @onready var customer_spot: Marker2D = %CustomerSpot
+@onready var sprite: Sprite2D = $Sprite
 
 var assigned_customer: Customer
 var assigned_maid: Maid
@@ -11,9 +15,9 @@ func assign_customer(customer: Customer):
 	assigned_customer = customer
 	customer.reparent(self, true)
 	if customer.total_person == 1: # differentiate the texture based on jumlah orang
-		pass
+		customer.sprite.texture = CUSTOMER_1_SITTING
 	else:
-		pass
+		customer.sprite.texture = CUSTOMER_2_SITTING
 		
 	customer.global_position = customer_spot.global_position
 	customer.input_pickable = false

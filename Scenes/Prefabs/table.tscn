@@ -18,7 +18,6 @@ position = Vector2(0, -80)
 
 [node name="CustomerSpot" type="Marker2D" parent="." unique_id=1390835832]
 unique_name_in_owner = true
-position = Vector2(-81, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=737414314]
 position = Vector2(1, 3)
