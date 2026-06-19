@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://ck30wxkjgcwfb"]
+
+[ext_resource type="PackedScene" uid="uid://begwrjh6kagwe" path="res://Main menu/options.tscn" id="1_bh62r"]
+
+[sub_resource type="GDScript" id="GDScript_5yeqd"]
+resource_name = "Main_menu"
+script/source = "extends Control
+
+@onready var options: Panel = $Options
+
+
+
+func _ready() -> void:
+	options.visible = false
+
+
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_play_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/main_scene.tscn\")
+	pass
+
+
+func _on_option_pressed() -> void:
+	options.visible = true
+
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e843d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l3sk"]
+bg_color = Color(0.60190856, 0.440634, 0.8268701, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0qd8"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Main_menu" type="Control" unique_id=1241282294]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_5yeqd")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1182690504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_e843d")
+
+[node name="Background" type="Panel" parent="TextureRect" unique_id=1137719689]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0l3sk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=711517438]
+layout_mode = 0
+offset_left = 1549.0
+offset_top = 706.0
+offset_right = 1854.0
+offset_bottom = 801.0
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=2017122]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16565618, 0.16565657, 0.16565624, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_m0qd8")
+text = "Play"
+
+[node name="Option" type="Button" parent="VBoxContainer" unique_id=627665722]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16565618, 0.16565657, 0.16565624, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_m0qd8")
+text = "Option"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=932185105]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16565618, 0.16565657, 0.16565624, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_m0qd8")
+text = "Quit"
+
+[node name="Panel" type="Panel" parent="." unique_id=2042806348]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 134.0
+offset_right = 796.0
+offset_bottom = 534.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=254365715]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -43.5
+offset_right = 73.0
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 63
+text = "Logo"
+
+[node name="Options" parent="." unique_id=1394221663 instance=ExtResource("1_bh62r")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://b6voidpbr24bo"]
 
 [ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Minigame O/veg.tscn" id="1_dhqqs"]
+[ext_resource type="PackedScene" uid="uid://b63r404f2qos3" path="res://Minigame O/score_1.tscn" id="1_j8jj4"]
 [ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Minigame O/object.gd" id="1_n67nu"]
+[ext_resource type="Script" uid="uid://c4yfs1okgl8jv" path="res://Minigame O/score_2.gd" id="2_que8l"]
+[ext_resource type="Script" uid="uid://dfftkhov62tts" path="res://Minigame O/score_3.gd" id="3_4lxmc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jj4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_que8l"]
-bg_color = Color(0.35531357, 0.35531357, 0.35531345, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lxmc"]
 bg_color = Color(0.58646464, 0.79100376, 0.37044996, 1)
@@ -14,17 +14,54 @@ bg_color = Color(0.58646464, 0.79100376, 0.37044996, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ybrk"]
 bg_color = Color(1, 0.43167043, 0.39184394, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4hmq"]
-bg_color = Color(0.84470487, 0.4345054, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uto06"]
 bg_color = Color(0.8268656, 0.81192, 0.8306355, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n67nu"]
-bg_color = Color(0.4313402, 0.43134028, 0.43134007, 1)
+[sub_resource type="GDScript" id="GDScript_j8jj4"]
+resource_name = "scoring"
+script/source = "extends Node2D
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbccp"]
-bg_color = Color(0.37036434, 0.37036452, 0.37036446, 1)
+@onready var objects: Node2D = $\"../Objects\"
+@onready var display_score: MarginContainer = $\"../Display_score\"
+@onready var label_2: Label = $\"../Display_score/Final_score/MarginContainer/HBoxContainer/Label2\"
+@onready var minigame_o: Control = $\"..\"
+@onready var score: Node2D = $\".\"
+
+var score1
+var score2
+var score3
+var total_score
+
+func _ready() -> void:
+	display_score.visible = false
+	score1 = get_node(\"Score1\")
+	print(score1)
+	score2 = get_node(\"Score2\")
+	print(score2)
+	score3 = get_node(\"Score3\")
+	print(score3)
+
+
+func get_score():
+	total_score = (score1.score + score2.score + score3.score)/3
+	print(total_score)
+	label_2.text = str(total_score)
+
+func _on_button_pressed() -> void:
+	objects.z_index = 0
+	minigame_o.z_index = 0
+	score.z_index = 0
+	display_score.z_index = 1
+	get_score()
+	display_score.visible = true
+
+
+func _on_texture_button_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4hmq"]
+bg_color = Color(0.3574912, 0.6704099, 0.57396513, 1)
 
 [node name="Minigame_O" type="Control" unique_id=1442840663]
 layout_mode = 3
@@ -34,7 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=861327845]
+[node name="Minigame" type="MarginContainer" parent="." unique_id=861327845]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,80 +85,127 @@ offset_bottom = 417.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1214026354]
+[node name="Panel" type="Panel" parent="Minigame" unique_id=1214026354]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j8jj4")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=159455681]
+[node name="MarginContainer" type="MarginContainer" parent="Minigame" unique_id=159455681]
 layout_mode = 2
 theme_override_constants/margin_left = 35
 theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 35
 theme_override_constants/margin_bottom = 35
 
-[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer" unique_id=737884429]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_que8l")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer" unique_id=2068126746]
+[node name="HBoxContainer" type="HBoxContainer" parent="Minigame/MarginContainer" unique_id=2068126746]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer" unique_id=29220080]
+[node name="VBoxContainer" type="VBoxContainer" parent="Minigame/MarginContainer/HBoxContainer" unique_id=29220080]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 35
 
-[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=523633382]
+[node name="Panel" type="Panel" parent="Minigame/MarginContainer/HBoxContainer/VBoxContainer" unique_id=523633382]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4lxmc")
 
-[node name="Panel2" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1895180724]
+[node name="Panel2" type="Panel" parent="Minigame/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1895180724]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ybrk")
 
-[node name="Panel3" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=220917286]
+[node name="Button" type="Button" parent="Minigame/MarginContainer/HBoxContainer/VBoxContainer" unique_id=590837987]
+custom_minimum_size = Vector2(0, 91)
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_h4hmq")
+theme_override_font_sizes/font_size = 46
+text = "Finish"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer" unique_id=1825307938]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 35
-
-[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=275197291]
+[node name="Panel" type="Panel" parent="Minigame/MarginContainer/HBoxContainer" unique_id=275197291]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_uto06")
 
-[node name="Panel2" type="Panel" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=549369162]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n67nu")
+[node name="Score" type="Node2D" parent="." unique_id=2012455061]
+script = SubResource("GDScript_j8jj4")
 
-[node name="Button" type="Button" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/Panel2" unique_id=1024188471]
+[node name="Score1" parent="Score" unique_id=1115083666 instance=ExtResource("1_j8jj4")]
+z_as_relative = true
+position = Vector2(970, 388)
+
+[node name="Score2" parent="Score" unique_id=1308781252 instance=ExtResource("1_j8jj4")]
+z_as_relative = true
+position = Vector2(1256, 355)
+script = ExtResource("2_que8l")
+
+[node name="Score3" parent="Score" unique_id=380936867 instance=ExtResource("1_j8jj4")]
+z_as_relative = true
+position = Vector2(1161, 655)
+script = ExtResource("3_4lxmc")
+
+[node name="Objects" type="Node2D" parent="." unique_id=734038055]
+script = ExtResource("1_n67nu")
+
+[node name="Object" parent="Objects" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
+position = Vector2(397, 292)
+
+[node name="Object2" parent="Objects" unique_id=1540574857 instance=ExtResource("1_dhqqs")]
+position = Vector2(541, 250)
+
+[node name="Object3" parent="Objects" unique_id=1175461143 instance=ExtResource("1_dhqqs")]
+position = Vector2(555, 624)
+
+[node name="Display_score" type="MarginContainer" parent="." unique_id=1173704526]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 42
-theme_override_styles/hover = SubResource("StyleBoxFlat_wbccp")
-text = "Serve"
 
-[node name="Node2D" type="Node2D" parent="." unique_id=734038055]
-script = ExtResource("1_n67nu")
+[node name="Final_score" type="MarginContainer" parent="Display_score" unique_id=439108936]
+layout_mode = 2
+theme_override_constants/margin_left = 275
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 275
+theme_override_constants/margin_bottom = 110
 
-[node name="Object" parent="Node2D" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
-y_sort_enabled = true
-position = Vector2(414, 249)
+[node name="Panel" type="Panel" parent="Display_score/Final_score" unique_id=2036436234]
+layout_mode = 2
 
-[node name="Object2" parent="Node2D" unique_id=1540574857 instance=ExtResource("1_dhqqs")]
-y_sort_enabled = true
-position = Vector2(539, 250)
+[node name="MarginContainer" type="MarginContainer" parent="Display_score/Final_score" unique_id=1550704753]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel2" type="Panel" parent="Display_score/Final_score/MarginContainer" unique_id=1482686077]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h4hmq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Display_score/Final_score/MarginContainer" unique_id=1382154682]
+layout_mode = 2
+theme_override_constants/separation = 173
+
+[node name="Label3" type="Label" parent="Display_score/Final_score/MarginContainer/HBoxContainer" unique_id=1613921996]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Display_score/Final_score/MarginContainer/HBoxContainer" unique_id=1529159]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 100
+text = "Score :"
+
+[node name="Label2" type="Label" parent="Display_score/Final_score/MarginContainer/HBoxContainer" unique_id=22157245]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = ". . . ."
+
+[node name="TextureButton" type="TextureButton" parent="Display_score" unique_id=177957510]
+layout_mode = 2
+
+[connection signal="pressed" from="Minigame/MarginContainer/HBoxContainer/VBoxContainer/Button" to="Score" method="_on_button_pressed"]
+[connection signal="pressed" from="Display_score/TextureButton" to="Score" method="_on_texture_button_pressed"]
