@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://b6voidpbr24bo"]
 
-[ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Minigame O/veg.tscn" id="1_dhqqs"]
-[ext_resource type="PackedScene" uid="uid://b63r404f2qos3" path="res://Minigame O/score_1.tscn" id="1_j8jj4"]
-[ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Minigame O/object.gd" id="1_n67nu"]
-[ext_resource type="Script" uid="uid://c4yfs1okgl8jv" path="res://Minigame O/score_2.gd" id="2_que8l"]
-[ext_resource type="Script" uid="uid://dfftkhov62tts" path="res://Minigame O/score_3.gd" id="3_4lxmc"]
+[ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Scenes/MiniGame/Minigame O/veg.tscn" id="1_dhqqs"]
+[ext_resource type="PackedScene" uid="uid://b63r404f2qos3" path="res://Scenes/MiniGame/Minigame O/score_1.tscn" id="1_j8jj4"]
+[ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Scenes/MiniGame/Minigame O/object.gd" id="1_n67nu"]
+[ext_resource type="Script" uid="uid://c4yfs1okgl8jv" path="res://Scenes/MiniGame/Minigame O/score_2.gd" id="2_que8l"]
+[ext_resource type="Script" uid="uid://dfftkhov62tts" path="res://Scenes/MiniGame/Minigame O/score_3.gd" id="3_4lxmc"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jj4"]
 

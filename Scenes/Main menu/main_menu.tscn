@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ck30wxkjgcwfb"]
 
-[ext_resource type="PackedScene" uid="uid://begwrjh6kagwe" path="res://Main menu/options.tscn" id="1_bh62r"]
+[ext_resource type="PackedScene" uid="uid://begwrjh6kagwe" path="res://Scenes/Main menu/options.tscn" id="1_bh62r"]
+
 
 [sub_resource type="GDScript" id="GDScript_5yeqd"]
 resource_name = "Main_menu"

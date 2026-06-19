@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgackixkfq4k2"]
 
-[ext_resource type="Texture2D" uid="uid://byoonbani0nl6" path="res://Minigame O/Sprite/veg.png" id="1_ogvhc"]
+[ext_resource type="Texture2D" uid="uid://byoonbani0nl6" path="res://Scenes/MiniGame/Minigame O/Sprite/veg.png" id="1_ogvhc"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bymng"]
 radius = 53.0

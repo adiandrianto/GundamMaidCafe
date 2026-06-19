@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg6jadfolql4r"
-path="res://.godot/imported/veg-3.png-6f4eefbfa91a3f6749901cc348dd792f.ctex"
+uid="uid://fjgg10erirhj"
+path="res://.godot/imported/New Piskel.png-e5346b730357eb573ac14d3602e5d340.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame O/Sprite/veg-3.png"
-dest_files=["res://.godot/imported/veg-3.png-6f4eefbfa91a3f6749901cc348dd792f.ctex"]
+source_file="res://Scenes/MiniGame/Minigame O/Sprite/New Piskel.png"
+dest_files=["res://.godot/imported/New Piskel.png-e5346b730357eb573ac14d3602e5d340.ctex"]
 
 [params]
 
