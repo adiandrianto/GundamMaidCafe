@@ -10,6 +10,11 @@ var assigned_maid: Maid
 func assign_customer(customer: Customer):
 	assigned_customer = customer
 	customer.reparent(self, true)
+	if customer.total_person == 1: # differentiate the texture based on jumlah orang
+		pass
+	else:
+		pass
+		
 	customer.global_position = customer_spot.global_position
 	customer.input_pickable = false
 

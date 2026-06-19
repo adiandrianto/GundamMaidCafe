@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv8g2acg7rq5h"
-path="res://.godot/imported/portrait_placeholder.png-d8118f3b5d460731f0282f2dd07efdb2.ctex"
+uid="uid://ubotchyjp4ao"
+path="res://.godot/imported/glass.png-9c809a7059adcde6a146d9ad751cf125.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/Gundam/portrait_placeholder.png"
-dest_files=["res://.godot/imported/portrait_placeholder.png-d8118f3b5d460731f0282f2dd07efdb2.ctex"]
+source_file="res://Assets/Visual/MiniGame/PourTea/glass.png"
+dest_files=["res://.godot/imported/glass.png-9c809a7059adcde6a146d9ad751cf125.ctex"]
 
 [params]
 

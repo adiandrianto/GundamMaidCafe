@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drlbsa1jv41uh"
-path="res://.godot/imported/open.png-ff97c0a7922e3bb70b4bf00b39e32f8d.ctex"
+uid="uid://ecmkrmioect4"
+path="res://.godot/imported/water.png-8e28d34a4f9849643ef2eaa126997705.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/open.png"
-dest_files=["res://.godot/imported/open.png-ff97c0a7922e3bb70b4bf00b39e32f8d.ctex"]
+source_file="res://Assets/Visual/MiniGame/PourTea/water.png"
+dest_files=["res://.godot/imported/water.png-8e28d34a4f9849643ef2eaa126997705.ctex"]
 
 [params]
 

@@ -14,7 +14,7 @@ const MAID_PREFAB = preload("uid://cwcitmbloxqrx")
 @onready var maid_spawn_point: Marker2D = %MaidSpawnPoint
 
 @onready var close_sign: TextureRect = %CloseSign
-var table_columns := 3
+var table_columns: int = 3
 
 var selected_table: Table = null
 

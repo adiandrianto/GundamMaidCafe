@@ -11,6 +11,8 @@ signal put_down
 var table_entered: Table = null
 var dragging: bool = false
 
+var total_person: int
+
 func _ready() -> void:
 	_randomize_customer_number()
 		
@@ -74,9 +76,9 @@ func remove_outline():
 		mat.set_shader_parameter("width", 0)
 
 func _randomize_customer_number() -> void:
-	var customer_num = [1,2].pick_random()
+	total_person = [1,2].pick_random()
 	
-	if customer_num == 1:
+	if total_person == 1:
 		sprite.texture = CUSTOMER_1
 	else:
 		sprite.texture = CUSTOMER_2

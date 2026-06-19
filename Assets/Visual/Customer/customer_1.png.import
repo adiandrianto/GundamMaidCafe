@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw5jjovgfcv6v"
-path.s3tc="res://.godot/imported/portrait.jpg-86bc8b87cfebf49a54404e47ba729b7d.s3tc.ctex"
+uid="uid://dkoxvrdk6qc28"
+path="res://.godot/imported/customer_1.png-fbc4f7c403dc41cfd34693f83399ca11.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/portrait.jpg"
-dest_files=["res://.godot/imported/portrait.jpg-86bc8b87cfebf49a54404e47ba729b7d.s3tc.ctex"]
+source_file="res://Assets/Visual/Customer/customer_1.png"
+dest_files=["res://.godot/imported/customer_1.png-fbc4f7c403dc41cfd34693f83399ca11.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

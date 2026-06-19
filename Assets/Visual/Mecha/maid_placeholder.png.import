@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ecmkrmioect4"
-path="res://.godot/imported/water.png-08a4277e72b767a16e5251a4804e5abe.ctex"
+uid="uid://vkimu882x6xm"
+path="res://.godot/imported/maid_placeholder.png-21b0d06b6b9b0e953bfccbf2d34ee963.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/water.png"
-dest_files=["res://.godot/imported/water.png-08a4277e72b767a16e5251a4804e5abe.ctex"]
+source_file="res://Assets/Visual/Mecha/maid_placeholder.png"
+dest_files=["res://.godot/imported/maid_placeholder.png-21b0d06b6b9b0e953bfccbf2d34ee963.ctex"]
 
 [params]
 
