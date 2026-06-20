@@ -3,12 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://fjgg10erirhj" path="res://Scenes/MiniGame/Minigame O/Sprite/New Piskel.png" id="1_ajavb"]
 [ext_resource type="Script" uid="uid://dmsx48yndq12o" path="res://Scenes/MiniGame/Minigame O/score_1.gd" id="1_xrhqk"]
 
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ajavb"]
 radius = 7.071068
 
-[node name="Score1" type="Node2D" unique_id=1115083666]
-z_as_relative = false
+[node name="Score1" type="Node2D" unique_id=1524881059]
 script = ExtResource("1_xrhqk")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=521042883]

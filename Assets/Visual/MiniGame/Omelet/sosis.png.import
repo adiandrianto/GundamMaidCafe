@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd3k672qa8hvy"
-path="res://.godot/imported/surface_2.png-6d8e2e870b0675be15e468f9290257c0.ctex"
+uid="uid://6nhb5wm4doj8"
+path="res://.godot/imported/sosis.png-b3d13ed3b00b102f34bf54895965360e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/MiniGame/PourTea/surface_2.png"
-dest_files=["res://.godot/imported/surface_2.png-6d8e2e870b0675be15e468f9290257c0.ctex"]
+source_file="res://Assets/Visual/MiniGame/Omelet/sosis.png"
+dest_files=["res://.godot/imported/sosis.png-b3d13ed3b00b102f34bf54895965360e.ctex"]
 
 [params]
 

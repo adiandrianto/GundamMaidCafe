@@ -17,7 +17,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-103, 298, 1461, 300, 1463, 689, -108, 686)])
 agent_radius = 5.0
 
-[node name="Level" type="Node" unique_id=633166089]
+[node name="Level" type="Node" unique_id=1604913447]
 script = ExtResource("2_huasi")
 level = ExtResource("3_m1efj")
 
@@ -205,13 +205,10 @@ layer = -99
 unique_name_in_owner = true
 position = Vector2(399, 433)
 
-[node name="TableLayer" type="CanvasLayer" parent="." unique_id=1562006434]
-layer = -50
-
-[node name="NavRegion" type="NavigationRegion2D" parent="TableLayer" unique_id=1761120032]
+[node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
 unique_name_in_owner = true
 position = Vector2(402, 215)
 navigation_polygon = SubResource("NavigationPolygon_m1efj")
 
-[node name="TableContainer" type="Node" parent="TableLayer/NavRegion" unique_id=674125690]
+[node name="TableContainer" type="Node" parent="NavRegion" unique_id=674125690]
 unique_name_in_owner = true

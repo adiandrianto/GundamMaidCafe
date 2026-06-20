@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbj5xmexliw22"
-path="res://.godot/imported/frame.png-220c461629e11da8902af00d07dc2901.ctex"
+uid="uid://c641twa0vagqf"
+path="res://.godot/imported/tomat.png-0df5ffa941139f480a119607b6bc0301.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/MiniGame/PourTea/frame.png"
-dest_files=["res://.godot/imported/frame.png-220c461629e11da8902af00d07dc2901.ctex"]
+source_file="res://Assets/Visual/MiniGame/Omelet/tomat.png"
+dest_files=["res://.godot/imported/tomat.png-0df5ffa941139f480a119607b6bc0301.ctex"]
 
 [params]
 

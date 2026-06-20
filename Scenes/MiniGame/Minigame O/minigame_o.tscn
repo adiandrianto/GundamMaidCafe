@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://b6voidpbr24bo"]
 
+[ext_resource type="Texture2D" uid="uid://jpnnokrykup4" path="res://Assets/Visual/MiniGame/minigame_frame.png" id="1_3u6p0"]
 [ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Scenes/MiniGame/Minigame O/veg.tscn" id="1_dhqqs"]
 [ext_resource type="PackedScene" uid="uid://b63r404f2qos3" path="res://Scenes/MiniGame/Minigame O/score_1.tscn" id="1_j8jj4"]
 [ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Scenes/MiniGame/Minigame O/object.gd" id="1_n67nu"]
+[ext_resource type="Texture2D" uid="uid://c6imeqsljpnk5" path="res://Assets/Visual/MiniGame/Omelet/omelet.png" id="2_oqx4h"]
 [ext_resource type="Script" uid="uid://c4yfs1okgl8jv" path="res://Scenes/MiniGame/Minigame O/score_2.gd" id="2_que8l"]
 [ext_resource type="Script" uid="uid://dfftkhov62tts" path="res://Scenes/MiniGame/Minigame O/score_3.gd" id="3_4lxmc"]
+[ext_resource type="Texture2D" uid="uid://c641twa0vagqf" path="res://Assets/Visual/MiniGame/Omelet/tomat.png" id="6_v0r2e"]
+[ext_resource type="Texture2D" uid="uid://6nhb5wm4doj8" path="res://Assets/Visual/MiniGame/Omelet/sosis.png" id="7_3u6p0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jj4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqx4h"]
+texture = ExtResource("1_3u6p0")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lxmc"]
 bg_color = Color(0.58646464, 0.79100376, 0.37044996, 1)
@@ -71,77 +76,72 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Minigame" type="MarginContainer" parent="." unique_id=861327845]
+[node name="BG" type="Panel" parent="." unique_id=1214026354]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -672.88635
-offset_top = -417.0
-offset_right = 672.88635
-offset_bottom = 417.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_oqx4h")
 
-[node name="Panel" type="Panel" parent="Minigame" unique_id=1214026354]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_j8jj4")
+[node name="MarginContainer" type="MarginContainer" parent="BG" unique_id=151534988]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 320
 
-[node name="MarginContainer" type="MarginContainer" parent="Minigame" unique_id=159455681]
-layout_mode = 2
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 35
-theme_override_constants/margin_right = 35
-theme_override_constants/margin_bottom = 35
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Minigame/MarginContainer" unique_id=2068126746]
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer" unique_id=2068126746]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Minigame/MarginContainer/HBoxContainer" unique_id=29220080]
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer/HBoxContainer" unique_id=29220080]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 35
 
-[node name="Panel" type="Panel" parent="Minigame/MarginContainer/HBoxContainer/VBoxContainer" unique_id=523633382]
+[node name="Panel" type="Panel" parent="BG/MarginContainer/HBoxContainer/VBoxContainer" unique_id=523633382]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4lxmc")
 
-[node name="Panel2" type="Panel" parent="Minigame/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1895180724]
+[node name="Panel2" type="Panel" parent="BG/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1895180724]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ybrk")
 
-[node name="Button" type="Button" parent="Minigame/MarginContainer/HBoxContainer/VBoxContainer" unique_id=590837987]
+[node name="Button" type="Button" parent="BG/MarginContainer/HBoxContainer/VBoxContainer" unique_id=590837987]
 custom_minimum_size = Vector2(0, 91)
 layout_mode = 2
 theme_override_font_sizes/font_size = 46
 text = "Finish"
 
-[node name="Panel" type="Panel" parent="Minigame/MarginContainer/HBoxContainer" unique_id=275197291]
+[node name="Panel" type="Panel" parent="BG/MarginContainer/HBoxContainer" unique_id=275197291]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_uto06")
 
+[node name="TextureRect" type="TextureRect" parent="BG" unique_id=1801414887]
+layout_mode = 0
+offset_left = 766.0
+offset_top = 250.0
+offset_right = 1498.0
+offset_bottom = 811.0
+texture = ExtResource("2_oqx4h")
+
 [node name="Score" type="Node2D" parent="." unique_id=2012455061]
 script = SubResource("GDScript_j8jj4")
 
 [node name="Score1" parent="Score" unique_id=1115083666 instance=ExtResource("1_j8jj4")]
-z_as_relative = true
-position = Vector2(903, 650)
+position = Vector2(1290, 434)
 
 [node name="Score2" parent="Score" unique_id=1308781252 instance=ExtResource("1_j8jj4")]
-z_as_relative = true
-position = Vector2(982, 758)
+position = Vector2(916, 546)
 script = ExtResource("2_que8l")
 
 [node name="Score3" parent="Score" unique_id=380936867 instance=ExtResource("1_j8jj4")]
-z_as_relative = true
-position = Vector2(1419, 402)
+position = Vector2(1022, 628)
 script = ExtResource("3_4lxmc")
 
 [node name="Objects" type="Node2D" parent="." unique_id=734038055]
@@ -149,12 +149,15 @@ script = ExtResource("1_n67nu")
 
 [node name="Object" parent="Objects" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
 position = Vector2(397, 292)
+tex = ExtResource("6_v0r2e")
 
 [node name="Object2" parent="Objects" unique_id=1540574857 instance=ExtResource("1_dhqqs")]
 position = Vector2(541, 250)
+tex = ExtResource("7_3u6p0")
 
 [node name="Object3" parent="Objects" unique_id=1175461143 instance=ExtResource("1_dhqqs")]
 position = Vector2(555, 624)
+tex = ExtResource("7_3u6p0")
 
 [node name="Display_score" type="MarginContainer" parent="." unique_id=1173704526]
 visible = false
@@ -207,5 +210,5 @@ text = ". . . ."
 [node name="TextureButton" type="TextureButton" parent="Display_score" unique_id=177957510]
 layout_mode = 2
 
-[connection signal="pressed" from="Minigame/MarginContainer/HBoxContainer/VBoxContainer/Button" to="Score" method="_on_button_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/HBoxContainer/VBoxContainer/Button" to="Score" method="_on_button_pressed"]
 [connection signal="pressed" from="Display_score/TextureButton" to="Score" method="_on_texture_button_pressed"]

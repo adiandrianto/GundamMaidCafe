@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://bgackixkfq4k2"]
 
 [ext_resource type="Texture2D" uid="uid://byoonbani0nl6" path="res://Scenes/MiniGame/Minigame O/Sprite/veg.png" id="1_ogvhc"]
-
+[ext_resource type="Script" uid="uid://d3gi314km7wtb" path="res://Scenes/MiniGame/Minigame O/veg.gd" id="1_tc3q8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bymng"]
 radius = 53.0
 
 [node name="Veg" type="Node2D" unique_id=1326812826]
+script = ExtResource("1_tc3q8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1419473044]
 texture_filter = 1
-scale = Vector2(5.9375, 5.9374995)
 texture = ExtResource("1_ogvhc")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=592183292]

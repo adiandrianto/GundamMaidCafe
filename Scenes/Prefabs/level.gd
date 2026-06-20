@@ -12,10 +12,9 @@ const MAID_PREFAB = preload("uid://cwcitmbloxqrx")
 @onready var customer_timer: Timer = %CustomerTimer
 @onready var level_timer: Timer = %LevelTimer
 @onready var maid_spawn_point: Marker2D = %MaidSpawnPoint
-
 @onready var close_sign: TextureRect = %CloseSign
-var table_columns: int = 3
 
+var table_columns: int = 3
 var selected_table: Table = null
 
 func _ready() -> void:
@@ -84,6 +83,6 @@ func _maid_come_to_table(maid: Maid, table: Table, ) -> void:
 	maid_spawn_point.add_child(maid)
 	maid.global_position = maid_spawn_point.global_position
 	maid.walk_to_table(table)
-	
+
 func _level_finished():
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")
