@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://c45ii4qayngo0"]
 
 [ext_resource type="Script" uid="uid://dkgx2c7uaka0h" path="res://Scripts/customer.gd" id="1_678vv"]
-[ext_resource type="Texture2D" uid="uid://crj5qti72rjym" path="res://Assets/Visual/Cutomer/customer_placeholder-export.png" id="1_c1v3n"]
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
-[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/portrait.jpg" id="5_8njvi"]
+[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/Visual/Mecha/portrait.jpg" id="5_8njvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_678vv"]
 size = Vector2(140, 100)
@@ -17,7 +16,6 @@ dialogue_popup = NodePath("UI/Dialogue")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=385557896]
 unique_name_in_owner = true
 material = ExtResource("2_678vv")
-texture = ExtResource("1_c1v3n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621003456]
 shape = SubResource("RectangleShape2D_678vv")

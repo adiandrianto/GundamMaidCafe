@@ -10,10 +10,11 @@ signal put_down
 @export var maid_popup: Button
 @export var dialogue_popup: Panel
 
-var table_entered: Table = null
+var table_entered: Array[Table] = []
 var dragging: bool = false
 var customerPreference: GlobalConstants.Personality
 var request_maid: bool = false
+var total_person: int = 0
 
 func _ready() -> void:
 	_randomize_customer_number()
@@ -60,7 +61,7 @@ func end_drag():
 	dragging = false
 	remove_outline()
 	if table_entered:
-		table_entered.assign_customer(self)
+		table_entered[0].assign_customer(self)
 		request_maid = true
 		popup_maid()
 	else:
@@ -82,9 +83,9 @@ func remove_outline():
 		mat.set_shader_parameter("width", 0)
 
 func _randomize_customer_number() -> void:
-	var customer_num = [1,2].pick_random()
+	total_person = [1,2].pick_random()
 	
-	if customer_num == 1:
+	if total_person == 1:
 		sprite.texture = CUSTOMER_1
 	else:
 		sprite.texture = CUSTOMER_2
@@ -92,12 +93,12 @@ func _randomize_customer_number() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is not Table:
 		return
-	table_entered = area
+	table_entered.push_front(area)
 
 func _on_area_exited(area: Area2D) -> void:
 	if area is Table:
-		table_entered = null
-
+		if table_entered.has(area):
+			table_entered.erase(area)
 
 func _on_maid_prompt_pressed() -> void:
 	maid_popup.hide()
@@ -105,7 +106,7 @@ func _on_maid_prompt_pressed() -> void:
 	dialogue_popup.show()
 	await get_tree().create_timer(1.0).timeout
 	dialogue_popup.hide()
-	
+
 
 func popup_maid() -> void:
 	if request_maid == true:

@@ -6,11 +6,10 @@
 [ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
-[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/portrait.jpg" id="4_mai8y"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="5_m1efj"]
-[ext_resource type="Texture2D" uid="uid://cjli8y6vfwlp8" path="res://Assets/Visual/bg.png" id="9_76v2p"]
+[ext_resource type="Texture2D" uid="uid://cth420eepetaq" path="res://Assets/Visual/LevelBG/bg.jpg" id="9_76v2p"]
+[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
-[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/open.png" id="10_drdnd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
 vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
@@ -23,7 +22,7 @@ script = ExtResource("2_huasi")
 level = ExtResource("3_m1efj")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
-layer = 3
+layer = 999
 
 [node name="UI" type="Control" parent="UILayer" unique_id=935409973]
 layout_mode = 3
@@ -32,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_iacmt")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
@@ -60,9 +60,6 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 auto_width = true
 item_count = 5
-item_0/icon = ExtResource("4_mai8y")
-item_1/icon = ExtResource("4_mai8y")
-item_2/icon = ExtResource("4_mai8y")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1
@@ -160,7 +157,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("5_m1efj")
 
 [node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
-layer = -1
+layer = -999
 
 [node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
 anchors_preset = 15
@@ -175,7 +172,7 @@ texture = ExtResource("9_76v2p")
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("10_drdnd")
+texture = ExtResource("9_mai8y")
 
 [node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
 unique_name_in_owner = true
@@ -201,15 +198,20 @@ offset_top = 528.0
 offset_right = 1810.0
 offset_bottom = 888.0
 
-[node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
+[node name="MaidLayer" type="CanvasLayer" parent="." unique_id=259832038]
+layer = -99
+
+[node name="MaidSpawnPoint" type="Marker2D" parent="MaidLayer" unique_id=1490220203]
+unique_name_in_owner = true
+position = Vector2(399, 433)
+
+[node name="TableLayer" type="CanvasLayer" parent="." unique_id=1562006434]
+layer = -50
+
+[node name="NavRegion" type="NavigationRegion2D" parent="TableLayer" unique_id=1761120032]
 unique_name_in_owner = true
 position = Vector2(402, 215)
 navigation_polygon = SubResource("NavigationPolygon_m1efj")
 
-[node name="TableContainer" type="Node2D" parent="NavRegion" unique_id=548928484]
+[node name="TableContainer" type="Node" parent="TableLayer/NavRegion" unique_id=674125690]
 unique_name_in_owner = true
-position = Vector2(-402, -215)
-
-[node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
-unique_name_in_owner = true
-position = Vector2(373, 427)

@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c2yi71dwllbbw" path="res://Scripts/MiniGames/shake_rhythm_mini_game.gd" id="1_gqxph"]
 [ext_resource type="Shader" uid="uid://b6jlisuv3je2g" path="res://Scenes/shake_rhythm_mini_game.gdshader" id="2_m0fjm"]
-[ext_resource type="AudioStream" uid="uid://bupco5djinshv" path="res://Assets/Audio/shake_rhythm_beat_loop.ogg" id="2_xek5f"]
+[ext_resource type="AudioStream" uid="uid://bupco5djinshv" path="res://Assets/Audio/MiniGame/shake_rhythm_beat_loop.ogg" id="2_xek5f"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="4_m0fjm"]
 [ext_resource type="Texture2D" uid="uid://dk6gs05p0a2ng" path="res://Assets/Visual/Table/table_top.png" id="5_e5djd"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="5_vnrjx"]
 [ext_resource type="AudioStream" uid="uid://ckbtpyjhw7kyb" path="res://Assets/Audio/MiniGame/freesound_community-tada-fanfare-a-6313.mp3" id="7_e5djd"]
+[ext_resource type="Texture2D" uid="uid://cotchri1c21d8" path="res://Assets/Visual/MiniGame/ShakeEhythm/shaker.png" id="8_2o5s8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnrjx"]
 
@@ -15,9 +16,6 @@ shader = ExtResource("2_m0fjm")
 shader_parameter/beat_speed = 1.74000007939012
 shader_parameter/pulse_strength = 0.2
 shader_parameter/pulse_mode = 1
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gqxph"]
-size = Vector2(128, 256)
 
 [node name="ShakerRhythmMiniGame" type="Control" unique_id=1958050083]
 layout_mode = 3
@@ -110,4 +108,4 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
-texture_normal = SubResource("PlaceholderTexture2D_gqxph")
+texture_normal = ExtResource("8_2o5s8")

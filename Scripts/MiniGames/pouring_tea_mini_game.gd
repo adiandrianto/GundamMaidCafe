@@ -31,7 +31,7 @@ func _input(event):
 			_evaluate_result()
 
 func _process(delta: float) -> void:
-	if tea_progress_bar.value <= 87:
+	if tea_progress_bar.value <= 80:
 		if is_pouring:
 			tea_level += fill_speed * delta
 			tea_level = min(tea_level, tea_progress_bar.max_value)
@@ -51,24 +51,22 @@ func _process(delta: float) -> void:
 func update_surface_position():
 	var ratio := tea_level / tea_progress_bar.max_value
 	var height := tea_progress_bar.size.y
-	tea_surface.position.y = tea_progress_bar.position.y + height - (ratio * height)
+	tea_surface.position.y = (tea_progress_bar.position.y + height - (ratio * height)) -200
 	
 func _evaluate_result():
 	set_process_input(false)
 	var score: int
 
-	if tea_level >= 76 and tea_level <= 80:
+	if tea_level >= 69 and tea_level <= 74:
 		score = 10
 		score_label.text = "Perfect! " + str(score)
 		await get_tree().create_timer(0.2).timeout
 		$Fanfare.play()
-	elif tea_level > 80:
+	elif tea_level > 70:
 		score = min(abs(10 - (tea_level - 80)), 1)
 		score_label.text = "Overflow! " + str(score)
 	else:
 		score = max((10 - abs(tea_level - 76)), 1)
 		score_label.text = "Too Little! " + str(score)
-	
-	
-	 
+
 	finished.emit(score)

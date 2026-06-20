@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GlobalConstants="*uid://wv15w8oxc7hi"
 GameManager="*uid://b7tegxe5hjs7w"
 
+[debug]
+
+shapes/autoload_on_startup=false
+
 [display]
 
 window/size/viewport_width=1920
