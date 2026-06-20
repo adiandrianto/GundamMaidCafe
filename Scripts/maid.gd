@@ -6,13 +6,14 @@ class_name Maid
 @export var maidPersonality: GlobalConstants.Personality
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var table_entered: Table = null
 var direction := Vector2.ZERO
 var dragging := false
 var can_drag := true
 
-const SPEED := 400.0
+const SPEED := 300.0
 
 func _physics_process(delta: float) -> void:
 	if navigation_agent.is_navigation_finished():
@@ -20,6 +21,7 @@ func _physics_process(delta: float) -> void:
 
 		if anim:
 			anim.play("default")
+			animation_player.play("idle")
 
 		move_and_slide()
 		return
@@ -27,7 +29,8 @@ func _physics_process(delta: float) -> void:
 	var next_pos = navigation_agent.get_next_path_position()
 	direction = global_position.direction_to(next_pos)
 	velocity = direction * SPEED
-
+	
+	animation_player.play("move")
 	_update_animation(direction)
 	move_and_slide()
 

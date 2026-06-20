@@ -7,7 +7,7 @@ const MAID_PREFAB = preload("uid://cwcitmbloxqrx")
 @export var level: LevelParam
 
 @onready var table_area: Control = %TableArea
-@onready var table_container: Node2D = %TableContainer
+@onready var table_container: Node = %TableContainer
 @onready var customer_container: Node2D = %CustomerContainer
 @onready var customer_timer: Timer = %CustomerTimer
 @onready var level_timer: Timer = %LevelTimer
@@ -27,8 +27,8 @@ func _ready() -> void:
 	_customer_come()
 	
 	selected_table = table_container.get_child(2)
-	await get_tree().create_timer(1).timeout
-	_maid_come_to_table(MAID_PREFAB.instantiate(), selected_table)
+	#await get_tree().create_timer(1).timeout
+	#_maid_come_to_table(MAID_PREFAB.instantiate(), selected_table)
 
 func _customer_come():
 	if level.total_customer <= 0:
@@ -76,12 +76,12 @@ func _arrange_tables():
 			table_container.add_child(table)
 			table.global_position = area_pos + Vector2( start_x + (col + 0.5) * cell_width, (row + 0.5) * cell_height )
 	%NavRegion.bake_navigation_polygon()
-	
-func _maid_come_to_table(maid: Maid, table: Table) -> void:
+
+func _maid_come_to_table(maid: Maid, table: Table, ) -> void:
 	if selected_table == null: 
 		return
 
-	add_child(maid)
+	maid_spawn_point.add_child(maid)
 	maid.global_position = maid_spawn_point.global_position
 	maid.walk_to_table(table)
 	

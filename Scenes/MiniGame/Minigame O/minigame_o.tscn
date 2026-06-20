@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://c4yfs1okgl8jv" path="res://Scenes/MiniGame/Minigame O/score_2.gd" id="2_que8l"]
 [ext_resource type="Script" uid="uid://dfftkhov62tts" path="res://Scenes/MiniGame/Minigame O/score_3.gd" id="3_4lxmc"]
 
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8jj4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lxmc"]
@@ -133,16 +132,16 @@ script = SubResource("GDScript_j8jj4")
 
 [node name="Score1" parent="Score" unique_id=1115083666 instance=ExtResource("1_j8jj4")]
 z_as_relative = true
-position = Vector2(970, 388)
+position = Vector2(903, 650)
 
 [node name="Score2" parent="Score" unique_id=1308781252 instance=ExtResource("1_j8jj4")]
 z_as_relative = true
-position = Vector2(1256, 355)
+position = Vector2(982, 758)
 script = ExtResource("2_que8l")
 
 [node name="Score3" parent="Score" unique_id=380936867 instance=ExtResource("1_j8jj4")]
 z_as_relative = true
-position = Vector2(1161, 655)
+position = Vector2(1419, 402)
 script = ExtResource("3_4lxmc")
 
 [node name="Objects" type="Node2D" parent="." unique_id=734038055]

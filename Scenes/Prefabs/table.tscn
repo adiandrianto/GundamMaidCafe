@@ -7,6 +7,7 @@
 size = Vector2(200, 128)
 
 [node name="Table" type="Area2D" unique_id=144276520]
+z_index = 1
 script = ExtResource("1_qieex")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1566828146]

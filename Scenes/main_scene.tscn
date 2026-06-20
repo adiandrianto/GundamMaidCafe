@@ -22,7 +22,7 @@ script = ExtResource("2_huasi")
 level = ExtResource("3_m1efj")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
-layer = 3
+layer = 999
 
 [node name="UI" type="Control" parent="UILayer" unique_id=935409973]
 layout_mode = 3
@@ -157,7 +157,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("5_m1efj")
 
 [node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
-layer = -1
+layer = -999
 
 [node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
 anchors_preset = 15
@@ -198,15 +198,20 @@ offset_top = 528.0
 offset_right = 1810.0
 offset_bottom = 888.0
 
-[node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
+[node name="MaidLayer" type="CanvasLayer" parent="." unique_id=259832038]
+layer = -99
+
+[node name="MaidSpawnPoint" type="Marker2D" parent="MaidLayer" unique_id=1490220203]
+unique_name_in_owner = true
+position = Vector2(399, 433)
+
+[node name="TableLayer" type="CanvasLayer" parent="." unique_id=1562006434]
+layer = -50
+
+[node name="NavRegion" type="NavigationRegion2D" parent="TableLayer" unique_id=1761120032]
 unique_name_in_owner = true
 position = Vector2(402, 215)
 navigation_polygon = SubResource("NavigationPolygon_m1efj")
 
-[node name="TableContainer" type="Node2D" parent="NavRegion" unique_id=548928484]
+[node name="TableContainer" type="Node" parent="TableLayer/NavRegion" unique_id=674125690]
 unique_name_in_owner = true
-position = Vector2(-402, -215)
-
-[node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
-unique_name_in_owner = true
-position = Vector2(373, 427)

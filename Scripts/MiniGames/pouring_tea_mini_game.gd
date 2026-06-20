@@ -51,18 +51,18 @@ func _process(delta: float) -> void:
 func update_surface_position():
 	var ratio := tea_level / tea_progress_bar.max_value
 	var height := tea_progress_bar.size.y
-	tea_surface.position.y = tea_progress_bar.position.y + height - (ratio * height)
+	tea_surface.position.y = (tea_progress_bar.position.y + height - (ratio * height)) -200
 	
 func _evaluate_result():
 	set_process_input(false)
 	var score: int
 
-	if tea_level >= 71 and tea_level <= 74:
+	if tea_level >= 69 and tea_level <= 74:
 		score = 10
 		score_label.text = "Perfect! " + str(score)
 		await get_tree().create_timer(0.2).timeout
 		$Fanfare.play()
-	elif tea_level > 75:
+	elif tea_level > 70:
 		score = min(abs(10 - (tea_level - 80)), 1)
 		score_label.text = "Overflow! " + str(score)
 	else:

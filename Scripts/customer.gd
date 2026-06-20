@@ -100,7 +100,6 @@ func _on_area_exited(area: Area2D) -> void:
 		if table_entered.has(area):
 			table_entered.erase(area)
 
-
 func _on_maid_prompt_pressed() -> void:
 	maid_popup.hide()
 	print("ordering")
