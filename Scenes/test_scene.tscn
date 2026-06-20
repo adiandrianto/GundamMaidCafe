@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cjli8y6vfwlp8" path="res://Assets/Visual/bg.png" id="10_tnimv"]
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/open.png" id="11_4qg1e"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="11_soh27"]
+[ext_resource type="Script" uid="uid://b7tegxe5hjs7w" path="res://Scripts/game_manager.gd" id="15_4qg1e"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
 vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_bwjpn")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
@@ -88,6 +90,7 @@ offset_left = -292.0
 offset_right = 292.0
 offset_bottom = 154.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 32
 
@@ -117,6 +120,7 @@ text = "1"
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
+mouse_filter = 2
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=567597413]
@@ -150,6 +154,7 @@ text = "02.00"
 [node name="TimerProgress" type="TextureProgressBar" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=821193855]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 value = 7.0
 fill_mode = 5
 texture_under = ExtResource("6_040rt")
@@ -190,6 +195,7 @@ texture = ExtResource("10_tnimv")
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("11_4qg1e")
 
 [node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
@@ -215,6 +221,7 @@ offset_left = 551.0
 offset_top = 528.0
 offset_right = 1810.0
 offset_bottom = 888.0
+mouse_filter = 2
 
 [node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
 unique_name_in_owner = true
@@ -230,9 +237,13 @@ unique_name_in_owner = true
 position = Vector2(373, 427)
 
 [node name="Maid" parent="MaidSpawnPoint" unique_id=57393834 instance=ExtResource("7_4blnk")]
-visible = false
-position = Vector2(-340, -214)
 
 [node name="Maid2" parent="MaidSpawnPoint" unique_id=1161719473 instance=ExtResource("7_4blnk")]
+maidPersonality = 1
+
+[node name="Maid3" parent="MaidSpawnPoint" unique_id=34468539 instance=ExtResource("7_4blnk")]
 visible = false
-position = Vector2(-340, -214)
+maidPersonality = 2
+
+[node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
+script = ExtResource("15_4qg1e")

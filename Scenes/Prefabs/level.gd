@@ -28,7 +28,7 @@ func _ready() -> void:
 	
 	selected_table = table_container.get_child(2)
 	await get_tree().create_timer(1).timeout
-	_maid_come_to_table(MAID_PREFAB.instantiate(), selected_table)
+	#_maid_come_to_table(MAID_PREFAB.instantiate(), selected_table)
 
 func _customer_come():
 	if level.total_customer <= 0:
@@ -81,7 +81,7 @@ func _maid_come_to_table(maid: Maid, table: Table) -> void:
 	if selected_table == null: 
 		return
 		
-	add_child(maid)
+	#add_child(maid)
 	maid.global_position = maid_spawn_point.global_position
 	maid.walk_to_table(table)
 	
