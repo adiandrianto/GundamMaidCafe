@@ -1,6 +1,4 @@
-extends Control
-
-signal finished(score: int)
+extends MiniGame
 
 const BPM: float = 105.0
 const BEAT_INTERVAL: float = 60.0 / BPM
@@ -28,6 +26,7 @@ var current_score: int = 0
 var max_score: int = 24
 
 func _ready() -> void:
+	super._ready()
 	audio.finished.connect(_scoring)
 	shaker.pressed.connect(_on_shaker_pressed)
 	center_pos = shaker.global_position #- Vector2(shaker.size.x/2, -shaker.size.y/2)
@@ -94,6 +93,8 @@ func _judge_note():
 
 func _scoring():
 	@warning_ignore("integer_division")
-	var score: float = float(current_score) / float(max_score) * 10
+	final_score = int(float(current_score) / float(max_score) * 10)
 
-	finished.emit(roundi(score))
+	finished.emit(final_score)
+	await get_tree().create_timer(2.0).timeout
+	queue_free()

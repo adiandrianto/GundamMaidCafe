@@ -1,35 +1,36 @@
 [gd_scene format=3 uid="uid://bcoafo2w7e5cl"]
 
-[ext_resource type="Script" uid="uid://k25gy8vxyd80" path="res://Scripts/MiniGames/pouring_tea_mini_game.gd" id="1_pl3cu"]
-[ext_resource type="Texture2D" uid="uid://ubotchyjp4ao" path="res://Assets/Visual/MiniGame/PourTea/glass.png" id="3_phype"]
-[ext_resource type="Shader" uid="uid://dcnw38q6bs0f" path="res://Scenes/water.gdshader" id="4_x71aj"]
-[ext_resource type="Texture2D" uid="uid://5kv2rwerojsv" path="res://Assets/Visual/MiniGame/PourTea/tea_surface.png" id="5_654xn"]
-[ext_resource type="AudioStream" uid="uid://ckwtfeti5ncb" path="res://Assets/Audio/MiniGame/Pouring Liquid 4.wav" id="6_654xn"]
-[ext_resource type="Texture2D" uid="uid://dvjco4n8mt8qm" path="res://Assets/Visual/MiniGame/PourTea/front.png" id="6_xjv33"]
-[ext_resource type="AudioStream" uid="uid://ckbtpyjhw7kyb" path="res://Assets/Audio/MiniGame/freesound_community-tada-fanfare-a-6313.mp3" id="7_654xn"]
-[ext_resource type="Texture2D" uid="uid://jpnnokrykup4" path="res://Assets/Visual/MiniGame/minigame_frame.png" id="7_jytas"]
-[ext_resource type="Texture2D" uid="uid://bvacdjqr5mh18" path="res://Assets/Visual/MiniGame/PourTea/tea.png" id="10_j4mgo"]
-[ext_resource type="Texture2D" uid="uid://bj71s8saasko6" path="res://Assets/Visual/MiniGame/PourTea/line_art.png" id="11_q8aea"]
+[ext_resource type="Script" uid="uid://k25gy8vxyd80" path="res://Scripts/MiniGames/pouring_tea_mini_game.gd" id="1_r0rqx"]
+[ext_resource type="Texture2D" uid="uid://jpnnokrykup4" path="res://Assets/Visual/MiniGame/minigame_frame.png" id="2_empmr"]
+[ext_resource type="Texture2D" uid="uid://ubotchyjp4ao" path="res://Assets/Visual/MiniGame/PourTea/glass.png" id="3_wwb1s"]
+[ext_resource type="Shader" uid="uid://dcnw38q6bs0f" path="res://Scenes/water.gdshader" id="4_21ty7"]
+[ext_resource type="Texture2D" uid="uid://5kv2rwerojsv" path="res://Assets/Visual/MiniGame/PourTea/tea_surface.png" id="5_hhgbd"]
+[ext_resource type="Texture2D" uid="uid://bvacdjqr5mh18" path="res://Assets/Visual/MiniGame/PourTea/tea.png" id="6_664em"]
+[ext_resource type="Texture2D" uid="uid://dvjco4n8mt8qm" path="res://Assets/Visual/MiniGame/PourTea/front.png" id="7_8svcs"]
+[ext_resource type="Texture2D" uid="uid://bj71s8saasko6" path="res://Assets/Visual/MiniGame/PourTea/line_art.png" id="8_r7k0d"]
+[ext_resource type="AudioStream" uid="uid://ckwtfeti5ncb" path="res://Assets/Audio/MiniGame/Pouring Liquid 4.wav" id="9_ihk6r"]
+[ext_resource type="AudioStream" uid="uid://ckbtpyjhw7kyb" path="res://Assets/Audio/MiniGame/freesound_community-tada-fanfare-a-6313.mp3" id="10_8m8vn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sbpuk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2yq2x"]
-texture = ExtResource("7_jytas")
+texture = ExtResource("2_empmr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yq2x"]
-shader = ExtResource("4_x71aj")
+shader = ExtResource("4_21ty7")
 shader_parameter/wave_strength = 5.0
 shader_parameter/wave_speed = 3.0
 shader_parameter/wave_frequency = 12.0
 
 [node name="PouringTeaMiniGame" type="Control" unique_id=1689512020]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pl3cu")
+script = ExtResource("1_r0rqx")
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1206356819]
 material = SubResource("ShaderMaterial_sbpuk")
@@ -84,7 +85,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_phype")
+texture = ExtResource("3_wwb1s")
 stretch_mode = 3
 
 [node name="TeaSurface" type="TextureRect" parent="Panel/TeaContainer/Glass" unique_id=811593913]
@@ -103,7 +104,7 @@ offset_right = 194.5
 offset_bottom = 268.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_654xn")
+texture = ExtResource("5_hhgbd")
 stretch_mode = 3
 
 [node name="TeaProgressBar" type="TextureProgressBar" parent="Panel/TeaContainer" unique_id=1801374376]
@@ -124,27 +125,27 @@ pivot_offset_ratio = Vector2(0, 0.5)
 value = 83.0
 allow_greater = true
 fill_mode = 3
-texture_progress = ExtResource("10_j4mgo")
+texture_progress = ExtResource("6_664em")
 
 [node name="Front" type="TextureRect" parent="Panel/TeaContainer" unique_id=1937839611]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("6_xjv33")
+texture = ExtResource("7_8svcs")
 stretch_mode = 3
 
 [node name="LineArt" type="TextureRect" parent="Panel/TeaContainer" unique_id=782493660]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("11_q8aea")
+texture = ExtResource("8_r7k0d")
 stretch_mode = 3
 
 [node name="Pouring" type="AudioStreamPlayer" parent="." unique_id=1653198617]
-stream = ExtResource("6_654xn")
+stream = ExtResource("9_ihk6r")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=303044849]
 
 [node name="Fanfare" type="AudioStreamPlayer" parent="." unique_id=56421848]
-stream = ExtResource("7_654xn")
+stream = ExtResource("10_8m8vn")

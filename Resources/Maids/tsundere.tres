@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MaidResource" format=3 uid="uid://qxleno2wpc82"]
+
+[ext_resource type="Script" uid="uid://df5fx48uwm57h" path="res://Resources/Maids/maid_resource.gd" id="1_537jd"]
+[ext_resource type="Texture2D" uid="uid://bf1kc5w2fq1om" path="res://Assets/Visual/Mecha/tsundere_portrait.png" id="1_bw6n7"]
+[ext_resource type="Texture2D" uid="uid://db1bmf0r4chki" path="res://Assets/Visual/Mecha/mechaAnim-Sheet.png" id="3_hp0db"]
+
+[resource]
+script = ExtResource("1_537jd")
+maid_name = &"Red"
+personality = 1
+portrait = ExtResource("1_bw6n7")
+sprite = ExtResource("3_hp0db")
+service_duration = 10.0
+metadata/_custom_type_script = "uid://df5fx48uwm57h"

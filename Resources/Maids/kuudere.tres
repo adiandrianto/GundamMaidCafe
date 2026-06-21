@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MaidResource" format=3 uid="uid://bytkn0kbdeg6h"]
+
+[ext_resource type="Script" uid="uid://df5fx48uwm57h" path="res://Resources/Maids/maid_resource.gd" id="1_e2axl"]
+[ext_resource type="Texture2D" uid="uid://dmut8ggrrqqht" path="res://Assets/Visual/Mecha/kuudere.png" id="1_x6pru"]
+[ext_resource type="Texture2D" uid="uid://db1bmf0r4chki" path="res://Assets/Visual/Mecha/mechaAnim-Sheet.png" id="3_6mplv"]
+
+[resource]
+script = ExtResource("1_e2axl")
+maid_name = &"Blue"
+personality = 2
+portrait = ExtResource("1_x6pru")
+sprite = ExtResource("3_6mplv")
+service_duration = 10.0
+metadata/_custom_type_script = "uid://df5fx48uwm57h"

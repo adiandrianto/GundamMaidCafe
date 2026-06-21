@@ -6,19 +6,23 @@ const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
 
 signal put_down
 
-@onready var sprite: Sprite2D = %Sprite
-@export var maid_popup: Button
 @export var dialogue_popup: Panel
+
+@onready var maid_popup: TextureButton = $UI/MaidPrompt
+@onready var sprite: Sprite2D = %Sprite
 
 var table_entered: Array[Table] = []
 var dragging: bool = false
 var customerPreference: GlobalConstants.Personality
 var request_maid: bool = false
+var order: Order
+
 var total_person: int = 0
 
 func _ready() -> void:
 	_randomize_customer_number()
-		
+	
+	order = GlobalConstants.menu_arr.pick_random()
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
 
@@ -106,7 +110,10 @@ func _on_maid_prompt_pressed() -> void:
 	dialogue_popup.show()
 	await get_tree().create_timer(1.0).timeout
 	dialogue_popup.hide()
-
+	
+	var maid_select_panel = GlobalConstants.MAID_SELECTION.instantiate() as MaidSelectWindow
+	maid_select_panel.table_ordered = table_entered[0]
+	GameManager.current_level.mini_game_container.add_child(maid_select_panel)
 
 func popup_maid() -> void:
 	if request_maid == true:

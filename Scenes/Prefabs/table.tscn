@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://j03vy0mxoci0" path="res://Scripts/table.gd" id="1_qieex"]
 [ext_resource type="Texture2D" uid="uid://lf3lhc7av7y3" path="res://Assets/Visual/Table/table.png" id="2_0wqgb"]
-[ext_resource type="Texture2D" uid="uid://clkxdkj4ie7j1" path="res://Assets/Visual/omelette.png" id="3_qrfb3"]
-[ext_resource type="Texture2D" uid="uid://co8wr0uuveaat" path="res://icon.svg" id="4_h1myl"]
+[ext_resource type="Texture2D" uid="uid://c8ero8i4lg7gr" path="res://Assets/Visual/UI/icon_maid.png" id="3_qrfb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqgb"]
 size = Vector2(170, 116)
@@ -20,7 +19,7 @@ texture = ExtResource("2_0wqgb")
 
 [node name="MaidSpot" type="Marker2D" parent="." unique_id=383507012]
 unique_name_in_owner = true
-position = Vector2(0, -80)
+position = Vector2(-49, -83)
 
 [node name="CustomerSpot" type="Marker2D" parent="." unique_id=1390835832]
 unique_name_in_owner = true
@@ -43,23 +42,14 @@ shape = SubResource("RectangleShape2D_qrfb3")
 [node name="Control" type="Control" parent="." unique_id=2104074832]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 111.0
-offset_top = 154.0
-offset_right = 151.0
-offset_bottom = 194.0
 
-[node name="CustomerOrder" type="TextureButton" parent="Control" unique_id=1653446434]
+[node name="OrderIcon" type="TextureButton" parent="Control" unique_id=1653446434]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
-offset_left = -153.0
-offset_top = -313.0
-offset_right = 579.0
-offset_bottom = 248.0
-scale = Vector2(0.119999625, 0.119999625)
+offset_left = -41.0
+offset_top = -174.0
+offset_right = 43.0
+offset_bottom = -108.0
 mouse_default_cursor_shape = 2
 action_mode = 0
 texture_normal = ExtResource("3_qrfb3")
-texture_pressed = ExtResource("4_h1myl")
-
-[connection signal="pressed" from="Control/CustomerOrder" to="." method="_on_customer_order_pressed"]

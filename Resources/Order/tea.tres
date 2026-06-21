@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Order" format=3 uid="uid://ckkrn7uylotqv"]
+
+[ext_resource type="Script" uid="uid://bsrk3rudloo4a" path="res://Resources/Order/order.gd" id="1_34b5d"]
+[ext_resource type="Texture2D" uid="uid://co4ftt6o4cayc" path="res://Assets/Visual/UI/icon_tea.png" id="1_pevu7"]
+[ext_resource type="PackedScene" uid="uid://bcoafo2w7e5cl" path="res://Scenes/MiniGame/pouring_tea_mini_game.tscn" id="2_i4btb"]
+
+[resource]
+script = ExtResource("1_34b5d")
+icon = ExtResource("1_pevu7")
+mini_game_scene = ExtResource("2_i4btb")
+metadata/_custom_type_script = "uid://bsrk3rudloo4a"

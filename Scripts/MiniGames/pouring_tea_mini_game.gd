@@ -1,6 +1,4 @@
-extends Control
-
-signal finished(score: int)
+extends MiniGame
 
 @onready var tea_progress_bar: TextureProgressBar = %TeaProgressBar
 @onready var tea_surface: TextureRect = %TeaSurface
@@ -14,6 +12,7 @@ var bar_height := 300.0
 var mat: ShaderMaterial
 
 func _ready() -> void:
+	super._ready()
 	score_label.text = ""
 	tea_progress_bar.value = 0
 	mat = tea_surface.material
@@ -55,18 +54,19 @@ func update_surface_position():
 	
 func _evaluate_result():
 	set_process_input(false)
-	var score: int
 
 	if tea_level >= 69 and tea_level <= 74:
-		score = 10
-		score_label.text = "Perfect! " + str(score)
+		final_score = 10
+		score_label.text = "Perfect! " + str(final_score)
 		await get_tree().create_timer(0.2).timeout
 		$Fanfare.play()
 	elif tea_level > 70:
-		score = min(abs(10 - (tea_level - 80)), 1)
-		score_label.text = "Overflow! " + str(score)
+		final_score = min(abs(10 - (tea_level - 80)), 1)
+		score_label.text = "Overflow! " + str(final_score)
 	else:
-		score = max((10 - abs(tea_level - 76)), 1)
-		score_label.text = "Too Little! " + str(score)
+		final_score = max((10 - abs(tea_level - 76)), 1)
+		score_label.text = "Too Little! " + str(final_score)
 
-	finished.emit(score)
+	finished.emit(final_score)
+	await get_tree().create_timer(2.0).timeout
+	queue_free()

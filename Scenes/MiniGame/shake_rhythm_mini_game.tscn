@@ -18,6 +18,7 @@ shader_parameter/pulse_strength = 0.2
 shader_parameter/pulse_mode = 1
 
 [node name="ShakerRhythmMiniGame" type="Control" unique_id=1958050083]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +51,7 @@ mouse_filter = 2
 
 [node name="ScoreLabel" type="Label" parent="Panel/UI" unique_id=263312939]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -70,6 +72,7 @@ texture_under = ExtResource("4_m0fjm")
 texture_progress = ExtResource("5_vnrjx")
 
 [node name="TextureRect" type="TextureRect" parent="Panel" unique_id=955975231]
+visible = false
 material = SubResource("ShaderMaterial_2o5s8")
 layout_mode = 2
 texture = ExtResource("5_e5djd")

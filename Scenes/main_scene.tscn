@@ -10,11 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://bvg3uvwigod5k" path="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg" id="5_gnsmo"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="5_m1efj"]
 [ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="6_psl12"]
-[ext_resource type="Texture2D" uid="uid://cth420eepetaq" path="res://Assets/Visual/LevelBG/bg.jpg" id="9_76v2p"]
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
+[ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
 [ext_resource type="Script" uid="uid://b7tegxe5hjs7w" path="res://Scripts/game_manager.gd" id="14_2ebs2"]
-[ext_resource type="PackedScene" uid="uid://cwcitmbloxqrx" path="res://Scenes/Prefabs/maid.tscn" id="15_oyb3p"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
 vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
@@ -24,12 +23,13 @@ agent_radius = 5.0
 
 [node name="Level" type="Node" unique_id=633166089]
 script = ExtResource("2_huasi")
-level = ExtResource("3_m1efj")
+level_param = ExtResource("3_m1efj")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
 layer = 3
 
 [node name="UI" type="Control" parent="UILayer" unique_id=935409973]
+z_index = 99
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +40,7 @@ mouse_filter = 2
 theme = ExtResource("1_iacmt")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
+visible = false
 layout_mode = 1
 offset_right = 264.0
 offset_bottom = 1032.0
@@ -70,7 +71,7 @@ action_mode = 0
 texture_normal = ExtResource("4_lhp3t")
 texture_pressed = ExtResource("5_gnsmo")
 script = ExtResource("6_psl12")
-maid = NodePath("../../../../../../../Maid")
+maid = NodePath("")
 
 [node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602 node_paths=PackedStringArray("maid")]
 layout_mode = 2
@@ -79,7 +80,7 @@ texture_normal = ExtResource("4_lhp3t")
 texture_pressed = ExtResource("5_gnsmo")
 script = ExtResource("6_psl12")
 maidIndex = 1
-maid = NodePath("../../../../../../../Maid2")
+maid = NodePath("")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1
@@ -189,7 +190,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("9_76v2p")
+texture = ExtResource("11_7ewk0")
 
 [node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
 unique_name_in_owner = true
@@ -225,6 +226,7 @@ mouse_filter = 2
 
 [node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
 unique_name_in_owner = true
+z_index = 1
 position = Vector2(402, 215)
 navigation_polygon = SubResource("NavigationPolygon_m1efj")
 
@@ -240,14 +242,14 @@ position = Vector2(369, 454)
 unique_name_in_owner = true
 script = ExtResource("14_2ebs2")
 
-[node name="Maid" parent="." unique_id=57393834 instance=ExtResource("15_oyb3p")]
-position = Vector2(-220, 442)
-
-[node name="Maid2" parent="." unique_id=1161719473 instance=ExtResource("15_oyb3p")]
-position = Vector2(-286, 442)
-maidPersonality = 1
-
-[node name="Maid3" parent="." unique_id=34468539 instance=ExtResource("15_oyb3p")]
-visible = false
-position = Vector2(369, 454)
-maidPersonality = 2
+[node name="MiniGameContainer" type="Control" parent="." unique_id=1923355782]
+unique_name_in_owner = true
+process_mode = 3
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

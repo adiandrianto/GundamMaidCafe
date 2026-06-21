@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://baju6xbb2lbsx"]
+
+[ext_resource type="Script" uid="uid://cgva8a32qv6x5" path="res://Scripts/UI/maid_selection.gd" id="1_lkfp8"]
+
+[node name="MaidSelection" type="Control" unique_id=962801155]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lkfp8")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=109739563]
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PortraitContainer" type="GridContainer" parent="PanelContainer" unique_id=682357987]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3

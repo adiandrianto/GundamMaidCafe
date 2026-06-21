@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Order" format=3 uid="uid://b175xvpa2jldc"]
+
+[ext_resource type="Script" uid="uid://bsrk3rudloo4a" path="res://Resources/Order/order.gd" id="1_2rdlm"]
+[ext_resource type="Texture2D" uid="uid://b6y8fei0ajdir" path="res://Assets/Visual/UI/icon_omelette.png" id="1_g5rrx"]
+[ext_resource type="PackedScene" uid="uid://b6voidpbr24bo" path="res://Scenes/MiniGame/Minigame O/minigame_o.tscn" id="2_mdm0f"]
+
+[resource]
+script = ExtResource("1_2rdlm")
+icon = ExtResource("1_g5rrx")
+mini_game_scene = ExtResource("2_mdm0f")
+metadata/_custom_type_script = "uid://bsrk3rudloo4a"
