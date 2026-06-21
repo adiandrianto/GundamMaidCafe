@@ -80,7 +80,7 @@ func _maid_come_to_table(maid: Maid, table: Table, ) -> void:
 	if selected_table == null: 
 		return
 
-	maid_spawn_point.add_child(maid)
+	#maid_spawn_point.add_child(maid)
 	maid.global_position = maid_spawn_point.global_position
 	maid.walk_to_table(table)
 

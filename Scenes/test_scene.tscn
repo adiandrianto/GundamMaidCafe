@@ -4,16 +4,17 @@
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_ibmi3"]
 [ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_4blnk"]
 [ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="4_bwjpn"]
-[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/portrait.jpg" id="5_4blnk"]
+[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/Visual/Mecha/portrait.jpg" id="5_4blnk"]
 [ext_resource type="Texture2D" uid="uid://bvg3uvwigod5k" path="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg" id="5_tnimv"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="6_040rt"]
 [ext_resource type="PackedScene" uid="uid://cwcitmbloxqrx" path="res://Scenes/Prefabs/maid.tscn" id="7_4blnk"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="7_dhrl2"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="8_i0miu"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="9_6bfml"]
-[ext_resource type="Texture2D" uid="uid://cjli8y6vfwlp8" path="res://Assets/Visual/bg.png" id="10_tnimv"]
-[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/open.png" id="11_4qg1e"]
+[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="11_4qg1e"]
+[ext_resource type="Texture2D" uid="uid://cth420eepetaq" path="res://Assets/Visual/LevelBG/bg.jpg" id="11_040rt"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="11_soh27"]
+[ext_resource type="Script" uid="uid://b7tegxe5hjs7w" path="res://Scripts/game_manager.gd" id="15_4qg1e"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
 vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_bwjpn")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
@@ -68,7 +70,7 @@ action_mode = 0
 texture_normal = ExtResource("5_4blnk")
 texture_pressed = ExtResource("5_tnimv")
 script = ExtResource("4_bwjpn")
-maid = NodePath("../../../../../../../MaidSpawnPoint/Maid")
+maid = NodePath("../../../../../../../Maid")
 
 [node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602 node_paths=PackedStringArray("maid")]
 layout_mode = 2
@@ -77,7 +79,7 @@ texture_normal = ExtResource("5_4blnk")
 texture_pressed = ExtResource("5_tnimv")
 script = ExtResource("4_bwjpn")
 maidIndex = 1
-maid = NodePath("../../../../../../../MaidSpawnPoint/Maid2")
+maid = NodePath("../../../../../../../Maid2")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1
@@ -88,6 +90,7 @@ offset_left = -292.0
 offset_right = 292.0
 offset_bottom = 154.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 32
 
@@ -117,6 +120,7 @@ text = "1"
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
+mouse_filter = 2
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=567597413]
@@ -150,6 +154,7 @@ text = "02.00"
 [node name="TimerProgress" type="TextureProgressBar" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=821193855]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 value = 7.0
 fill_mode = 5
 texture_under = ExtResource("6_040rt")
@@ -184,12 +189,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("10_tnimv")
+texture = ExtResource("11_040rt")
 
 [node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("11_4qg1e")
 
 [node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
@@ -215,6 +221,7 @@ offset_left = 551.0
 offset_top = 528.0
 offset_right = 1810.0
 offset_bottom = 888.0
+mouse_filter = 2
 
 [node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
 unique_name_in_owner = true
@@ -227,12 +234,20 @@ position = Vector2(-402, -215)
 
 [node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
 unique_name_in_owner = true
-position = Vector2(373, 427)
+position = Vector2(369, 454)
 
-[node name="Maid" parent="MaidSpawnPoint" unique_id=57393834 instance=ExtResource("7_4blnk")]
-visible = false
-position = Vector2(-340, -214)
+[node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
+unique_name_in_owner = true
+script = ExtResource("15_4qg1e")
 
-[node name="Maid2" parent="MaidSpawnPoint" unique_id=1161719473 instance=ExtResource("7_4blnk")]
+[node name="Maid" parent="." unique_id=57393834 instance=ExtResource("7_4blnk")]
+position = Vector2(-220, 442)
+
+[node name="Maid2" parent="." unique_id=1161719473 instance=ExtResource("7_4blnk")]
+position = Vector2(-286, 442)
+maidPersonality = 1
+
+[node name="Maid3" parent="." unique_id=34468539 instance=ExtResource("7_4blnk")]
 visible = false
-position = Vector2(-340, -214)
+position = Vector2(369, 454)
+maidPersonality = 2
