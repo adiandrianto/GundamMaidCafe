@@ -59,10 +59,6 @@ func _on_button_pressed() -> void:
 	display_score.z_index = 1
 	get_score()
 	display_score.visible = true
-
-
-func _on_texture_button_pressed() -> void:
-	get_tree().quit()
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4hmq"]
@@ -148,15 +144,15 @@ script = ExtResource("3_4lxmc")
 script = ExtResource("1_n67nu")
 
 [node name="Object" parent="Objects" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
-position = Vector2(397, 292)
+position = Vector2(659, 384)
 tex = ExtResource("6_v0r2e")
 
 [node name="Object2" parent="Objects" unique_id=1540574857 instance=ExtResource("1_dhqqs")]
-position = Vector2(541, 250)
+position = Vector2(770, 262)
 tex = ExtResource("7_3u6p0")
 
 [node name="Object3" parent="Objects" unique_id=1175461143 instance=ExtResource("1_dhqqs")]
-position = Vector2(555, 624)
+position = Vector2(678, 704)
 tex = ExtResource("7_3u6p0")
 
 [node name="Display_score" type="MarginContainer" parent="." unique_id=1173704526]
@@ -207,8 +203,4 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = ". . . ."
 
-[node name="TextureButton" type="TextureButton" parent="Display_score" unique_id=177957510]
-layout_mode = 2
-
 [connection signal="pressed" from="BG/MarginContainer/HBoxContainer/VBoxContainer/Button" to="Score" method="_on_button_pressed"]
-[connection signal="pressed" from="Display_score/TextureButton" to="Score" method="_on_texture_button_pressed"]

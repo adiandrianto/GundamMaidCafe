@@ -10,11 +10,11 @@ func _process(delta: float) -> void:
 	pass
 
 func area_entered():
-	score += 10
+	score += 1
 	print("Current Score2 is ", score)
 
 func area_exit():
-	score -= 10
+	score -= 1
 	print("Current Score2 is ", score)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
