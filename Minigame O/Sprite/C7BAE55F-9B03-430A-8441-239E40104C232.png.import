@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xqav6k5gqmha"
-path="res://.godot/imported/tomato.png-8486003b059343f72976624c78c205ec.ctex"
+uid="uid://cceumhj6hodav"
+path="res://.godot/imported/C7BAE55F-9B03-430A-8441-239E40104C232.png-06bb331be8e9ccc25947a39aabbe349f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigame O/Sprite/tomato.png"
-dest_files=["res://.godot/imported/tomato.png-8486003b059343f72976624c78c205ec.ctex"]
+source_file="res://Minigame O/Sprite/C7BAE55F-9B03-430A-8441-239E40104C232.png"
+dest_files=["res://.godot/imported/C7BAE55F-9B03-430A-8441-239E40104C232.png-06bb331be8e9ccc25947a39aabbe349f.ctex"]
 
 [params]
 
