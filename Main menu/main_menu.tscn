@@ -1,44 +1,99 @@
 [gd_scene format=3 uid="uid://ck30wxkjgcwfb"]
 
 [ext_resource type="PackedScene" uid="uid://begwrjh6kagwe" path="res://Main menu/options.tscn" id="1_bh62r"]
+[ext_resource type="Texture2D" uid="uid://1mkmabggebtt" path="res://Main menu/Asset_main_menu/bg_1.png" id="2_ape7v"]
+[ext_resource type="Texture2D" uid="uid://c53eltt0flveg" path="res://Main menu/Asset_main_menu/b_play.png" id="2_is1af"]
+[ext_resource type="Texture2D" uid="uid://d0u50f3vb03cg" path="res://Main menu/Asset_main_menu/bg_4.png" id="2_skept"]
+[ext_resource type="Texture2D" uid="uid://dhaqo1mqc27eh" path="res://Main menu/Asset_main_menu/bg_2.png" id="3_5xekc"]
+[ext_resource type="Texture2D" uid="uid://bxbti73u5g0ag" path="res://Main menu/Asset_main_menu/B_option.png" id="3_skept"]
+[ext_resource type="Texture2D" uid="uid://dyugx4fdjvv3c" path="res://Main menu/Asset_main_menu/bg_3.png" id="4_f5at7"]
+[ext_resource type="Texture2D" uid="uid://bg332go18aj7g" path="res://Main menu/Asset_main_menu/b_quit.png" id="4_jh8tq"]
+[ext_resource type="Texture2D" uid="uid://ckc47aq2n7uwn" path="res://Main menu/Asset_main_menu/bg_logo.png" id="5_luq4s"]
 
 [sub_resource type="GDScript" id="GDScript_5yeqd"]
 resource_name = "Main_menu"
 script/source = "extends Control
 
 @onready var options: Panel = $Options
+@onready var play: TextureButton = $VBoxContainer/Play
+@onready var option: TextureButton = $VBoxContainer/Option
+@onready var quit: TextureButton = $VBoxContainer/Quit
+@onready var bg_light: TextureRect = $Bg_light
+@onready var bg_title: TextureRect = $Bg_title
 
-
+var tween
 
 func _ready() -> void:
+	tween_title_op()
+	tween_background()
+	tween_title()
 	options.visible = false
 
 
 func _process(delta: float) -> void:
 	pass
 
+func tween_background():
+	tween = get_tree().create_tween()
+	tween.set_loops()
+	tween.set_parallel()
+	#tween.tween_property(bg_light, \"visible\", false, 0.5).set_delay(0.5)
+	#tween.tween_property(bg_light, \"visible\", true, 0.5).set_delay(1)
+	
+	tween.tween_property(bg_light, \"modulate\", Color(1, 1, 1, 0), 1).set_delay(7.5)
+	tween.tween_property(bg_light, \"modulate\", Color(1, 1, 1, 1), 1).set_delay(1)
+	print(\"tween light\")
+
+func tween_title():
+	tween = get_tree().create_tween()
+	tween.set_loops()
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0.5), 1).set_delay(3).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 1), 1).set_delay(0.35).set_ease(Tween.EASE_IN_OUT)
+	print(\"tween title\")
+
+func tween_title_op():
+	tween = get_tree().create_tween()
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0.5), 0.1)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0), 0.1)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0.75), 0.1)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0), 0.1)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 1), 0.1)
+	print(\"tween title op\")
+
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://Scenes/main_scene.tscn\")
-	pass
-
 
 func _on_option_pressed() -> void:
 	options.visible = true
 
-
-
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_play_mouse_entered() -> void:
+	play.pivot_offset = Vector2(200, 50)
+	play.scale = Vector2(1.1, 1.1)
+
+func _on_play_mouse_exited() -> void:
+	play.scale = Vector2(1, 1)
+
+
+func _on_option_mouse_entered() -> void:
+	option.pivot_offset = Vector2(150, 50)
+	option.scale = Vector2(1.1, 1.1)
+
+func _on_option_mouse_exited() -> void:
+	option.scale = Vector2(1, 1)
+
+
+func _on_quit_mouse_entered() -> void:
+	quit.pivot_offset = Vector2(150, 50)
+	quit.scale = Vector2(1.1, 1.1)
+
+func _on_quit_mouse_exited() -> void:
+	quit.scale = Vector2(1, 1)
 "
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e843d"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l3sk"]
-bg_color = Color(0.60190856, 0.440634, 0.8268701, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0qd8"]
-bg_color = Color(1, 1, 1, 1)
 
 [node name="Main_menu" type="Control" unique_id=1241282294]
 layout_mode = 3
@@ -49,80 +104,121 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_5yeqd")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1182690504]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_e843d")
-
-[node name="Background" type="Panel" parent="TextureRect" unique_id=1137719689]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0l3sk")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=711517438]
-layout_mode = 0
-offset_left = 1549.0
-offset_top = 706.0
-offset_right = 1854.0
-offset_bottom = 801.0
-theme_override_constants/separation = 10
-
-[node name="Play" type="Button" parent="VBoxContainer" unique_id=2017122]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.16565618, 0.16565657, 0.16565624, 1)
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0qd8")
-text = "Play"
-
-[node name="Option" type="Button" parent="VBoxContainer" unique_id=627665722]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.16565618, 0.16565657, 0.16565624, 1)
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0qd8")
-text = "Option"
-
-[node name="Quit" type="Button" parent="VBoxContainer" unique_id=932185105]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.16565618, 0.16565657, 0.16565624, 1)
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_m0qd8")
-text = "Quit"
-
-[node name="Panel" type="Panel" parent="." unique_id=2042806348]
-layout_mode = 0
-offset_left = 140.0
-offset_top = 134.0
-offset_right = 796.0
-offset_bottom = 534.0
-
-[node name="Label" type="Label" parent="Panel" unique_id=254365715]
+[node name="Bg1" type="TextureRect" parent="." unique_id=1785667873]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -73.0
-offset_top = -43.5
-offset_right = 73.0
-offset_bottom = 43.5
+offset_left = -1085.0
+offset_top = -540.0
+offset_right = 1085.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 63
-text = "Logo"
+texture = ExtResource("2_ape7v")
+
+[node name="Bg2" type="TextureRect" parent="." unique_id=902036778]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5xekc")
+
+[node name="Bg3" type="TextureRect" parent="." unique_id=1332207531]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_f5at7")
+
+[node name="Bg_title" type="TextureRect" parent="." unique_id=112223343]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_luq4s")
+
+[node name="Bg_light" type="TextureRect" parent="." unique_id=968067071]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1085.0
+offset_top = -540.0
+offset_right = 1085.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_skept")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=711517438]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8804687
+anchor_top = 0.65694445
+anchor_right = 0.8804687
+anchor_bottom = 0.65694445
+offset_left = -177.5
+offset_top = -202.5
+offset_right = 177.5
+offset_bottom = 202.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 13
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="TextureButton" parent="VBoxContainer" unique_id=957257714]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_is1af")
+
+[node name="Option" type="TextureButton" parent="VBoxContainer" unique_id=591573109]
+layout_mode = 2
+texture_normal = ExtResource("3_skept")
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer" unique_id=448182100]
+layout_mode = 2
+texture_normal = ExtResource("4_jh8tq")
 
 [node name="Options" parent="." unique_id=1394221663 instance=ExtResource("1_bh62r")]
 visible = false
 layout_mode = 1
 
+[connection signal="mouse_entered" from="VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Play" to="." method="_on_play_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Option" to="." method="_on_option_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Option" to="." method="_on_option_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Option" to="." method="_on_option_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Quit" to="." method="_on_quit_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
