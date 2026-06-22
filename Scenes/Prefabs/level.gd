@@ -2,6 +2,10 @@ extends Node
 class_name Level
 
 const CUSTOMER_PREFAB = preload("uid://c45ii4qayngo0")
+const TABLE_PREFAB = preload("uid://caad16wajmi5r")
+const MAID_PREFAB= preload("uid://cwcitmbloxqrx")
+const MAID_SELECTION = preload("uid://baju6xbb2lbsx")
+
 const POURING_TEA_MINI_GAME: PackedScene = preload("uid://bcoafo2w7e5cl")
 const SHAKE_RHYTHM_MINI_GAME: PackedScene = preload("uid://bvnuvd6l7klfg")
 const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
@@ -89,7 +93,7 @@ func _arrange_tables():
 			if idx >= count:
 				break
 
-			var table = GlobalConstants.TABLE_PREFAB.instantiate()
+			var table = TABLE_PREFAB.instantiate()
 			table_container.add_child(table)
 			table.global_position = area_pos + Vector2( start_x + (col + 0.5) * cell_width, (row + 0.5) * cell_height )
 	%NavRegion.bake_navigation_polygon()
@@ -97,6 +101,8 @@ func _arrange_tables():
 func maid_come_to_table(maid: Maid, table: Table) -> void:
 	maid.global_position = maid_spawn_point.global_position
 	await maid.walk_to_table(table)
+	
+	maid.take_order(table)
 	
 func _level_finished():
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")

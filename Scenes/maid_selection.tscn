@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cgva8a32qv6x5" path="res://Scripts/UI/maid_selection.gd" id="1_lkfp8"]
 
 [node name="MaidSelection" type="Control" unique_id=962801155]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +13,6 @@ grow_vertical = 2
 script = ExtResource("1_lkfp8")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=109739563]
-custom_minimum_size = Vector2(1000, 600)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,3 +28,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+
+[node name="Tooltip" type="PopupPanel" parent="." unique_id=785773225]
+oversampling_override = 1.0
+visible = true

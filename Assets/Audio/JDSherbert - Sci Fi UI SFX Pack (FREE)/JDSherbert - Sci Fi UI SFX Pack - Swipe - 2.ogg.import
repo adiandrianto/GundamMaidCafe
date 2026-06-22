@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vlkgjuycovlv"
+path="res://.godot/imported/JDSherbert - Sci Fi UI SFX Pack - Swipe - 2.ogg-96a4083d13e64af620e3ad19e84ca619.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/JDSherbert - Sci Fi UI SFX Pack (FREE)/JDSherbert - Sci Fi UI SFX Pack - Swipe - 2.ogg"
+dest_files=["res://.godot/imported/JDSherbert - Sci Fi UI SFX Pack - Swipe - 2.ogg-96a4083d13e64af620e3ad19e84ca619.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bar4vptad6jcd"
+path="res://.godot/imported/JDSherbert - Sci Fi UI SFX Pack - Select - 1.ogg-b5d441b65e2ce7651c5a71c3136d2e51.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/JDSherbert - Sci Fi UI SFX Pack (FREE)/JDSherbert - Sci Fi UI SFX Pack - Select - 1.ogg"
+dest_files=["res://.godot/imported/JDSherbert - Sci Fi UI SFX Pack - Select - 1.ogg-b5d441b65e2ce7651c5a71c3136d2e51.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

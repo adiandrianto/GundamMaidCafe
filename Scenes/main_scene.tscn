@@ -65,22 +65,20 @@ layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 10
 
-[node name="Maid0" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1206577989 node_paths=PackedStringArray("maid")]
+[node name="Maid0" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1206577989]
 layout_mode = 2
 action_mode = 0
 texture_normal = ExtResource("4_lhp3t")
 texture_pressed = ExtResource("5_gnsmo")
 script = ExtResource("6_psl12")
-maid = NodePath("")
 
-[node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602 node_paths=PackedStringArray("maid")]
+[node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602]
 layout_mode = 2
 action_mode = 0
 texture_normal = ExtResource("4_lhp3t")
 texture_pressed = ExtResource("5_gnsmo")
 script = ExtResource("6_psl12")
 maidIndex = 1
-maid = NodePath("")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1

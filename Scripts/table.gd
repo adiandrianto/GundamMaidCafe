@@ -8,17 +8,19 @@ const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
 @onready var customer_spot: Marker2D = %CustomerSpot
 @onready var level: Node = get_tree().current_scene
 @onready var sprite: Sprite2D = $Sprite
-@onready var game_manager: GameManager = level.get_node("%GameManager")
 @onready var order_icon: TextureButton = %OrderIcon
+@onready var eating_timer: Timer = $EatingTimer
 
 var assigned_customer: Customer
 var assigned_maid: Maid
+
 #func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	#return data is Maid
 #
 #func _drop_data(at_position: Vector2, data: Variant) -> void:
 	#assign_maid(data)
 func _ready() -> void:
+	eating_timer.timeout.connect(_customer_leave)
 	order_icon.hide()
 
 func assign_customer(customer: Customer):
@@ -57,8 +59,20 @@ func _show_order_icon():
 func _on_order_icon_pressed():
 	order_icon.pressed.disconnect(_on_order_icon_pressed)
 	order_icon.hide()
-	GameManager.instantiate_order_scene(assigned_customer.order)
+	var mini_game = GameManager.instantiate_order_scene(assigned_customer.order)
+	mini_game.finished.connect(_customer_start_eating)
 	
+func _customer_leave():
+	print("customer finish eating")
+	assigned_customer.queue_free()
+	assigned_customer = null
+	
+	if assigned_maid:
+		assigned_maid.back_to_station()
+
+func _customer_start_eating(_score):
+	eating_timer.start()
+
 #func assign_maid(maid: Maid):
 	#print("Assigned maid to table")
 	#

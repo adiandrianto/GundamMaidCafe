@@ -9,5 +9,5 @@ script = ExtResource("1_1nutb")
 maid_name = &"Pick"
 portrait = ExtResource("1_5ntfn")
 sprite = ExtResource("3_hulbf")
-service_duration = 10.0
+service_duration = 3.0
 metadata/_custom_type_script = "uid://df5fx48uwm57h"

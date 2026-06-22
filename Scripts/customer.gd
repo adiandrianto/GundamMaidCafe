@@ -23,6 +23,7 @@ func _ready() -> void:
 	_randomize_customer_number()
 	
 	order = GlobalConstants.menu_arr.pick_random()
+	
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
 
@@ -111,7 +112,7 @@ func _on_maid_prompt_pressed() -> void:
 	await get_tree().create_timer(1.0).timeout
 	dialogue_popup.hide()
 	
-	var maid_select_panel = GlobalConstants.MAID_SELECTION.instantiate() as MaidSelectWindow
+	var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
 	maid_select_panel.table_ordered = table_entered[0]
 	GameManager.current_level.mini_game_container.add_child(maid_select_panel)
 

@@ -1,9 +1,5 @@
 extends Node
 
-const TABLE_PREFAB = preload("uid://caad16wajmi5r")
-const MAID_PREFAB= preload("uid://cwcitmbloxqrx")
-const MAID_SELECTION = preload("uid://baju6xbb2lbsx")
-
 static var maid_roster: Array[Resource] = [
 	preload("uid://dr3es4e7eyh5i"),
 	preload("uid://bytkn0kbdeg6h"),
