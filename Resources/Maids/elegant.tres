@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_1nutb")
-maid_name = &"Pick"
+maid_name = &"Pink"
 portrait = ExtResource("1_5ntfn")
 sprite = ExtResource("3_hulbf")
 service_duration = 3.0

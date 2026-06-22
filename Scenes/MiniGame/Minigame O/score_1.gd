@@ -1,5 +1,15 @@
-extends Node
+extends Node2D
 
+@onready var area_2d: Area2D = $Area2D
+@onready var area_2d_2: Area2D = $Area2D2
+@onready var area_2d_3: Area2D = $Area2D3
+@onready var area_2d_4: Area2D = $Area2D4
+@onready var area_2d_5: Area2D = $Area2D5
+@onready var area_2d_6: Area2D = $Area2D6
+@onready var area_2d_7: Area2D = $Area2D7
+@onready var area_2d_8: Area2D = $Area2D8
+@onready var area_2d_9: Area2D = $Area2D9
+@onready var area_2d_10: Area2D = $Area2D10
 var score : int
 
 
@@ -10,11 +20,11 @@ func _process(delta: float) -> void:
 	pass
 
 func area_entered():
-	score += 1
+	score += 10
 	print("Current Score1 is ", score)
 
 func area_exit():
-	score -= 1
+	score -= 10
 	print("Current Score1 is ", score)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

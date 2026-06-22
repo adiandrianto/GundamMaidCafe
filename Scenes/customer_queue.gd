@@ -11,7 +11,8 @@ func update_layout():
 			
 		if customer.dragging: 
 			continue
-
+		
+		customer.z_index = get_child_count() - i
 		customer.position = Vector2(0, -(i * spacing))
 		customer.input_pickable = (i == 0)
 

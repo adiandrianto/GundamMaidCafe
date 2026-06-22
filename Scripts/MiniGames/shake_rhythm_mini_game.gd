@@ -96,5 +96,5 @@ func _scoring():
 	final_score = int(float(current_score) / float(max_score) * 10)
 
 	finished.emit(final_score)
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 	queue_free()

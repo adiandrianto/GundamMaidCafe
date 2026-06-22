@@ -7,7 +7,7 @@ signal arrived_at_table
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var service_timer: Timer = $ServiceTimer
+#@onready var service_timer: Timer = $ServiceTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var direction: Vector2 = Vector2.ZERO
@@ -24,11 +24,11 @@ func _init() -> void:
 
 func _ready() -> void:
 	progress_bar.hide()
-	service_timer.timeout.connect(back_to_station)
+	#service_timer.timeout.connect(back_to_station)
 	
-func _process(delta: float) -> void:
-	if in_service:
-		progress_bar.value = (service_timer.time_left / service_timer.wait_time)
+#func _process(delta: float) -> void:
+	#if in_service:
+		#progress_bar.value = (service_timer.time_left / service_timer.wait_time)
 	
 func _physics_process(delta: float) -> void:
 	if in_service:
@@ -49,6 +49,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func walk_to_table(table: Table):
+	# if in service maid wont be available to be picked by other table
+	if GlobalConstants.maid_roster.has(maid_resource):
+		GlobalConstants.maid_roster.erase(maid_resource)
+		
 	navigation_agent.target_position = table.maid_spot.global_position
 	await arrived_at_table
 	service_table(table)
@@ -69,18 +73,14 @@ func _update_animation(dir: Vector2):
 			animation_player.play("up")
 
 func service_table(table: Table):
-	# if in service maid wont be available to be picked by other table
-	if GlobalConstants.maid_roster.has(maid_resource):
-		GlobalConstants.maid_roster.erase(maid_resource)
-		
 	animation_player.play("idle")
 	
 	table_serviced = table
 	table.assigned_maid = self
 	
-	service_timer.wait_time = maid_resource.service_duration
-	service_timer.start()
-	progress_bar.show()
+	#service_timer.wait_time = maid_resource.service_duration
+	#service_timer.start()
+	#progress_bar.show()
 	
 	in_service = true
 	

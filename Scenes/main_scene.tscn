@@ -199,7 +199,7 @@ texture = ExtResource("9_mai8y")
 
 [node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
 unique_name_in_owner = true
-position = Vector2(1754, 474)
+position = Vector2(1756, 521)
 script = ExtResource("10_76v2p")
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var score : int
 
@@ -10,11 +10,11 @@ func _process(delta: float) -> void:
 	pass
 
 func area_entered():
-	score += 1
+	score += 10
 	print("Current Score3 is ", score)
 
 func area_exit():
-	score -= 1
+	score -= 10
 	print("Current Score3 is ", score)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

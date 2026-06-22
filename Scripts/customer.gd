@@ -1,6 +1,12 @@
 extends Area2D
 class_name Customer
 
+var menu_arr: Array[Order] = [
+	preload("uid://b57j63twpn1ox"),
+	preload("uid://b175xvpa2jldc"),
+	preload("uid://ckkrn7uylotqv"),
+]
+
 const CUSTOMER_1 = preload("uid://dkoxvrdk6qc28")
 const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
 
@@ -22,7 +28,7 @@ var total_person: int = 0
 func _ready() -> void:
 	_randomize_customer_number()
 	
-	order = GlobalConstants.menu_arr.pick_random()
+	order = menu_arr.pick_random()
 	
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()

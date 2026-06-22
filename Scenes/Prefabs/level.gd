@@ -57,7 +57,7 @@ func _customer_come():
 
 	var customer = CUSTOMER_PREFAB.instantiate() as Customer
 	customer_container.add_child(customer)
-	#customer.z_index = - customer_container.get_child_count()
+	#customer.z_index -= customer_container.get_child_count()
 	customer_container.update_layout()
 	
 	level_param.total_customer -= 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg6jadfolql4r"
-path="res://.godot/imported/veg-3.png-99e8b8fdda7a64e65fd1a735d3eea0b8.ctex"
+uid="uid://ljhjv4hplf7k"
+path="res://.godot/imported/C7BAE55F-9B03-430A-8441-239E40104C231.png-63ee214cd35e6adb100293e970583d74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/MiniGame/Minigame O/Sprite/veg-3.png"
-dest_files=["res://.godot/imported/veg-3.png-99e8b8fdda7a64e65fd1a735d3eea0b8.ctex"]
+source_file="res://Scenes/MiniGame/Minigame O/Sprite/C7BAE55F-9B03-430A-8441-239E40104C231.png"
+dest_files=["res://.godot/imported/C7BAE55F-9B03-430A-8441-239E40104C231.png-63ee214cd35e6adb100293e970583d74.ctex"]
 
 [params]
 
