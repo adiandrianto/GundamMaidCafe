@@ -71,7 +71,6 @@ func _on_order_icon_pressed():
 	
 func customer_leave():
 	assigned_customer.leave()
-	assigned_customer = null
 	
 	if assigned_maid:
 		assigned_maid.back_to_station()
