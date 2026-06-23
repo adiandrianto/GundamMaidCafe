@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
 [ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="15_gnsmo"]
 [ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
+[ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_psl12"]
 [ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
 
 [sub_resource type="GDScript" id="GDScript_ioaeq"]
@@ -46,12 +47,9 @@ func instantiate_order_scene(order_res: Order) -> MiniGame:
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnsmo"]
 radius = 32.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gnsmo"]
-size = Vector2(900, 140)
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
-vertices = PackedVector2Array(1082, 228, 1175, 144, 1175, 268.02344, 1080, 303, 70.96094, 144.99219, 191, 229, 67.03125, 693.96094, 190, 302, 1445.0313, 684.03125, 1447.9609, 267.0078)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 6, 7, 3), PackedInt32Array(9, 8, 3, 2)])
+vertices = PackedVector2Array(1112, 308, 1175, 268.02344, 1447.9609, 267.0078, 1445.0313, 684.03125, 1109, 205, 1175, 144, 70.96094, 144.99219, 160, 205, 67.03125, 693.96094, 161, 303)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(3, 8, 9, 0)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
 agent_radius = 5.0
 
@@ -334,11 +332,11 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort" unique_id=296566991]
-position = Vector2(1035, 469)
-texture = SubResource("PlaceholderTexture2D_gnsmo")
+position = Vector2(1036, 458)
+texture = ExtResource("15_psl12")
 
 [node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("15_lhp3t")]
-position = Vector2(1456, 336)
+position = Vector2(1448, 375)
 
 [node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
 unique_name_in_owner = true
@@ -351,7 +349,7 @@ unique_name_in_owner = true
 position = Vector2(-402, -215)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="YSort/NavRegion" unique_id=1846329806]
-vertices = PackedVector2Array(159, 226, 1099, 228, 1099, 308, 161, 303)
+vertices = PackedVector2Array(160, 205, 1109, 205, 1112, 308, 161, 303)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
 
@@ -362,4 +360,5 @@ script = ExtResource("10_76v2p")
 
 [node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
 unique_name_in_owner = true
+z_index = 1
 position = Vector2(369, 454)
