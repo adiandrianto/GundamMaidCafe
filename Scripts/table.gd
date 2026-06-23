@@ -3,6 +3,7 @@ class_name Table
 
 const CUSTOMER_1_SITTING = preload("uid://j7qi843et0h6")
 const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
+const COIN = preload("uid://bo30edhdjf15p")
 
 @onready var maid_spot: Marker2D = %MaidSpot
 @onready var customer_spot: Marker2D = %CustomerSpot
@@ -15,9 +16,12 @@ const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
 @onready var payment_icon: TextureButton = %PaymentIcon
 @onready var eating_timer: Timer = $EatingTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var coin_sprite: Sprite2D = $CoinSprite
 
 var assigned_customer: Customer
 var assigned_maid: Maid
+
+var bill: int = 0
 
 #func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	#return data is Maid
@@ -29,6 +33,7 @@ func _ready() -> void:
 	eating_timer.timeout.connect(_request_bill)
 	order_icon.hide()
 	payment_icon.hide()
+	coin_sprite.hide()
 
 func assign_customer(customer: Customer):
 	assigned_customer = customer
@@ -71,6 +76,17 @@ func _on_order_icon_pressed():
 	mini_game.finished.connect(_customer_start_eating)
 	
 func customer_leave():
+	#var coin = COIN.instantiate()
+	#coin.value = bill
+	#coin.global_position = global_position
+	#get_tree().add_child(coin)
+	
+	#add table bill to income and reset to 0
+	GameManager.current_level.add_income(bill)
+	bill = 0
+	#animasi bill
+	animation_player.play("payment_done")
+	
 	assigned_customer.leave()
 	
 	if assigned_maid:

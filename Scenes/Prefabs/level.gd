@@ -24,7 +24,9 @@ const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 @onready var mini_game_container: Control = %MiniGameContainer
 
 @onready var close_sign: TextureRect = %CloseSign
+
 @onready var cashier_spot: Marker2D = $CashierSpot
+@onready var cashier: Cashier = %Cashier
 
 var table_columns: int = 3
 var income: int = 0
@@ -43,7 +45,7 @@ func _ready() -> void:
 	_arrange_tables()
 	await get_tree().create_timer(0.5).timeout
 	_customer_come()
-
+	
 func _init_hud():
 	goal_label.text = str(level_param.total_goal)
 	income_label.text = "0"

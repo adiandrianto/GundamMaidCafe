@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var spacing := 40
+@export var spacing := 64
 
 func update_layout():
 	for i in range(get_child_count()):

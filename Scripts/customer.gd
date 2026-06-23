@@ -130,7 +130,7 @@ func popup_maid() -> void:
 	if request_maid == true:
 		maid_popup.show()
 		print("maid request")
-	
+
 func leave():
 	$Pay.play()
 	animation_player.play("leave")

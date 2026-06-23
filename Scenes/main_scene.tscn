@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
 [ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="15_gnsmo"]
 [ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
+[ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
 vertices = PackedVector2Array(1082, 228, 1175, 144, 1175, 268.02344, 1080, 303, 70.96094, 144.99219, 191, 229, 67.03125, 693.96094, 190, 302, 1445.0313, 684.03125, 1447.9609, 267.0078)
@@ -47,6 +48,9 @@ func instantiate_order_scene(order_res: Order) -> MiniGame:
 #func instantiate_omurice_minigame():
 	#instantiate_scene(minigameScene_omurice)
 "
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnsmo"]
+radius = 32.0
 
 [node name="Level" type="Node" unique_id=633166089]
 script = ExtResource("2_huasi")
@@ -93,16 +97,13 @@ theme_override_constants/v_separation = 10
 
 [node name="Maid0" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1641049626 instance=ExtResource("4_2ebs2")]
 layout_mode = 2
-maidIndex = 0
 
 [node name="Maid1" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=435120177 instance=ExtResource("4_2ebs2")]
 layout_mode = 2
-maidIndex = 0
 maid_res = ExtResource("8_psl12")
 
 [node name="Maid2" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=2029397387 instance=ExtResource("4_2ebs2")]
 layout_mode = 2
-maidIndex = 0
 maid_res = ExtResource("9_2ebs2")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
@@ -339,3 +340,13 @@ position = Vector2(1407, 390)
 
 [node name="Maid" parent="." unique_id=57393834 instance=ExtResource("15_lhp3t")]
 position = Vector2(1382.6487, 353.0492)
+
+[node name="Cashier" type="Area2D" parent="." unique_id=1806836965]
+unique_name_in_owner = true
+position = Vector2(1393, 423)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("16_gnsmo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cashier" unique_id=476751996]
+shape = SubResource("CircleShape2D_gnsmo")
