@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_huasi"]
 [ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
+[ext_resource type="PackedScene" uid="uid://bttcbb83uabeq" path="res://Scenes/maidlist_item.tscn" id="4_2ebs2"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
-[ext_resource type="Texture2D" uid="uid://bw5jjovgfcv6v" path="res://Assets/Visual/Mecha/portrait.jpg" id="4_lhp3t"]
-[ext_resource type="Texture2D" uid="uid://bvg3uvwigod5k" path="res://Assets/Visual/Mecha/knightcafe(1)_placeholder.jpg" id="5_gnsmo"]
 [ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="5_m1efj"]
-[ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="6_psl12"]
+[ext_resource type="Resource" uid="uid://bytkn0kbdeg6h" path="res://Resources/Maids/kuudere.tres" id="8_psl12"]
+[ext_resource type="Resource" uid="uid://qxleno2wpc82" path="res://Resources/Maids/tsundere.tres" id="9_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
@@ -91,20 +91,19 @@ layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 10
 
-[node name="Maid0" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1206577989]
+[node name="Maid0" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1641049626 instance=ExtResource("4_2ebs2")]
 layout_mode = 2
-action_mode = 0
-texture_normal = ExtResource("4_lhp3t")
-texture_pressed = ExtResource("5_gnsmo")
-script = ExtResource("6_psl12")
+maidIndex = 0
 
-[node name="Maid1" type="TextureButton" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1535876602]
+[node name="Maid1" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=435120177 instance=ExtResource("4_2ebs2")]
 layout_mode = 2
-action_mode = 0
-texture_normal = ExtResource("4_lhp3t")
-texture_pressed = ExtResource("5_gnsmo")
-script = ExtResource("6_psl12")
-maidIndex = 1
+maidIndex = 0
+maid_res = ExtResource("8_psl12")
+
+[node name="Maid2" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=2029397387 instance=ExtResource("4_2ebs2")]
+layout_mode = 2
+maidIndex = 0
+maid_res = ExtResource("9_2ebs2")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 layout_mode = 1
@@ -204,6 +203,48 @@ rotation = -6.2831855
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("5_m1efj")
 
+[node name="Tooltip" type="PanelContainer" parent="UILayer/UI" unique_id=2072478291]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 120)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 888.0
+offset_right = 524.0
+offset_bottom = 1008.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/Tooltip" unique_id=1777033957]
+layout_mode = 2
+
+[node name="NameContainer" type="HBoxContainer" parent="UILayer/UI/Tooltip/VBoxContainer" unique_id=77741551]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/NameContainer" unique_id=370171456]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Name : "
+fit_content = true
+
+[node name="NameLabel" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/NameContainer" unique_id=1181932038]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PersonalityContainer" type="HBoxContainer" parent="UILayer/UI/Tooltip/VBoxContainer" unique_id=1311103444]
+layout_mode = 2
+
+[node name="Personality" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/PersonalityContainer" unique_id=1363346450]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Personality : "
+fit_content = true
+
+[node name="PersonalityLabel" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/PersonalityContainer" unique_id=809835435]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
 layer = -1
 
@@ -225,7 +266,7 @@ texture = ExtResource("9_mai8y")
 
 [node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
 unique_name_in_owner = true
-position = Vector2(1756, 521)
+position = Vector2(1758, 768)
 script = ExtResource("10_76v2p")
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]

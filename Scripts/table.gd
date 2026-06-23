@@ -21,9 +21,10 @@ var assigned_maid: Maid
 
 #func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	#return data is Maid
-#
+##
 #func _drop_data(at_position: Vector2, data: Variant) -> void:
 	#assign_maid(data)
+	
 func _ready() -> void:
 	eating_timer.timeout.connect(_request_bill)
 	order_icon.hide()

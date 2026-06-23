@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bttcbb83uabeq"]
+
+[ext_resource type="Texture2D" uid="uid://diwus1qbvuo2l" path="res://Assets/Visual/Mecha/pink_portrait.png" id="1_oack5"]
+[ext_resource type="Script" uid="uid://bw0kp1ooyhasr" path="res://Scripts/UI/maidlist_item.gd" id="2_7onkn"]
+[ext_resource type="Resource" uid="uid://dr3es4e7eyh5i" path="res://Resources/Maids/elegant.tres" id="3_x86nn"]
+
+[sub_resource type="Gradient" id="Gradient_oack5"]
+colors = PackedColorArray(0, 0, 0, 0.3137255, 0, 0, 0, 0.3137255)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7onkn"]
+gradient = SubResource("Gradient_oack5")
+width = 192
+height = 192
+fill_from = Vector2(0.508547, 0.53846157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x86nn"]
+gradient = SubResource("Gradient_oack5")
+width = 192
+height = 192
+fill_from = Vector2(0.508547, 0.53846157)
+
+[node name="Maid0" type="TextureButton" unique_id=1641049626]
+process_mode = 3
+action_mode = 0
+texture_normal = ExtResource("1_oack5")
+script = ExtResource("2_7onkn")
+maid_res = ExtResource("3_x86nn")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=156089519]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+value = 74.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_7onkn")
+texture_progress = SubResource("GradientTexture2D_x86nn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=196369973]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.5882353)

@@ -1,7 +1,7 @@
 extends Node2D
 
-#static var selected_maid: Maid
-static var selected_table: Table
+static var selected_maid: MaidResource
+static var selected_table: Table = null
 static var current_level: Level = null
 
 #static var minigameScene_omurice : PackedScene = preload("res://Scenes/MiniGame/Minigame O/minigame_o.tscn")

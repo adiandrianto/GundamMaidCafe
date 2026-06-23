@@ -113,15 +113,18 @@ func _on_area_exited(area: Area2D) -> void:
 			table_entered.erase(area)
 
 func _on_maid_prompt_pressed() -> void:
+	GameManager.selected_table = table_entered[0]
 	maid_popup.hide()
 	print("ordering")
 	dialogue_popup.show()
-	await get_tree().create_timer(1.0).timeout
+	get_tree().paused = true
+	await get_tree().create_timer(4.0).timeout
 	dialogue_popup.hide()
 	
-	var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
-	maid_select_panel.table_ordered = table_entered[0]
-	GameManager.current_level.mini_game_container.add_child(maid_select_panel)
+	
+	#var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
+	#maid_select_panel.table_ordered = table_entered[0]
+	#GameManager.current_level.mini_game_container.add_child(maid_select_panel)
 
 func popup_maid() -> void:
 	if request_maid == true:

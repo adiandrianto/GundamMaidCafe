@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Maid
 
 signal arrived_at_table
+signal freed
+
 # @onready var sprite: Sprite2D = %Sprite
 @export var maid_resource: MaidResource
 
@@ -93,9 +95,7 @@ func back_to_station():
 		GlobalConstants.maid_roster.append(maid_resource)
 		
 	animation_player.play("back_to_station")
+	freed.emit()
 
 func take_order(table: Table):
 	table.order_from_menu()
-	
-func play_footstep():
-	footstep.play()
