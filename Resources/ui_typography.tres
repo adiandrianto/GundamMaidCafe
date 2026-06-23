@@ -1,4 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://b56wnyk2vvkky"]
 
+[ext_resource type="FontFile" uid="uid://cgoll8fsf06e0" path="res://Assets/static/Orbitron-Bold.ttf" id="1_3llur"]
+
 [resource]
+default_font = ExtResource("1_3llur")
 default_font_size = 32

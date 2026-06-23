@@ -17,12 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
 [ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
-vertices = PackedVector2Array(1082, 228, 1175, 144, 1175, 268.02344, 1080, 303, 70.96094, 144.99219, 191, 229, 67.03125, 693.96094, 190, 302, 1445.0313, 684.03125, 1447.9609, 267.0078)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 6, 7, 3), PackedInt32Array(9, 8, 3, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
-agent_radius = 5.0
-
 [sub_resource type="GDScript" id="GDScript_ioaeq"]
 script/source = "extends Node2D
 
@@ -52,12 +46,21 @@ func instantiate_order_scene(order_res: Order) -> MiniGame:
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnsmo"]
 radius = 32.0
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gnsmo"]
+size = Vector2(900, 140)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
+vertices = PackedVector2Array(1082, 228, 1175, 144, 1175, 268.02344, 1080, 303, 70.96094, 144.99219, 191, 229, 67.03125, 693.96094, 190, 302, 1445.0313, 684.03125, 1447.9609, 267.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 6, 7, 3), PackedInt32Array(9, 8, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
+agent_radius = 5.0
+
 [node name="Level" type="Node" unique_id=633166089]
 script = ExtResource("2_huasi")
 level_param = ExtResource("3_m1efj")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
-layer = 3
+layer = 99
 
 [node name="UI" type="Control" parent="UILayer" unique_id=935409973]
 z_index = 99
@@ -107,14 +110,16 @@ layout_mode = 2
 maid_res = ExtResource("9_2ebs2")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
+custom_minimum_size = Vector2(520, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -292.0
-offset_right = 292.0
-offset_bottom = 154.0
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 138.0
 grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
 mouse_filter = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 32
@@ -247,7 +252,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
-layer = -1
+layer = -99
 
 [node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
 anchors_preset = 15
@@ -264,11 +269,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("9_mai8y")
-
-[node name="CustomerContainer" type="Marker2D" parent="." unique_id=1653582437]
-unique_name_in_owner = true
-position = Vector2(1758, 768)
-script = ExtResource("10_76v2p")
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
 unique_name_in_owner = true
@@ -289,25 +289,6 @@ offset_top = 528.0
 offset_right = 1810.0
 offset_bottom = 888.0
 mouse_filter = 2
-
-[node name="NavRegion" type="NavigationRegion2D" parent="." unique_id=1761120032]
-unique_name_in_owner = true
-z_index = 1
-position = Vector2(402, 215)
-navigation_polygon = SubResource("NavigationPolygon_m1efj")
-
-[node name="TableContainer" type="Node2D" parent="NavRegion" unique_id=548928484]
-unique_name_in_owner = true
-position = Vector2(-402, -215)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavRegion" unique_id=1846329806]
-vertices = PackedVector2Array(159, 226, 1099, 228, 1099, 308, 161, 303)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
-unique_name_in_owner = true
-position = Vector2(369, 454)
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
 unique_name_in_owner = true
@@ -338,9 +319,6 @@ parameters/looping = true
 [node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
 position = Vector2(1407, 390)
 
-[node name="Maid" parent="." unique_id=57393834 instance=ExtResource("15_lhp3t")]
-position = Vector2(1382.6487, 353.0492)
-
 [node name="Cashier" type="Area2D" parent="." unique_id=1806836965]
 unique_name_in_owner = true
 position = Vector2(1393, 423)
@@ -350,3 +328,38 @@ script = ExtResource("16_gnsmo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cashier" unique_id=476751996]
 shape = SubResource("CircleShape2D_gnsmo")
+
+[node name="YSort" type="Node2D" parent="." unique_id=836971320]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort" unique_id=296566991]
+position = Vector2(1035, 469)
+texture = SubResource("PlaceholderTexture2D_gnsmo")
+
+[node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("15_lhp3t")]
+position = Vector2(1456, 336)
+
+[node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(402, 215)
+navigation_polygon = SubResource("NavigationPolygon_m1efj")
+
+[node name="TableContainer" type="Node2D" parent="YSort/NavRegion" unique_id=548928484]
+unique_name_in_owner = true
+position = Vector2(-402, -215)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="YSort/NavRegion" unique_id=1846329806]
+vertices = PackedVector2Array(159, 226, 1099, 228, 1099, 308, 161, 303)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="CustomerContainer" type="Marker2D" parent="YSort" unique_id=1653582437]
+unique_name_in_owner = true
+position = Vector2(1758, 768)
+script = ExtResource("10_76v2p")
+
+[node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
+unique_name_in_owner = true
+position = Vector2(369, 454)
