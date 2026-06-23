@@ -10,6 +10,12 @@ radius = 7.071068
 z_as_relative = false
 script = ExtResource("1_xrhqk")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1516659176]
+modulate = Color(1, 1, 1, 0.65000004)
+position = Vector2(-3, 2)
+scale = Vector2(0.96604156, 0.96604156)
+texture = ExtResource("2_xrhqk")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=521042883]
 collision_layer = 4
 collision_mask = 4
@@ -106,12 +112,6 @@ collision_mask = 4
 input_pickable = false
 monitorable = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D10" unique_id=1516659176]
-modulate = Color(1, 1, 1, 0.65000004)
-position = Vector2(-0.3416002, 0.22773348)
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("2_xrhqk")
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D10" unique_id=1637008923]
 scale = Vector2(1.1060188, 1.1060188)
 polygon = PackedVector2Array(-1.1386673, -4.5546694, -0.6832004, -6.1488037, 0.6832004, -7.515205, 1.9357345, -8.084538, 4.2130694, -7.856805, 5.57947, -6.7181377, 7.6290717, -6.3765373, 8.881606, -5.23787, 9.337072, -3.6437356, 9.223206, -1.3664008, 8.540006, 0.11386674, 7.6290717, 1.2525342, 7.1736045, 1.5941343, 7.9706717, 2.8466685, 8.084538, 3.9853358, 7.856805, 6.2626705, 6.945871, 7.6290717, 5.4656034, 8.881606, 4.440803, 9.564806, 2.618935, 10.020273, 0.5693337, 9.906406, -1.1386673, 9.337072, -2.7328017, 7.856805, -3.3021355, 6.7181377, -4.0992026, 4.89627, -6.2626705, 4.5546694, -7.742938, 3.9853358, -8.881606, 2.9605353, -10.361874, 0.9109339, -10.931207, -0.6832004, -11.0450735, -2.618935, -10.47574, -4.2130694, -8.881606, -5.3517365, -7.1736045, -5.693337, -4.440803, -5.693337, -2.1634681, -5.3517365)
@@ -120,6 +120,7 @@ polygon = PackedVector2Array(-1.1386673, -4.5546694, -0.6832004, -6.1488037, 0.6
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="area_exited" from="Area2D2" to="." method="_on_area_2d_2_area_exited"]
+[connection signal="body_shape_entered" from="Area2D2" to="." method="_on_area_2d_2_body_shape_entered"]
 [connection signal="area_entered" from="Area2D3" to="." method="_on_area_2d_3_area_entered"]
 [connection signal="area_exited" from="Area2D3" to="." method="_on_area_2d_3_area_exited"]
 [connection signal="area_entered" from="Area2D4" to="." method="_on_area_2d_4_area_entered"]
