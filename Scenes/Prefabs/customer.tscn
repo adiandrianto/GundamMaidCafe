@@ -4,9 +4,85 @@
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
 [ext_resource type="Texture2D" uid="uid://dkoxvrdk6qc28" path="res://Assets/Visual/Customer/customer_1.png" id="3_678vv"]
 [ext_resource type="Texture2D" uid="uid://c8ero8i4lg7gr" path="res://Assets/Visual/UI/icon_maid.png" id="4_g1rta"]
+[ext_resource type="AudioStream" uid="uid://yjc3dx3dm2vo" path="res://Assets/Audio/SFX/Cash Register 1-2.wav" id="5_8njvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_678vv"]
 size = Vector2(140, 100)
+
+[sub_resource type="Animation" id="Animation_8njvi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jwomw"]
+resource_name = "leave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dsgnx"]
+_data = {
+&"RESET": SubResource("Animation_8njvi"),
+&"leave": SubResource("Animation_jwomw")
+}
 
 [node name="Customer" type="Area2D" unique_id=1912775747 node_paths=PackedStringArray("dialogue_popup")]
 process_mode = 1
@@ -54,6 +130,12 @@ offset_right = 159.0
 offset_bottom = 62.0
 text = "I need someone cute to cheer me up"
 autowrap_mode = 2
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1962699756]
+libraries/ = SubResource("AnimationLibrary_dsgnx")
+
+[node name="Pay" type="AudioStreamPlayer" parent="." unique_id=1229977655 groups=["customer"]]
+stream = ExtResource("5_8njvi")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

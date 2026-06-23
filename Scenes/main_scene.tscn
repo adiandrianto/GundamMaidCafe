@@ -13,13 +13,40 @@
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
-[ext_resource type="Script" uid="uid://b7tegxe5hjs7w" path="res://Scripts/game_manager.gd" id="14_2ebs2"]
+[ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="15_gnsmo"]
+[ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
-vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-103, 298, 1461, 300, 1463, 689, -108, 686)])
+vertices = PackedVector2Array(1082, 228, 1175, 144, 1175, 268.02344, 1080, 303, 70.96094, 144.99219, 191, 229, 67.03125, 693.96094, 190, 302, 1445.0313, 684.03125, 1447.9609, 267.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 6, 7, 3), PackedInt32Array(9, 8, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
 agent_radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_ioaeq"]
+script/source = "extends Node2D
+
+#static var selected_maid: Maid
+static var selected_table: Table
+static var current_level: Level = null
+
+#static var minigameScene_omurice : PackedScene = preload(\"res://Scenes/MiniGame/Minigame O/minigame_o.tscn\")
+#var scene_node
+
+func instantiate_order_scene(order_res: Order) -> MiniGame:
+	var order = order_res.mini_game_scene.instantiate()
+
+	current_level.mini_game_container.add_child(order)
+	current_level.mini_game_played.append(order_res)
+	return order
+	#order.global_position = current_level.mini_game_container.global_position
+
+#func instantiate_scene(scene: PackedScene):
+	#scene_node = scene.instantiate()
+	#add_child(scene_node)
+#
+#func instantiate_omurice_minigame():
+	#instantiate_scene(minigameScene_omurice)
+"
 
 [node name="Level" type="Node" unique_id=633166089]
 script = ExtResource("2_huasi")
@@ -232,13 +259,18 @@ navigation_polygon = SubResource("NavigationPolygon_m1efj")
 unique_name_in_owner = true
 position = Vector2(-402, -215)
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavRegion" unique_id=1846329806]
+vertices = PackedVector2Array(159, 226, 1099, 228, 1099, 308, 161, 303)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
 [node name="MaidSpawnPoint" type="Marker2D" parent="." unique_id=1490220203]
 unique_name_in_owner = true
 position = Vector2(369, 454)
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
 unique_name_in_owner = true
-script = ExtResource("14_2ebs2")
+script = SubResource("GDScript_ioaeq")
 
 [node name="MiniGameContainer" type="Control" parent="." unique_id=1923355782]
 unique_name_in_owner = true
@@ -251,3 +283,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Audio" type="Node" parent="." unique_id=97091192]
+process_mode = 3
+
+[node name="BGM" type="AudioStreamPlayer" parent="Audio" unique_id=1104635781]
+stream = ExtResource("15_gnsmo")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
+position = Vector2(1543, 421)
+
+[node name="Maid" parent="." unique_id=57393834 instance=ExtResource("15_lhp3t")]
+position = Vector2(1382.6487, 353.0492)

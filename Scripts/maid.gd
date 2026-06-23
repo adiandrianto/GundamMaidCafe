@@ -10,6 +10,9 @@ signal arrived_at_table
 #@onready var service_timer: Timer = $ServiceTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+## SOUND
+@onready var footstep: AudioStreamPlayer = $Footstep
+
 var direction: Vector2 = Vector2.ZERO
 var dragging: bool = false
 var can_drag: bool = true
@@ -32,15 +35,16 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if in_service:
+		process_mode = Node.PROCESS_MODE_PAUSABLE
 		return
 		
 	if navigation_agent.is_navigation_finished() && not in_service:
+		process_mode = Node.PROCESS_MODE_PAUSABLE
 		velocity = Vector2.ZERO
 		arrived_at_table.emit()
 		#take_order()
-
-		return
 	else:
+		process_mode = Node.PROCESS_MODE_ALWAYS
 		var next_pos = navigation_agent.get_next_path_position()
 		direction = global_position.direction_to(next_pos)
 		velocity = direction * SPEED
@@ -92,3 +96,6 @@ func back_to_station():
 
 func take_order(table: Table):
 	table.order_from_menu()
+	
+func play_footstep():
+	footstep.play()

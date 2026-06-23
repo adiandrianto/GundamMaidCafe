@@ -6,10 +6,15 @@ const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
 
 @onready var maid_spot: Marker2D = %MaidSpot
 @onready var customer_spot: Marker2D = %CustomerSpot
+@onready var cashier_spot: Marker2D = %CashierSpot
+
 @onready var level: Node = get_tree().current_scene
+
 @onready var sprite: Sprite2D = $Sprite
 @onready var order_icon: TextureButton = %OrderIcon
+@onready var payment_icon: TextureButton = %PaymentIcon
 @onready var eating_timer: Timer = $EatingTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var assigned_customer: Customer
 var assigned_maid: Maid
@@ -20,8 +25,9 @@ var assigned_maid: Maid
 #func _drop_data(at_position: Vector2, data: Variant) -> void:
 	#assign_maid(data)
 func _ready() -> void:
-	eating_timer.timeout.connect(_customer_leave)
+	eating_timer.timeout.connect(_request_bill)
 	order_icon.hide()
+	payment_icon.hide()
 
 func assign_customer(customer: Customer):
 	assigned_customer = customer
@@ -30,9 +36,10 @@ func assign_customer(customer: Customer):
 		customer.sprite.texture = CUSTOMER_1_SITTING
 	else:
 		customer.sprite.texture = CUSTOMER_2_SITTING
-		
+
 	customer.global_position = customer_spot.global_position
 	customer.input_pickable = false
+	$CustomerSit.play()
 
 #func _input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -47,24 +54,23 @@ func order_from_menu():
 	if !assigned_customer:
 		print("no customer assigned to table")
 		return
-		
+	
+	await get_tree().create_timer(0.8).timeout
 	_show_order_icon()
 
 func _show_order_icon():
 	print(assigned_customer.order)
 	order_icon.texture_normal = assigned_customer.order.icon
-	order_icon.show()
-	order_icon.pressed.connect(_on_order_icon_pressed)
+	animation_player.play("order_appear")
+	order_icon.pressed.connect(_on_order_icon_pressed, CONNECT_ONE_SHOT)
 
 func _on_order_icon_pressed():
-	order_icon.pressed.disconnect(_on_order_icon_pressed)
-	order_icon.hide()
+	animation_player.play("order_disappear")
 	var mini_game = GameManager.instantiate_order_scene(assigned_customer.order)
 	mini_game.finished.connect(_customer_start_eating)
 	
-func _customer_leave():
-	print("customer finish eating")
-	assigned_customer.queue_free()
+func customer_leave():
+	assigned_customer.leave()
 	assigned_customer = null
 	
 	if assigned_maid:
@@ -72,6 +78,15 @@ func _customer_leave():
 
 func _customer_start_eating(_score):
 	eating_timer.start()
+
+func _request_bill():
+	animation_player.play("payment_appear")
+	payment_icon.pressed.connect(_on_payment_icon_pressed, CONNECT_ONE_SHOT)
+
+func _on_payment_icon_pressed():
+	var cashier_maid: CashierMaid = get_tree().get_first_node_in_group("cashier_maid")
+	cashier_maid.add_target(self)
+	animation_player.play("payment_disappear")
 
 #func assign_maid(maid: Maid):
 	#print("Assigned maid to table")

@@ -14,7 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="11_4qg1e"]
 [ext_resource type="Texture2D" uid="uid://cth420eepetaq" path="res://Assets/Visual/LevelBG/bg.jpg" id="11_040rt"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="11_soh27"]
-[ext_resource type="Script" uid="uid://b7tegxe5hjs7w" path="res://Scripts/game_manager.gd" id="15_4qg1e"]
+[ext_resource type="Script" uid="uid://b7tegxe5hjs7w" path="res://Scripts/Singleton/game_manager.gd" id="15_4qg1e"]
+
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
 vertices = PackedVector2Array(1456.0234, 304.9922, 1457.9688, 683.9922, -102.92969, 681, -98.0625, 303)

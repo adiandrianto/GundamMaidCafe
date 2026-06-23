@@ -16,6 +16,7 @@ signal put_down
 
 @onready var maid_popup: TextureButton = $UI/MaidPrompt
 @onready var sprite: Sprite2D = %Sprite
+@onready var animation_player: AnimationPlayer = $Animation
 
 var table_entered: Array[Table] = []
 var dragging: bool = false
@@ -126,3 +127,7 @@ func popup_maid() -> void:
 	if request_maid == true:
 		maid_popup.show()
 		print("maid request")
+	
+func leave():
+	$Pay.play()
+	animation_player.play("leave")

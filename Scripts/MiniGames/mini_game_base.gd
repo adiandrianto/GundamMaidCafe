@@ -3,6 +3,7 @@ class_name MiniGame
 
 signal finished(score: int)
 var final_score
+var mini_game_name
 
 func _ready() -> void:
 	get_tree().paused = true

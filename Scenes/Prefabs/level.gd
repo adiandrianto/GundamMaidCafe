@@ -24,9 +24,11 @@ const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 @onready var mini_game_container: Control = %MiniGameContainer
 
 @onready var close_sign: TextureRect = %CloseSign
+@onready var cashier_spot: Marker2D = $CashierSpot
 
 var table_columns: int = 3
 var income: int = 0
+var mini_game_played: Array[Order] = []
 
 static var selected_table: Table = null
 static var selected_maid: Maid = null
@@ -105,4 +107,7 @@ func maid_come_to_table(maid: Maid, table: Table) -> void:
 	maid.take_order(table)
 	
 func _level_finished():
+	var mini_game_played_names: Array[String] = []
+	#implement here for scoring
+	
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")
