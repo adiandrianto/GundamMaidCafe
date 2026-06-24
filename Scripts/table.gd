@@ -21,6 +21,8 @@ const COIN = preload("uid://bo30edhdjf15p")
 var assigned_customer: Customer
 var assigned_maid: Maid
 
+var multiplier: int = 1
+
 var bill: int = 0
 
 #func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -34,6 +36,7 @@ func _ready() -> void:
 	order_icon.hide()
 	payment_icon.hide()
 	coin_sprite.hide()
+	add_to_group("tables")
 
 func assign_customer(customer: Customer):
 	assigned_customer = customer
@@ -82,7 +85,7 @@ func customer_leave():
 	#get_tree().add_child(coin)
 	
 	#add table bill to income and reset to 0
-	GameManager.current_level.add_income(bill)
+	GameManager.current_level.add_income(bill * multiplier) 
 	bill = 0
 	#animasi bill
 	animation_player.play("payment_done")

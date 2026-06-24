@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_537jd")
-maid_name = &"Red"
+maid_name = &"UX-87 \"Destroyer\""
 personality = 1
 portrait = ExtResource("1_bw6n7")
 sprite = ExtResource("3_hp0db")

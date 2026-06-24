@@ -1,10 +1,3 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://btrnlfjgv1glg"]
 
-[ext_resource type="Shader" uid="uid://b4g55tdvat84p" path="res://Resources/outline.gdshader" id="1_2dnte"]
-
 [resource]
-shader = ExtResource("1_2dnte")
-shader_parameter/width = 0
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/flickering_speed = 0.0
-shader_parameter/minimal_flickering_alpha = 0.89999997615814

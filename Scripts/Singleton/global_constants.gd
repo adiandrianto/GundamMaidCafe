@@ -8,3 +8,4 @@ var maid_roster: Array[MaidResource] = [
 
 enum Personality{ELEGANT, TSUNDERE, KUUDERE}
 enum Menu{OMURICE, TEA, MIXED_JUICE}
+enum Skills{MULTIPLIER, MATCHING, PATIENCE}

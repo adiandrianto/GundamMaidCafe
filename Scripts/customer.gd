@@ -27,6 +27,7 @@ var order: Order
 var total_person: int = 0
 
 func _ready() -> void:
+	add_to_group("customers")
 	_randomize_customer_number()
 	
 	order = menu_arr.pick_random()

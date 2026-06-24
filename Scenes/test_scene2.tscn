@@ -1,22 +1,25 @@
-[gd_scene format=3 uid="uid://c2nvoc2kej8i5"]
+[gd_scene format=3 uid="uid://bnh4kreoanadk"]
 
-[ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="1_iacmt"]
-[ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="2_6ev3c"]
-[ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_huasi"]
-[ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
-[ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
-[ext_resource type="PackedScene" uid="uid://bttcbb83uabeq" path="res://Scenes/maidlist_item.tscn" id="4_2ebs2"]
-[ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
-[ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="5_m1efj"]
-[ext_resource type="Resource" uid="uid://bytkn0kbdeg6h" path="res://Resources/Maids/kuudere.tres" id="8_psl12"]
-[ext_resource type="Resource" uid="uid://qxleno2wpc82" path="res://Resources/Maids/tsundere.tres" id="9_2ebs2"]
-[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
-[ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
-[ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
-[ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="15_gnsmo"]
-[ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
-[ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_psl12"]
-[ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
+[ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="1_8paxn"]
+[ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="2_hdkc7"]
+[ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="3_hcx3o"]
+[ext_resource type="PackedScene" uid="uid://bttcbb83uabeq" path="res://Scenes/maidlist_item.tscn" id="4_hpupd"]
+[ext_resource type="Resource" uid="uid://bytkn0kbdeg6h" path="res://Resources/Maids/kuudere.tres" id="5_5u4ts"]
+[ext_resource type="Resource" uid="uid://qxleno2wpc82" path="res://Resources/Maids/tsundere.tres" id="6_n0bxt"]
+[ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="7_d6ofe"]
+[ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="8_v2bwr"]
+[ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="9_t51oa"]
+[ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="10_j3bjr"]
+[ext_resource type="Texture2D" uid="uid://diwus1qbvuo2l" path="res://Assets/Visual/Mecha/pink_portrait.png" id="11_hpupd"]
+[ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_ut7mj"]
+[ext_resource type="Texture2D" uid="uid://dmut8ggrrqqht" path="res://Assets/Visual/Mecha/kuudere.png" id="12_5u4ts"]
+[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="12_fwvne"]
+[ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="13_htuml"]
+[ext_resource type="Texture2D" uid="uid://bf1kc5w2fq1om" path="res://Assets/Visual/Mecha/tsundere_portrait.png" id="13_n0bxt"]
+[ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="14_4xgp2"]
+[ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_p0343"]
+[ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="16_avi5q"]
+[ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="17_5cai3"]
 
 [sub_resource type="GDScript" id="GDScript_ioaeq"]
 script/source = "extends Node2D
@@ -54,8 +57,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 118
 agent_radius = 5.0
 
 [node name="Level" type="Node" unique_id=633166089]
-script = ExtResource("2_huasi")
-level_param = ExtResource("3_m1efj")
+script = ExtResource("1_8paxn")
+level_param = ExtResource("2_hdkc7")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
 layer = 99
@@ -69,7 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_iacmt")
+theme = ExtResource("3_hcx3o")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
 layout_mode = 1
@@ -96,16 +99,16 @@ layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 10
 
-[node name="Maid0" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1641049626 instance=ExtResource("4_2ebs2")]
+[node name="Maid0" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1641049626 instance=ExtResource("4_hpupd")]
 layout_mode = 2
 
-[node name="Maid1" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=435120177 instance=ExtResource("4_2ebs2")]
+[node name="Maid1" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=435120177 instance=ExtResource("4_hpupd")]
 layout_mode = 2
-maid_res = ExtResource("8_psl12")
+maid_res = ExtResource("5_5u4ts")
 
-[node name="Maid2" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=2029397387 instance=ExtResource("4_2ebs2")]
+[node name="Maid2" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=2029397387 instance=ExtResource("4_hpupd")]
 layout_mode = 2
-maid_res = ExtResource("9_2ebs2")
+maid_res = ExtResource("6_n0bxt")
 
 [node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
 custom_minimum_size = Vector2(520, 0)
@@ -163,7 +166,7 @@ text = "Goal : "
 [node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=787618044]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("1_iacmt")
+theme = ExtResource("3_hcx3o")
 text = "123"
 
 [node name="IncomeLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=443870063]
@@ -185,9 +188,9 @@ layout_mode = 2
 mouse_filter = 2
 value = 7.0
 fill_mode = 5
-texture_under = ExtResource("2_6ev3c")
-texture_progress = ExtResource("3_maf8m")
-script = ExtResource("4_huasi")
+texture_under = ExtResource("7_d6ofe")
+texture_progress = ExtResource("8_v2bwr")
+script = ExtResource("9_t51oa")
 
 [node name="JarumJam" type="TextureRect" parent="UILayer/UI/UpperContainer/HBoxContainer/TimerProgress" unique_id=317627819]
 unique_name_in_owner = true
@@ -205,7 +208,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -6.2831855
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("5_m1efj")
+texture = ExtResource("10_j3bjr")
 
 [node name="Tooltip" type="PanelContainer" parent="UILayer/UI" unique_id=2072478291]
 unique_name_in_owner = true
@@ -251,6 +254,44 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SkillsList" type="PanelContainer" parent="UILayer/UI" unique_id=922681777]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 874.0
+offset_right = 1424.0
+offset_bottom = 1066.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/SkillsList" unique_id=1449609039]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+
+[node name="GridContainer" type="GridContainer" parent="UILayer/UI/SkillsList/MarginContainer" unique_id=2143389051]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 3
+
+[node name="MaidSkill1" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1131170099]
+layout_mode = 2
+texture_normal = ExtResource("11_hpupd")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill1" unique_id=1102066007]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+value = 100.0
+fill_mode = 1
+
+[node name="MaidSkill2" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=420656217]
+layout_mode = 2
+texture_normal = ExtResource("12_5u4ts")
+
+[node name="MaidSkill3" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=366709595]
+layout_mode = 2
+texture_normal = ExtResource("13_n0bxt")
+ignore_texture_size = true
+
 [node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
 layer = -99
 
@@ -261,14 +302,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("11_7ewk0")
+texture = ExtResource("11_ut7mj")
 
 [node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-texture = ExtResource("9_mai8y")
+texture = ExtResource("12_fwvne")
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
 unique_name_in_owner = true
@@ -310,7 +351,7 @@ mouse_filter = 2
 process_mode = 3
 
 [node name="BGM" type="AudioStreamPlayer" parent="Audio" unique_id=1104635781]
-stream = ExtResource("15_gnsmo")
+stream = ExtResource("13_htuml")
 volume_db = -5.0
 autoplay = true
 bus = &"Music"
@@ -324,7 +365,7 @@ unique_name_in_owner = true
 position = Vector2(1393, 423)
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("16_gnsmo")
+script = ExtResource("14_4xgp2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cashier" unique_id=476751996]
 shape = SubResource("CircleShape2D_gnsmo")
@@ -335,9 +376,9 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort" unique_id=296566991]
 position = Vector2(1036, 458)
-texture = ExtResource("15_psl12")
+texture = ExtResource("15_p0343")
 
-[node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("15_lhp3t")]
+[node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("16_avi5q")]
 position = Vector2(1448, 375)
 
 [node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
@@ -358,9 +399,15 @@ carve_navigation_mesh = true
 [node name="CustomerContainer" type="Marker2D" parent="YSort" unique_id=1653582437]
 unique_name_in_owner = true
 position = Vector2(1758, 768)
-script = ExtResource("10_76v2p")
+script = ExtResource("17_5cai3")
 
 [node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
 unique_name_in_owner = true
 z_index = 1
 position = Vector2(369, 454)
+
+[node name="SkillCooldown" type="Timer" parent="." unique_id=1508311925]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive" type="Timer" parent="." unique_id=1899413268]
