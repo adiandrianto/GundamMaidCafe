@@ -73,7 +73,7 @@ func _show_order_icon():
 func _on_order_icon_pressed():
 	animation_player.play("order_disappear")
 	var mini_game = GameManager.instantiate_order_scene(assigned_customer.order)
-	mini_game.finished.connect(_customer_start_eating)
+	mini_game.finished.connect(_on_mini_game_finished)
 	
 func customer_leave():
 	#var coin = COIN.instantiate()
@@ -92,7 +92,8 @@ func customer_leave():
 	if assigned_maid:
 		assigned_maid.back_to_station()
 
-func _customer_start_eating(_score):
+func _on_mini_game_finished(score):
+	bill += score
 	eating_timer.start()
 
 func _request_bill():

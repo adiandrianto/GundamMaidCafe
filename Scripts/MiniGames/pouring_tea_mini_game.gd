@@ -1,9 +1,13 @@
 extends MiniGame
+class_name PourTeaMiniGame
 
 @onready var tea_progress_bar: TextureProgressBar = %TeaProgressBar
 @onready var tea_surface: TextureRect = %TeaSurface
 @onready var score_label: Label = %ScoreLabel
+@onready var tutorial: Label = %Tutorial
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+static var show_tutorial: bool = true
 var fill_speed:= 35.0
 var tea_level: float = 0.0
 var is_pouring: bool = false
@@ -14,14 +18,20 @@ var mat: ShaderMaterial
 func _ready() -> void:
 	super._ready()
 	score_label.text = ""
+	tutorial.hide()
 	tea_progress_bar.value = 0
 	mat = tea_surface.material
+	animation_player.play("appear")
+	
+	if show_tutorial:
+		tutorial.show()
 	
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if !is_pouring:
 			$Pouring.play()
 			is_pouring = true
+			tutorial.hide()
 
 	if event.is_action_released("left_click"):
 		if is_pouring:
@@ -54,19 +64,26 @@ func update_surface_position():
 	
 func _evaluate_result():
 	set_process_input(false)
-
-	if tea_level >= 69 and tea_level <= 74:
+	
+	#await get_tree().create_timer(2.0).timeout
+	
+	if tea_level >= 67 and tea_level <= 72:
+		animation_player.play("shake")
 		final_score = 10
-		score_label.text = "Perfect! " + str(final_score)
+		score_label.text = "Perfect!"# + str(final_score)
 		await get_tree().create_timer(0.2).timeout
-		$Fanfare.play()
-	elif tea_level > 70:
+		$Perfect.play()
+	elif tea_level > 72:
 		final_score = min(abs(10 - (tea_level - 80)), 1)
-		score_label.text = "Overflow! " + str(final_score)
+		score_label.text = "Overflow!"# + str(final_score)
+		$Bad.play()
 	else:
 		final_score = max((10 - abs(tea_level - 76)), 1)
-		score_label.text = "Too Little! " + str(final_score)
+		score_label.text = "Too Little!"# + str(final_score)
+		$Bad.play()
+	
+	await get_tree().create_timer(2.0).timeout
 
 	finished.emit(final_score)
-	await get_tree().create_timer(2.0).timeout
-	queue_free()
+	show_tutorial = false
+	animation_player.play("disappear")

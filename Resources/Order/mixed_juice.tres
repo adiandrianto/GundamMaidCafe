@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bsrk3rudloo4a" path="res://Resources/Order/order.gd" id="1_8k42i"]
 [ext_resource type="Texture2D" uid="uid://fj533dwtt6yh" path="res://Assets/Visual/UI/icon_mixed_juice.png" id="1_igjno"]
-[ext_resource type="PackedScene" uid="uid://bvnuvd6l7klfg" path="res://Scenes/MiniGame/shake_rhythm_mini_game.tscn" id="1_ynchk"]
+[ext_resource type="PackedScene" uid="uid://bvnuvd6l7klfg" path="res://Scenes/MiniGame/shaker_mini_game.tscn" id="1_ynchk"]
+
 
 [resource]
 script = ExtResource("1_8k42i")

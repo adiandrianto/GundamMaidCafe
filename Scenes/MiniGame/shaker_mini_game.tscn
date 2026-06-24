@@ -1,0 +1,292 @@
+[gd_scene format=3 uid="uid://bvnuvd6l7klfg"]
+
+[ext_resource type="Script" uid="uid://c2yi71dwllbbw" path="res://Scripts/MiniGames/shake_rhythm_mini_game.gd" id="1_x4h7t"]
+[ext_resource type="Texture2D" uid="uid://jpnnokrykup4" path="res://Assets/Visual/MiniGame/minigame_frame.png" id="2_hhkgf"]
+[ext_resource type="FontFile" uid="uid://cgoll8fsf06e0" path="res://Assets/static/Orbitron-Bold.ttf" id="3_fba3m"]
+[ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="3_gatrd"]
+[ext_resource type="FontFile" uid="uid://bc2l58j7isag7" path="res://Assets/BitcountInk-VariableFont_CRSV,ELSH,ELXP,SZP1,SZP2,XPN1,XPN2,YPN1,YPN2,slnt,wght.ttf" id="3_gpt4s"]
+[ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="4_fba3m"]
+[ext_resource type="Shader" uid="uid://b6jlisuv3je2g" path="res://Scenes/shake_rhythm_mini_game.gdshader" id="5_4vb4p"]
+[ext_resource type="Texture2D" uid="uid://dk6gs05p0a2ng" path="res://Assets/Visual/Table/table_top.png" id="6_gpt4s"]
+[ext_resource type="AudioStream" uid="uid://bupco5djinshv" path="res://Assets/Audio/MiniGame/shake_rhythm_beat_loop.ogg" id="7_rdhwr"]
+[ext_resource type="Texture2D" uid="uid://cotchri1c21d8" path="res://Assets/Visual/MiniGame/ShakeEhythm/shaker.png" id="9_xxaww"]
+[ext_resource type="AudioStream" uid="uid://cdyfklpn1qnp4" path="res://Assets/Audio/SFX/Positive_Pop_05.wav" id="10_gatrd"]
+[ext_resource type="AudioStream" uid="uid://d1o8664poue3l" path="res://Assets/Audio/SFX/Negative_Pop_04.wav" id="11_fba3m"]
+[ext_resource type="AudioStream" uid="uid://qjllbwf4bxol" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="13_rdhwr"]
+[ext_resource type="AudioStream" uid="uid://b6is1lspd2cre" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Swipe - 1.ogg" id="14_otn6c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnrjx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4r5o8"]
+texture = ExtResource("2_hhkgf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o5s8"]
+shader = ExtResource("5_4vb4p")
+shader_parameter/beat_speed = 1.74000007939012
+shader_parameter/pulse_strength = 0.2
+shader_parameter/pulse_mode = 1
+
+[sub_resource type="Animation" id="Animation_8svcs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_r7k0d"]
+resource_name = "APPEAR"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Appear")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ihk6r"]
+resource_name = "disappear"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Disappear")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_664em"]
+resource_name = "shake"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.12217304763960307, -0.08726646259971647, 0.05235987755982989, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xxaww"]
+_data = {
+&"RESET": SubResource("Animation_8svcs"),
+&"appear": SubResource("Animation_r7k0d"),
+&"disappear": SubResource("Animation_ihk6r"),
+&"shake": SubResource("Animation_664em")
+}
+
+[node name="ShakerMiniGame" type="Control" unique_id=1958050083]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x4h7t")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=235080408]
+material = SubResource("ShaderMaterial_vnrjx")
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4r5o8")
+
+[node name="UI" type="Control" parent="Panel" unique_id=150054300]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="Panel/UI" unique_id=263312939]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -301.0
+offset_right = 140.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_gpt4s")
+theme_override_font_sizes/font_size = 46
+text = "234234"
+horizontal_alignment = 1
+
+[node name="Tutorial" type="Label" parent="Panel/UI" unique_id=1837914735]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -406.0
+offset_top = -311.0
+offset_right = 538.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_fba3m")
+theme_override_font_sizes/font_size = 32
+text = "Click the Shaker as much as you can
+before the timer goes off
+"
+horizontal_alignment = 1
+
+[node name="BeatBar" type="TextureProgressBar" parent="Panel/UI" unique_id=80944353]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+fill_mode = 5
+texture_under = ExtResource("3_gatrd")
+texture_progress = ExtResource("4_fba3m")
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=955975231]
+visible = false
+material = SubResource("ShaderMaterial_2o5s8")
+layout_mode = 2
+texture = ExtResource("6_gpt4s")
+
+[node name="Beat" type="AudioStreamPlayer" parent="." unique_id=41465659]
+unique_name_in_owner = true
+stream = ExtResource("7_rdhwr")
+autoplay = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=602268749]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+
+[node name="Shaker" type="TextureButton" parent="MarginContainer" unique_id=530728170]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("9_xxaww")
+
+[node name="Perfect" type="AudioStreamPlayer" parent="." unique_id=1613272288]
+stream = ExtResource("10_gatrd")
+bus = &"Effect"
+
+[node name="Bad" type="AudioStreamPlayer" parent="." unique_id=1848614984]
+stream = ExtResource("11_fba3m")
+bus = &"Effect"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1891054785]
+libraries/ = SubResource("AnimationLibrary_xxaww")
+
+[node name="Appear" type="AudioStreamPlayer" parent="." unique_id=1554158496]
+stream = ExtResource("13_rdhwr")
+bus = &"Effect"
+
+[node name="Disappear" type="AudioStreamPlayer" parent="." unique_id=155523169]
+stream = ExtResource("14_otn6c")
+volume_db = -5.0
+bus = &"Effect"
