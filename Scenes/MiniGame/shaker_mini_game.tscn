@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cotchri1c21d8" path="res://Assets/Visual/MiniGame/ShakeEhythm/shaker.png" id="9_xxaww"]
 [ext_resource type="AudioStream" uid="uid://cdyfklpn1qnp4" path="res://Assets/Audio/SFX/Positive_Pop_05.wav" id="10_gatrd"]
 [ext_resource type="AudioStream" uid="uid://d1o8664poue3l" path="res://Assets/Audio/SFX/Negative_Pop_04.wav" id="11_fba3m"]
+[ext_resource type="AudioStream" uid="uid://c8vf50df4cxoi" path="res://Assets/Audio/SFX/Negative_Pop_06.wav" id="13_otn6c"]
 [ext_resource type="AudioStream" uid="uid://qjllbwf4bxol" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="13_rdhwr"]
 [ext_resource type="AudioStream" uid="uid://b6is1lspd2cre" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Swipe - 1.ogg" id="14_otn6c"]
 
@@ -52,6 +53,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/UI/ScoreLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["234234"]
+}
 
 [sub_resource type="Animation" id="Animation_r7k0d"]
 resource_name = "APPEAR"
@@ -64,10 +77,10 @@ tracks/0/path = NodePath("Panel:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
+"times": PackedFloat32Array(0, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1)]
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -81,6 +94,41 @@ tracks/1/keys = {
 "values": [{
 "args": [0.0],
 "method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gpt4s"]
+resource_name = "count"
+length = 2.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/UI/ScoreLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["3
+", "2", "1", "GO!"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/UI/ScoreLabel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show"
+}, {
+"args": [],
+"method": &"hide"
 }]
 }
 
@@ -143,13 +191,14 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.1, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.12217304763960307, -0.08726646259971647, 0.05235987755982989, 0.0]
+"values": [0.0, 0.12217304763960309, -0.08726646259971647, 0.05235987755982989, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xxaww"]
 _data = {
 &"RESET": SubResource("Animation_8svcs"),
 &"appear": SubResource("Animation_r7k0d"),
+&"count": SubResource("Animation_gpt4s"),
 &"disappear": SubResource("Animation_ihk6r"),
 &"shake": SubResource("Animation_664em")
 }
@@ -223,7 +272,7 @@ before the timer goes off
 "
 horizontal_alignment = 1
 
-[node name="BeatBar" type="TextureProgressBar" parent="Panel/UI" unique_id=80944353]
+[node name="ProgressBar" type="TextureProgressBar" parent="Panel/UI" unique_id=80944353]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -231,14 +280,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = -345.0
+offset_top = -307.0
+offset_right = -217.0
+offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
 max_value = 1.0
-step = 0.01
+step = 0.1
 fill_mode = 5
 texture_under = ExtResource("3_gatrd")
 texture_progress = ExtResource("4_fba3m")
@@ -249,21 +298,11 @@ material = SubResource("ShaderMaterial_2o5s8")
 layout_mode = 2
 texture = ExtResource("6_gpt4s")
 
-[node name="Beat" type="AudioStreamPlayer" parent="." unique_id=41465659]
-unique_name_in_owner = true
-stream = ExtResource("7_rdhwr")
-autoplay = true
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=602268749]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=602268749]
+layout_mode = 2
 theme_override_constants/margin_left = 120
 
-[node name="Shaker" type="TextureButton" parent="MarginContainer" unique_id=530728170]
+[node name="Shaker" type="TextureButton" parent="Panel/MarginContainer" unique_id=530728170]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -271,12 +310,20 @@ size_flags_vertical = 4
 toggle_mode = true
 texture_normal = ExtResource("9_xxaww")
 
+[node name="Beat" type="AudioStreamPlayer" parent="." unique_id=41465659]
+unique_name_in_owner = true
+stream = ExtResource("7_rdhwr")
+
 [node name="Perfect" type="AudioStreamPlayer" parent="." unique_id=1613272288]
 stream = ExtResource("10_gatrd")
 bus = &"Effect"
 
-[node name="Bad" type="AudioStreamPlayer" parent="." unique_id=1848614984]
+[node name="Normal" type="AudioStreamPlayer" parent="." unique_id=1615240444]
 stream = ExtResource("11_fba3m")
+bus = &"Effect"
+
+[node name="Bad" type="AudioStreamPlayer" parent="." unique_id=1848614984]
+stream = ExtResource("13_otn6c")
 bus = &"Effect"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1891054785]
@@ -290,3 +337,7 @@ bus = &"Effect"
 stream = ExtResource("14_otn6c")
 volume_db = -5.0
 bus = &"Effect"
+
+[node name="Timer" type="Timer" parent="." unique_id=119748259]
+wait_time = 3.5
+one_shot = true

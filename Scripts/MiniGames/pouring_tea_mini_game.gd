@@ -53,9 +53,9 @@ func _process(delta: float) -> void:
 	else:
 		_evaluate_result()
 		
-	if mat:
-		mat.set_shader_parameter("wave_strength", max(turbulence, 5.0))
-		mat.set_shader_parameter("wave_speed", max(turbulence,3.0))
+	#if mat:
+		#mat.set_shader_parameter("wave_strength", max(turbulence, 5.0))
+		#mat.set_shader_parameter("wave_speed", max(turbulence,3.0))
 		
 func update_surface_position():
 	var ratio := tea_level / tea_progress_bar.max_value
@@ -67,7 +67,7 @@ func _evaluate_result():
 	
 	#await get_tree().create_timer(2.0).timeout
 	
-	if tea_level >= 67 and tea_level <= 72:
+	if tea_level >= 67 and tea_level <= 71:
 		animation_player.play("shake")
 		final_score = 10
 		score_label.text = "Perfect!"# + str(final_score)
@@ -82,7 +82,7 @@ func _evaluate_result():
 		score_label.text = "Too Little!"# + str(final_score)
 		$Bad.play()
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.2).timeout
 
 	finished.emit(final_score)
 	show_tutorial = false

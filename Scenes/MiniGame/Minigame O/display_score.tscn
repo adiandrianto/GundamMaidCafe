@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://767rwxtt26in"]
+
+[ext_resource type="Texture2D" uid="uid://d0hq7ucjadsd5" path="res://Scenes/MiniGame/Minigame O/Sprite/6C253AFB-DF66-4E0A-A653-BDE5958961D8.png" id="1_r7nhp"]
+
+[node name="Display_score" type="MarginContainer" unique_id=1604369048]
+visible = false
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=363230352]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=201417895]
+layout_mode = 2
+texture = ExtResource("1_r7nhp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=846334723]
+layout_mode = 2
+theme_override_constants/separation = 95
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1902574150]
+custom_minimum_size = Vector2(594, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1060081571]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 100
+text = "Score :"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer" unique_id=688929398]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = ". . . ."

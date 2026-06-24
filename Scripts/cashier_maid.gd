@@ -85,7 +85,7 @@ func _update_animation(dir: Vector2):
 func collect_payment(table: Table) -> void:
 	animation_player.play("idle")
 
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.8).timeout
 
 	table.customer_leave()
 
