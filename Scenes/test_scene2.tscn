@@ -14,12 +14,16 @@
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_ut7mj"]
 [ext_resource type="Texture2D" uid="uid://dmut8ggrrqqht" path="res://Assets/Visual/Mecha/kuudere.png" id="12_5u4ts"]
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="12_fwvne"]
+[ext_resource type="Script" uid="uid://cu3tmeqdxr0ru" path="res://Scripts/UI/maid_skill.gd" id="12_n0bxt"]
 [ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="13_htuml"]
 [ext_resource type="Texture2D" uid="uid://bf1kc5w2fq1om" path="res://Assets/Visual/Mecha/tsundere_portrait.png" id="13_n0bxt"]
 [ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="14_4xgp2"]
 [ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_p0343"]
 [ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="16_avi5q"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="17_5cai3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpupd"]
+bg_color = Color(0.05490196, 0.05490196, 0.05490196, 0.63529414)
 
 [sub_resource type="GDScript" id="GDScript_ioaeq"]
 script/source = "extends Node2D
@@ -270,9 +274,13 @@ layout_mode = 2
 theme_override_constants/h_separation = 10
 columns = 3
 
-[node name="MaidSkill1" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1131170099]
+[node name="MaidSkill1" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1131170099 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
 layout_mode = 2
 texture_normal = ExtResource("11_hpupd")
+script = ExtResource("12_n0bxt")
+cooldown_timer = NodePath("../../../../../../SkillCooldown")
+skill_timer = NodePath("../../../../../../SkillActive")
+progress_bar = NodePath("ProgressBar")
 
 [node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill1" unique_id=1102066007]
 layout_mode = 0
@@ -280,8 +288,7 @@ offset_left = 6.0
 offset_top = 7.0
 offset_right = 188.0
 offset_bottom = 186.0
-value = 100.0
-fill_mode = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
 
 [node name="MaidSkill2" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=420656217]
 layout_mode = 2
@@ -411,3 +418,5 @@ wait_time = 20.0
 one_shot = true
 
 [node name="SkillActive" type="Timer" parent="." unique_id=1899413268]
+wait_time = 5.0
+one_shot = true

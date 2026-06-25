@@ -6,6 +6,6 @@ var maid_roster: Array[MaidResource] = [
 	preload("uid://qxleno2wpc82")
 ]
 
-enum Personality{ELEGANT, TSUNDERE, KUUDERE}
+enum Personality{ELEGANT, TSUNDERE, KUUDERE, ULTIMATE}
 enum Menu{OMURICE, TEA, MIXED_JUICE}
 enum Skills{MULTIPLIER, MATCHING, PATIENCE}
