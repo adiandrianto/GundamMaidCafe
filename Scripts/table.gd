@@ -1,8 +1,9 @@
 extends Area2D
 class_name Table
 
-const CUSTOMER_1_SITTING = preload("uid://j7qi843et0h6")
-const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
+const CUSTOMER_ANIMATED_1 = preload("uid://ssw78jxehmyu")
+const CUSTOMER_ANIMATED_2 = preload("uid://b3evsf67w634m")
+
 const COIN = preload("uid://bo30edhdjf15p")
 
 @onready var maid_spot: Marker2D = %MaidSpot
@@ -38,11 +39,7 @@ func _ready() -> void:
 func assign_customer(customer: Customer):
 	assigned_customer = customer
 	customer.reparent(self, true)
-	if customer.total_person == 1: # differentiate the texture based on jumlah orang
-		customer.sprite.texture = CUSTOMER_1_SITTING
-	else:
-		customer.sprite.texture = CUSTOMER_2_SITTING
-
+	customer.animated_sprite.play("sitting")
 	customer.global_position = customer_spot.global_position
 	customer.input_pickable = false
 	$CustomerSit.play()
@@ -95,8 +92,10 @@ func customer_leave():
 func _on_mini_game_finished(score):
 	bill += score
 	eating_timer.start()
+	assigned_customer.animated_sprite.play("eating")
 
 func _request_bill():
+	assigned_customer.animated_sprite.play("sitting")
 	animation_player.play("payment_appear")
 	payment_icon.pressed.connect(_on_payment_icon_pressed, CONNECT_ONE_SHOT)
 

@@ -315,7 +315,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
-position = Vector2(1407, 390)
+position = Vector2(1409, 361)
 
 [node name="Cashier" type="Area2D" parent="." unique_id=1806836965]
 unique_name_in_owner = true
@@ -332,11 +332,11 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort" unique_id=296566991]
-position = Vector2(1036, 458)
+position = Vector2(955, 440)
 texture = ExtResource("15_psl12")
 
 [node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("15_lhp3t")]
-position = Vector2(1448, 375)
+position = Vector2(1390, 353)
 
 [node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
 unique_name_in_owner = true
@@ -360,5 +360,4 @@ script = ExtResource("10_76v2p")
 
 [node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
 unique_name_in_owner = true
-z_index = 1
 position = Vector2(369, 454)

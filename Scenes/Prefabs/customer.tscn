@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dkgx2c7uaka0h" path="res://Scripts/customer.gd" id="1_678vv"]
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
-[ext_resource type="Texture2D" uid="uid://dkoxvrdk6qc28" path="res://Assets/Visual/Customer/customer_1.png" id="3_678vv"]
 [ext_resource type="Texture2D" uid="uid://c8ero8i4lg7gr" path="res://Assets/Visual/UI/icon_maid.png" id="4_g1rta"]
 [ext_resource type="AudioStream" uid="uid://yjc3dx3dm2vo" path="res://Assets/Audio/SFX/Cash Register 1-2.wav" id="5_8njvi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1rta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_678vv"]
 size = Vector2(140, 100)
@@ -91,10 +92,10 @@ input_pickable = false
 script = ExtResource("1_678vv")
 dialogue_popup = NodePath("UI/Dialogue")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=385557896]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=5775372]
 unique_name_in_owner = true
 material = ExtResource("2_678vv")
-texture = ExtResource("3_678vv")
+sprite_frames = SubResource("SpriteFrames_g1rta")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621003456]
 shape = SubResource("RectangleShape2D_678vv")

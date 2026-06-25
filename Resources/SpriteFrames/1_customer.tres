@@ -1,0 +1,85 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://clbhuisd0ei83"]
+
+[ext_resource type="Texture2D" uid="uid://j7qi843et0h6" path="res://Assets/Visual/Customer/customer_1_sitting.png" id="1_k27se"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxgsy"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 640, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4lj7"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 768, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upy67"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 896, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tmfk"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 1024, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k27se"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 0, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0wkj"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 128, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec62q"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 256, 229, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7crv"]
+atlas = ExtResource("1_k27se")
+region = Rect2(0, 512, 229, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxgsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4lj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upy67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tmfk")
+}],
+"loop": true,
+"name": &"eating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k27se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0wkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec62q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0wkj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"request_bill",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7crv")
+}],
+"loop": false,
+"name": &"sitting",
+"speed": 5.0
+}]

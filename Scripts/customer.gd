@@ -7,15 +7,15 @@ var menu_arr: Array[Order] = [
 	preload("uid://ckkrn7uylotqv"),
 ]
 
-const CUSTOMER_1 = preload("uid://dkoxvrdk6qc28")
-const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
+const ONE_CUSTOMER = preload("uid://clbhuisd0ei83")
+const TWO_CUSTOMER = preload("uid://c18ny6rqyx556")
 
 signal put_down
 
 @export var dialogue_popup: Panel
 
 @onready var maid_popup: TextureButton = $UI/MaidPrompt
-@onready var sprite: Sprite2D = %Sprite
+@onready var animated_sprite: AnimatedSprite2D = %Sprite
 @onready var animation_player: AnimationPlayer = $Animation
 
 var table_entered: Array[Table] = []
@@ -31,8 +31,8 @@ func _ready() -> void:
 	
 	order = menu_arr.pick_random()
 	
-	if sprite.material:
-		sprite.material = sprite.material.duplicate()
+	if animated_sprite.material:
+		animated_sprite.material = animated_sprite.material.duplicate()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -80,17 +80,17 @@ func end_drag():
 		emit_signal("put_down")
 	
 func give_outline():
-	if not sprite:
+	if not animated_sprite:
 		return
-	var mat := sprite.material as ShaderMaterial
+	var mat := animated_sprite.material as ShaderMaterial
 	if mat:
 		mat.set_shader_parameter("width", 2)
 
 func remove_outline():
-	if not sprite:
+	if not animated_sprite:
 		return
 
-	var mat := sprite.material as ShaderMaterial
+	var mat := animated_sprite.material as ShaderMaterial
 	if mat:
 		mat.set_shader_parameter("width", 0)
 
@@ -98,10 +98,12 @@ func _randomize_customer_number() -> void:
 	total_person = [1,2].pick_random()
 	
 	if total_person == 1:
-		sprite.texture = CUSTOMER_1
+		animated_sprite.sprite_frames = ONE_CUSTOMER
 	else:
-		sprite.texture = CUSTOMER_2
+		animated_sprite.sprite_frames = TWO_CUSTOMER
 		
+	animated_sprite.play("idle")
+	
 func _on_area_entered(area: Area2D) -> void:
 	if area is not Table:
 		return
@@ -120,7 +122,6 @@ func _on_maid_prompt_pressed() -> void:
 	get_tree().paused = true
 	await get_tree().create_timer(4.0).timeout
 	dialogue_popup.hide()
-	
 	
 	#var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
 	#maid_select_panel.table_ordered = table_entered[0]
