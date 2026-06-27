@@ -13,6 +13,7 @@ const CUSTOMER_2 = preload("uid://b3o2wyhstfrxj")
 signal put_down
 
 @export var dialogue_popup: Panel
+@export var customerWaitTime: Timer
 
 @onready var maid_popup: TextureButton = $UI/MaidPrompt
 @onready var sprite: Sprite2D = %Sprite
@@ -23,12 +24,14 @@ var dragging: bool = false
 var customerPreference: GlobalConstants.Personality
 var request_maid: bool = false
 var order: Order
+var waited_too_long: bool = false
 
 var total_person: int = 0
 
 func _ready() -> void:
 	add_to_group("customers")
 	_randomize_customer_number()
+	customerWaitTime.timeout.connect(_unsatisfied_leave)
 	
 	order = menu_arr.pick_random()
 	
@@ -63,6 +66,8 @@ func get_area_under_mouse() -> Area2D:
 func _process(_delta):
 	if dragging:
 		global_position = get_global_mouse_position()
+	if waited_too_long:
+		queue_free()
 
 func begin_drag():
 	dragging = true
@@ -135,3 +140,6 @@ func popup_maid() -> void:
 func leave():
 	$Pay.play()
 	animation_player.play("leave")
+
+func _unsatisfied_leave() -> void:
+	waited_too_long = true

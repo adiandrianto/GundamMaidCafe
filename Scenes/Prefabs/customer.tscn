@@ -84,12 +84,13 @@ _data = {
 &"leave": SubResource("Animation_jwomw")
 }
 
-[node name="Customer" type="Area2D" unique_id=1912775747 node_paths=PackedStringArray("dialogue_popup")]
+[node name="Customer" type="Area2D" unique_id=1912775747 node_paths=PackedStringArray("dialogue_popup", "customerWaitTime")]
 process_mode = 1
 z_index = 50
 input_pickable = false
 script = ExtResource("1_678vv")
 dialogue_popup = NodePath("UI/Dialogue")
+customerWaitTime = NodePath("WaitTime")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=385557896]
 unique_name_in_owner = true
@@ -136,6 +137,10 @@ libraries/ = SubResource("AnimationLibrary_dsgnx")
 
 [node name="Pay" type="AudioStreamPlayer" parent="." unique_id=1229977655 groups=["customer"]]
 stream = ExtResource("5_8njvi")
+
+[node name="WaitTime" type="Timer" parent="." unique_id=1595274094]
+wait_time = 5.0
+autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

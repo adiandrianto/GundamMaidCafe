@@ -278,8 +278,8 @@ columns = 3
 layout_mode = 2
 texture_normal = ExtResource("11_hpupd")
 script = ExtResource("12_n0bxt")
-cooldown_timer = NodePath("../../../../../../SkillCooldown")
-skill_timer = NodePath("../../../../../../SkillActive")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown1")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive1")
 progress_bar = NodePath("ProgressBar")
 
 [node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill1" unique_id=1102066007]
@@ -413,10 +413,28 @@ unique_name_in_owner = true
 z_index = 1
 position = Vector2(369, 454)
 
-[node name="SkillCooldown" type="Timer" parent="." unique_id=1508311925]
+[node name="SkillTimers" type="Node" parent="." unique_id=968595107]
+
+[node name="SkillCooldown1" type="Timer" parent="SkillTimers" unique_id=1508311925]
 wait_time = 20.0
 one_shot = true
 
-[node name="SkillActive" type="Timer" parent="." unique_id=1899413268]
+[node name="SkillActive1" type="Timer" parent="SkillTimers" unique_id=1899413268]
+wait_time = 5.0
+one_shot = true
+
+[node name="SkillCooldown2" type="Timer" parent="SkillTimers" unique_id=861267987]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive2" type="Timer" parent="SkillTimers" unique_id=1095551262]
+wait_time = 5.0
+one_shot = true
+
+[node name="SkillCooldown3" type="Timer" parent="SkillTimers" unique_id=120773302]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive3" type="Timer" parent="SkillTimers" unique_id=2004824206]
 wait_time = 5.0
 one_shot = true
