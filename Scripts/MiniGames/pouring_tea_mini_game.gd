@@ -75,7 +75,7 @@ func _evaluate_result():
 		$Perfect.play()
 	elif tea_level > 72:
 		final_score = min(abs(10 - (tea_level - 80)), 1)
-		score_label.text = "Overflow!"# + str(final_score)
+		score_label.text = "Too Much!"# + str(final_score)
 		$Bad.play()
 	else:
 		final_score = max((10 - abs(tea_level - 76)), 1)

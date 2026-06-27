@@ -15,6 +15,18 @@ func instantiate_order_scene(order_res: Order) -> MiniGame:
 	return order
 	#order.global_position = current_level.mini_game_container.global_position
 
+#func _input(event: InputEvent) -> void:
+	#if Input.is_action_just_pressed("left_click"):
+		#shake_maid_list()
+		
+func shake_maid_list():
+	var tween := get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	var obj = current_level.maid_list_ui
+	tween.tween_property(obj, "rotation_degrees", -3, 0.05)
+	tween.tween_property(obj, "rotation_degrees", 3, 0.05)
+	tween.tween_property(obj, "rotation_degrees", -1, 0.05)
+	tween.tween_property(obj, "rotation_degrees", 0, 0.05)
+	
 #func instantiate_scene(scene: PackedScene):
 	#scene_node = scene.instantiate()
 	#add_child(scene_node)

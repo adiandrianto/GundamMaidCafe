@@ -62,7 +62,6 @@ func order_from_menu():
 	_show_order_icon()
 
 func _show_order_icon():
-	print(assigned_customer.order)
 	order_icon.texture_normal = assigned_customer.order.icon
 	animation_player.play("order_appear")
 	order_icon.pressed.connect(_on_order_icon_pressed, CONNECT_ONE_SHOT)

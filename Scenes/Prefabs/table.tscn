@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j03vy0mxoci0" path="res://Scripts/table.gd" id="1_qieex"]
 [ext_resource type="Texture2D" uid="uid://lf3lhc7av7y3" path="res://Assets/Visual/Table/table.png" id="2_0wqgb"]
 [ext_resource type="Texture2D" uid="uid://c8ero8i4lg7gr" path="res://Assets/Visual/UI/icon_maid.png" id="3_qrfb3"]
-[ext_resource type="Texture2D" uid="uid://70exgwhiks5h" path="res://Assets/Visual/UI/text_box.png" id="4_b3nym"]
+[ext_resource type="Texture2D" uid="uid://dxlii7oefqcin" path="res://Assets/Visual/UI/icon_coin.png" id="4_5eclv"]
 [ext_resource type="AudioStream" uid="uid://chspbhfnwy8wj" path="res://Assets/Audio/SFX/UI/Abstract1.ogg" id="4_h1myl"]
 [ext_resource type="AudioStream" uid="uid://ctus0oohgit7k" path="res://Assets/Audio/SFX/778518__blondpanda__denim_and_cloth_step_foley_16.wav" id="5_hijgu"]
 [ext_resource type="Texture2D" uid="uid://crfgi778ek4ed" path="res://Assets/Visual/coin.png" id="7_5eclv"]
@@ -335,7 +335,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_default_cursor_shape = 2
 action_mode = 0
-texture_normal = ExtResource("4_b3nym")
+texture_normal = ExtResource("4_5eclv")
 
 [node name="EatingTimer" type="Timer" parent="." unique_id=1823523075]
 wait_time = 3.0

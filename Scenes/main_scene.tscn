@@ -18,40 +18,71 @@
 [ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_psl12"]
 [ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
 
-[sub_resource type="GDScript" id="GDScript_ioaeq"]
-script/source = "extends Node2D
-
-#static var selected_maid: Maid
-static var selected_table: Table
-static var current_level: Level = null
-
-#static var minigameScene_omurice : PackedScene = preload(\"res://Scenes/MiniGame/Minigame O/minigame_o.tscn\")
-#var scene_node
-
-func instantiate_order_scene(order_res: Order) -> MiniGame:
-	var order = order_res.mini_game_scene.instantiate()
-
-	current_level.mini_game_container.add_child(order)
-	current_level.mini_game_played.append(order_res)
-	return order
-	#order.global_position = current_level.mini_game_container.global_position
-
-#func instantiate_scene(scene: PackedScene):
-	#scene_node = scene.instantiate()
-	#add_child(scene_node)
-#
-#func instantiate_omurice_minigame():
-	#instantiate_scene(minigameScene_omurice)
-"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnsmo"]
 radius = 32.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
-vertices = PackedVector2Array(1112, 308, 1175, 268.02344, 1447.9609, 267.0078, 1445.0313, 684.03125, 1109, 205, 1175, 144, 70.96094, 144.99219, 160, 205, 67.03125, 693.96094, 161, 303)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(3, 8, 9, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
+vertices = PackedVector2Array(1112, 308, 1175, 268.02344, 1447.9609, 267.0078, 1445.0313, 683.9922, 1109, 205, 1175, 144, 78.78906, 145.99219, 160, 205, 73.78906, 261.96875, 161, 303, -78.859375, 682, -68.11719, 262.96094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(0, 3, 10, 9), PackedInt32Array(9, 10, 11, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(74, 141, 1180, 139, 1180, 263, 1453, 262, 1450, 689, -84, 687, -73, 258, 69, 257)])
 agent_radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_psl12"]
+offsets = PackedFloat32Array(0, 0.27952754, 0.68503934)
+colors = PackedColorArray(0.95596343, 0.9559633, 0.95596343, 1, 0.9804089, 0.98040885, 0.9804089, 0.44488192, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ebs2"]
+gradient = SubResource("Gradient_psl12")
+width = 400
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_psl12"]
+gradient = SubResource("Gradient_psl12")
+width = 540
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_psl12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG/PointLight2D2:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.42]
+}
+
+[sub_resource type="Animation" id="Animation_2ebs2"]
+resource_name = "background"
+length = 10.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG/PointLight2D2:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.0666666, 3.3, 3.55, 8.35, 8.5, 8.6, 8.75, 8.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.42, 1.42, 0.2, 1.42, 1.42, 0.1, 1.0, 0.1, 1.42]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oyb3p"]
+_data = {
+&"RESET": SubResource("Animation_psl12"),
+&"background": SubResource("Animation_2ebs2")
+}
 
 [node name="Level" type="Node" unique_id=633166089]
 script = ExtResource("2_huasi")
@@ -72,9 +103,16 @@ mouse_filter = 2
 theme = ExtResource("1_iacmt")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
+unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -516.0
 offset_right = 264.0
-offset_bottom = 1032.0
+offset_bottom = 516.0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 20
@@ -160,9 +198,19 @@ size_flags_vertical = 6
 layout_mode = 2
 text = "Goal : "
 
-[node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=787618044]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=384938597]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+
+[node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer/Control" unique_id=787618044]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("1_iacmt")
 text = "123"
 
@@ -249,25 +297,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
-layer = -99
-
-[node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("11_7ewk0")
-
-[node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("9_mai8y")
-
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
 unique_name_in_owner = true
 wait_time = 5.0
@@ -282,15 +311,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(1100, 360)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 551.0
-offset_top = 528.0
-offset_right = 1810.0
-offset_bottom = 888.0
+offset_left = 446.0
+offset_top = 552.0
+offset_right = 1705.0
+offset_bottom = 912.0
 mouse_filter = 2
-
-[node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
-unique_name_in_owner = true
-script = SubResource("GDScript_ioaeq")
 
 [node name="MiniGameContainer" type="Control" parent="." unique_id=1923355782]
 unique_name_in_owner = true
@@ -336,7 +361,7 @@ position = Vector2(955, 440)
 texture = ExtResource("15_psl12")
 
 [node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("15_lhp3t")]
-position = Vector2(1390, 353)
+position = Vector2(1424, 407)
 
 [node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
 unique_name_in_owner = true
@@ -346,7 +371,12 @@ navigation_polygon = SubResource("NavigationPolygon_m1efj")
 
 [node name="TableContainer" type="Node2D" parent="YSort/NavRegion" unique_id=548928484]
 unique_name_in_owner = true
+y_sort_enabled = true
 position = Vector2(-402, -215)
+
+[node name="MaidContainer" type="Node2D" parent="YSort/NavRegion/TableContainer" unique_id=626099701]
+unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="YSort/NavRegion" unique_id=1846329806]
 vertices = PackedVector2Array(160, 205, 1109, 205, 1112, 308, 161, 303)
@@ -361,3 +391,31 @@ script = ExtResource("10_76v2p")
 [node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
 unique_name_in_owner = true
 position = Vector2(369, 454)
+
+[node name="BG" type="Sprite2D" parent="." unique_id=574094526]
+z_index = -99
+texture = ExtResource("11_7ewk0")
+centered = false
+
+[node name="PointLight2D" type="PointLight2D" parent="BG" unique_id=701011735]
+position = Vector2(557, 186)
+color = Color(0.8609489, 0.38739008, 0.30315542, 1)
+energy = 1.42
+texture = SubResource("GradientTexture2D_2ebs2")
+
+[node name="PointLight2D2" type="PointLight2D" parent="BG" unique_id=288894966]
+position = Vector2(953, 207)
+color = Color(0.8609489, 0.38739008, 0.30315542, 1)
+energy = 1.42
+texture = SubResource("GradientTexture2D_psl12")
+
+[node name="CloseSign" type="TextureRect" parent="BG" unique_id=16970312]
+unique_name_in_owner = true
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("9_mai8y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1195572387]
+libraries/ = SubResource("AnimationLibrary_oyb3p")
+autoplay = &"background"

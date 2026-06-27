@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mi2oqc2rfbgv"
-path="res://.godot/imported/maid_placeholder-export.png-a9c89566766031f320e152e704bfb00f.ctex"
+uid="uid://dxlii7oefqcin"
+path="res://.godot/imported/icon_coin.png-0f54848ba3f40276ead9bc65743e0693.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/Mecha/maid_placeholder-export.png"
-dest_files=["res://.godot/imported/maid_placeholder-export.png-a9c89566766031f320e152e704bfb00f.ctex"]
+source_file="res://Assets/Visual/UI/icon_coin.png"
+dest_files=["res://.godot/imported/icon_coin.png-0f54848ba3f40276ead9bc65743e0693.ctex"]
 
 [params]
 

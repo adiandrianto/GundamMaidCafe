@@ -20,7 +20,11 @@ const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 @onready var customer_container: Node2D = %CustomerContainer
 @onready var customer_timer: Timer = %CustomerTimer
 @onready var level_timer: Timer = %LevelTimer
+
+@onready var maid_list_ui: MarginContainer = %MaidList
 @onready var maid_spawn_point: Marker2D = %MaidSpawnPoint
+@onready var maid_container: Node2D = %MaidContainer
+
 @onready var mini_game_container: Control = %MiniGameContainer
 
 @onready var close_sign: TextureRect = %CloseSign
@@ -57,6 +61,7 @@ func add_income(sum: int):
 func _customer_come():
 	if level_param.total_customer <= 0:
 		print("no more customer")
+		customer_container.update_layout()
 		return
 
 	var customer = CUSTOMER_PREFAB.instantiate() as Customer

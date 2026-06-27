@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
 [ext_resource type="Texture2D" uid="uid://c8ero8i4lg7gr" path="res://Assets/Visual/UI/icon_maid.png" id="4_g1rta"]
 [ext_resource type="AudioStream" uid="uid://yjc3dx3dm2vo" path="res://Assets/Audio/SFX/Cash Register 1-2.wav" id="5_8njvi"]
+[ext_resource type="AudioStream" uid="uid://doq21bcjtwsd4" path="res://Assets/Audio/SFX/Power_Up_Bar_02.wav" id="5_jwomw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g1rta"]
 
@@ -106,7 +107,6 @@ anchors_preset = 0
 mouse_filter = 1
 
 [node name="MaidPrompt" type="TextureButton" parent="UI" unique_id=785118782]
-visible = false
 layout_mode = 0
 offset_left = -42.0
 offset_top = -120.0
@@ -125,18 +125,30 @@ offset_right = 73.0
 offset_bottom = -63.0
 mouse_filter = 2
 
-[node name="DialogueText" type="Label" parent="UI/Dialogue" unique_id=403510665]
-layout_mode = 0
-offset_right = 159.0
-offset_bottom = 62.0
+[node name="PreferenceLabel" type="Label" parent="UI/Dialogue" unique_id=403510665]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "I need someone cute to cheer me up"
-autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=1962699756]
 libraries/ = SubResource("AnimationLibrary_dsgnx")
 
-[node name="Pay" type="AudioStreamPlayer" parent="." unique_id=1229977655 groups=["customer"]]
+[node name="Pay" type="AudioStreamPlayer" parent="." unique_id=1229977655]
 stream = ExtResource("5_8njvi")
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=2000564425]
+stream = ExtResource("5_jwomw")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

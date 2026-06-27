@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crj5qti72rjym"
-path="res://.godot/imported/customer_placeholder-export.png-0f2eb48c7bc34215902ecc6d7b70c9e4.ctex"
+uid="uid://clh61b628ro6c"
+path="res://.godot/imported/tsundere-Sheet.png-6a3f2805fe56c82bcfa3bac830d6a381.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/Customer/customer_placeholder-export.png"
-dest_files=["res://.godot/imported/customer_placeholder-export.png-0f2eb48c7bc34215902ecc6d7b70c9e4.ctex"]
+source_file="res://Assets/Visual/Mecha/tsundere-Sheet.png"
+dest_files=["res://.godot/imported/tsundere-Sheet.png-6a3f2805fe56c82bcfa3bac830d6a381.ctex"]
 
 [params]
 

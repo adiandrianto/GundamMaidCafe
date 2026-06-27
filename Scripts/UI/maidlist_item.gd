@@ -42,7 +42,7 @@ func _pressed() -> void:
 	maid.maid_resource = maid_res
 	maid.global_position = GameManager.current_level.maid_spawn_point.global_position
 	maid.freed.connect(_on_maid_freed, CONNECT_ONE_SHOT)
-	GameManager.current_level.maid_spawn_point.add_child(maid)
+	GameManager.current_level.maid_container.add_child(maid)
 	GameManager.current_level.maid_come_to_table(maid, GameManager.selected_table)
 	color_rect.show()
 	GameManager.selected_table = null

@@ -17,10 +17,13 @@ signal put_down
 @onready var maid_popup: TextureButton = $UI/MaidPrompt
 @onready var animated_sprite: AnimatedSprite2D = %Sprite
 @onready var animation_player: AnimationPlayer = $Animation
+@onready var preference_label: Label = %PreferenceLabel
+
+var customer_preference: GlobalConstants.Personality = GlobalConstants.Personality.values().pick_random()
+var customer_line: String 
 
 var table_entered: Array[Table] = []
 var dragging: bool = false
-var customerPreference: GlobalConstants.Personality
 var request_maid: bool = false
 var order: Order
 
@@ -28,6 +31,12 @@ var total_person: int = 0
 
 func _ready() -> void:
 	_randomize_customer_number()
+	
+	$UI/MaidPrompt.hide()
+	$UI/Dialogue.hide()
+	
+	customer_line = GlobalConstants.get_random_line(customer_preference)
+	preference_label.text = customer_line
 	
 	order = menu_arr.pick_random()
 	
@@ -70,9 +79,13 @@ func begin_drag():
 func end_drag():
 	if not dragging:
 		return
+		
 	dragging = false
 	remove_outline()
 	if table_entered:
+		if table_entered[0].assigned_customer != null:
+			emit_signal("put_down")
+			return
 		table_entered[0].assign_customer(self)
 		request_maid = true
 		popup_maid()
@@ -115,14 +128,20 @@ func _on_area_exited(area: Area2D) -> void:
 			table_entered.erase(area)
 
 func _on_maid_prompt_pressed() -> void:
+	if GlobalConstants.available_maids.is_empty(): #kl semua maid blm available
+		print("no available maid")
+		$Error.play()
+		GameManager.shake_maid_list()
+		return
+		
 	GameManager.selected_table = table_entered[0]
 	maid_popup.hide()
 	print("ordering")
 	dialogue_popup.show()
 	get_tree().paused = true
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	dialogue_popup.hide()
-	
+
 	#var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
 	#maid_select_panel.table_ordered = table_entered[0]
 	#GameManager.current_level.mini_game_container.add_child(maid_select_panel)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vkimu882x6xm"
-path="res://.godot/imported/maid_placeholder.png-21b0d06b6b9b0e953bfccbf2d34ee963.ctex"
+uid="uid://x8xr2fm2irjp"
+path="res://.godot/imported/kuudere_Sheet.png-a7e3be876df89e8c671d340282c38a8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/Mecha/maid_placeholder.png"
-dest_files=["res://.godot/imported/maid_placeholder.png-21b0d06b6b9b0e953bfccbf2d34ee963.ctex"]
+source_file="res://Assets/Visual/Mecha/kuudere_Sheet.png"
+dest_files=["res://.godot/imported/kuudere_Sheet.png-a7e3be876df89e8c671d340282c38a8a.ctex"]
 
 [params]
 
