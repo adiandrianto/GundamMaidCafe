@@ -26,11 +26,19 @@ func modify_multiplier(new_multiplier: int) -> void:
 	var table_nodes: Array[Node] = get_tree().get_nodes_in_group("tables")
 	for table in table_nodes:
 		table.multiplier = new_multiplier
+		print("multiplier = ", table.multiplier)
 
 func modify_personality(personality: GlobalConstants.Personality) -> void:
 	var customer_nodes: Array[Node] = get_tree().get_nodes_in_group("customers")
 	for customer in customer_nodes:
 		customer.customerPreference = personality
+		print("personality = ", customer.customerPreference)
+
+func patience_reset() -> void:
+	var customer_nodes: Array[Node] = get_tree().get_nodes_in_group("customers")
+	for customer in customer_nodes:
+		customer.customerWaitTime.start() #resets waitTime
+		print("wait time reset")
 
 
 

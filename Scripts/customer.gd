@@ -143,3 +143,4 @@ func leave():
 
 func _unsatisfied_leave() -> void:
 	waited_too_long = true
+

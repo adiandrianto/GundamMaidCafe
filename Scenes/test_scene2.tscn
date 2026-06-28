@@ -264,18 +264,22 @@ offset_left = 706.0
 offset_top = 874.0
 offset_right = 1424.0
 offset_bottom = 1066.0
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/SkillsList" unique_id=1449609039]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 60
 
 [node name="GridContainer" type="GridContainer" parent="UILayer/UI/SkillsList/MarginContainer" unique_id=2143389051]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 columns = 3
 
 [node name="MaidSkill1" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1131170099 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
 layout_mode = 2
+action_mode = 0
 texture_normal = ExtResource("11_hpupd")
 script = ExtResource("12_n0bxt")
 cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown1")
@@ -290,14 +294,41 @@ offset_right = 188.0
 offset_bottom = 186.0
 theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
 
-[node name="MaidSkill2" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=420656217]
+[node name="MaidSkill2" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=420656217 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
 layout_mode = 2
+action_mode = 0
 texture_normal = ExtResource("12_5u4ts")
+script = ExtResource("12_n0bxt")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown2")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive2")
+progress_bar = NodePath("ProgressBar")
+skill_index = 1
 
-[node name="MaidSkill3" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=366709595]
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill2" unique_id=1535301859]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
+
+[node name="MaidSkill3" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=276908379 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
 layout_mode = 2
+action_mode = 0
 texture_normal = ExtResource("13_n0bxt")
-ignore_texture_size = true
+script = ExtResource("12_n0bxt")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown3")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive3")
+progress_bar = NodePath("ProgressBar")
+skill_index = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill3" unique_id=1560258330]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
 
 [node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
 layer = -99

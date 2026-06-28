@@ -139,7 +139,7 @@ libraries/ = SubResource("AnimationLibrary_dsgnx")
 stream = ExtResource("5_8njvi")
 
 [node name="WaitTime" type="Timer" parent="." unique_id=1595274094]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

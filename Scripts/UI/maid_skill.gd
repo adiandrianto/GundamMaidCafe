@@ -4,7 +4,7 @@ extends Node
 @export var skill_timer: Timer
 @export var progress_bar: ProgressBar
 
-var skill_index: int
+@export var skill_index: GlobalConstants.Skills
 var cooldown_active: bool
 var skill_active: bool
 
@@ -28,17 +28,16 @@ func _pressed() -> void:
     else:
         match skill_index:
             GlobalConstants.Skills.MULTIPLIER:
-                # skill code
                 var mult: int = 2 #temporary
                 start_skill_timer()
                 GameManager.modify_multiplier(mult)
             GlobalConstants.Skills.MATCHING:
-                # skill code
                 start_skill_timer()
                 GameManager.modify_personality(GlobalConstants.Personality.ULTIMATE)
             GlobalConstants.Skills.PATIENCE:
-                # skill code
+                print("patience skill")
                 start_skill_timer()
+                GameManager.patience_reset()
 
 func start_skill_timer() -> void:
     skill_timer.start()
