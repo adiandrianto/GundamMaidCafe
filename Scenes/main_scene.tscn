@@ -388,9 +388,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
+offset_left = -350.0
+offset_top = -303.0
+offset_right = 350.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
@@ -411,6 +411,7 @@ autowrap_mode = 3
 
 [node name="TutorialLabel2" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1614249431]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 size_flags_vertical = 1
@@ -421,6 +422,7 @@ Pay attention to what kind of maid they're looking for, matching the customer's 
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+autowrap_trim_flags = 128
 
 [node name="TutorialLabel3" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=659886315]
 unique_name_in_owner = true
@@ -433,6 +435,7 @@ Each order has its own unique minigame!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+autowrap_trim_flags = 128
 
 [node name="TutorialLabel4" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=530182525]
 unique_name_in_owner = true
@@ -446,19 +449,20 @@ Satisfied customers are ready to pay. Click the Coin icon above the table, and t
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+autowrap_trim_flags = 128
 
 [node name="TutorialLabel5" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1689902767]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Wow, you're a fast learner, are'nt you?!
-I think you are ready now.
+text = "Wow, you're a fast learner, are'nt you..
+I think you are ready now,
 Go ahead and finish the level!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+autowrap_trim_flags = 128
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
 unique_name_in_owner = true
@@ -503,7 +507,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
-position = Vector2(1409, 361)
+position = Vector2(1471, 365)
 
 [node name="Cashier" type="Area2D" parent="." unique_id=1806836965]
 unique_name_in_owner = true
