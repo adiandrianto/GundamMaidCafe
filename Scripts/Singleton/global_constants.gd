@@ -10,7 +10,7 @@ var maid_roster: Array[MaidResource] = [
 #untuk keep track hanya maid yang available / not in service
 var available_maids: Array[MaidResource]
 
-enum Personality{ELEGANT, TSUNDERE, KUUDERE, ULTIMATE}
+enum Personality{ELEGANT, TSUNDERE, KUUDERE}
 enum Menu{OMURICE, TEA, MIXED_JUICE}
 enum Skills{MULTIPLIER, MATCHING, PATIENCE}
 

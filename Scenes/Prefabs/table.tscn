@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://chspbhfnwy8wj" path="res://Assets/Audio/SFX/UI/Abstract1.ogg" id="4_h1myl"]
 [ext_resource type="AudioStream" uid="uid://ctus0oohgit7k" path="res://Assets/Audio/SFX/778518__blondpanda__denim_and_cloth_step_foley_16.wav" id="5_hijgu"]
 [ext_resource type="Texture2D" uid="uid://crfgi778ek4ed" path="res://Assets/Visual/coin.png" id="7_5eclv"]
+[ext_resource type="AudioStream" uid="uid://cc3f7pofictqy" path="res://Assets/Audio/Voice/Yeah_positive.wav" id="9_26h6u"]
+[ext_resource type="AudioStream" uid="uid://cgkdsw3flnj17" path="res://Assets/Audio/Voice/Ha haa!.wav" id="10_p41as"]
+[ext_resource type="AudioStream" uid="uid://c7dumubbkjimr" path="res://Assets/Audio/Voice/Dissapointment_1.wav" id="11_vrgyk"]
+[ext_resource type="AudioStream" uid="uid://0vv2cdtut5av" path="res://Assets/Audio/Voice/Hmm_2.wav" id="12_sj87q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqgb"]
 size = Vector2(170, 116)
@@ -32,7 +36,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CoinSprite:scale")
+tracks/1/path = NodePath("PopSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -44,7 +48,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CoinSprite:position")
+tracks/2/path = NodePath("PopSprite:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -213,7 +217,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CoinSprite:position")
+tracks/0/path = NodePath("PopSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -225,7 +229,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CoinSprite:scale")
+tracks/1/path = NodePath("PopSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -237,7 +241,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CoinSprite")
+tracks/2/path = NodePath("PopSprite")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -259,8 +263,18 @@ _data = {
 &"order_disappear": SubResource("Animation_hijgu"),
 &"payment_appear": SubResource("Animation_b3nym"),
 &"payment_disappear": SubResource("Animation_5eclv"),
-&"payment_done": SubResource("Animation_oeamt")
+&"sprite_pop": SubResource("Animation_oeamt")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p41as"]
+streams_count = 2
+stream_0/stream = ExtResource("9_26h6u")
+stream_1/stream = ExtResource("10_p41as")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jj8op"]
+streams_count = 2
+stream_0/stream = ExtResource("11_vrgyk")
+stream_1/stream = ExtResource("12_sj87q")
 
 [node name="Table" type="Area2D" unique_id=144276520]
 script = ExtResource("1_qieex")
@@ -321,7 +335,6 @@ texture_normal = ExtResource("3_qrfb3")
 
 [node name="PaymentIcon" type="TextureButton" parent="Control" unique_id=1971105209]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -355,5 +368,15 @@ bus = &"Effect"
 stream = ExtResource("5_hijgu")
 volume_db = -2.0
 
-[node name="CoinSprite" type="Sprite2D" parent="." unique_id=1643015385]
+[node name="PopSprite" type="Sprite2D" parent="." unique_id=1643015385]
 texture = ExtResource("7_5eclv")
+
+[node name="Satisfied" type="AudioStreamPlayer" parent="." unique_id=685109663]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_p41as")
+volume_db = -10.0
+
+[node name="Dissatisfied" type="AudioStreamPlayer" parent="." unique_id=1728407651]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_jj8op")
+volume_db = -10.0

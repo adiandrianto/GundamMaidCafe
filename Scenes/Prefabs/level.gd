@@ -44,6 +44,8 @@ var table_columns: int = 3
 var income: int = 0
 var mini_game_played: Array[Order] = []
 
+var tutorial_index: int = 0
+
 static var selected_table: Table = null
 static var selected_maid: Maid = null
 
@@ -59,7 +61,7 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(0.5).timeout
 	
-	_customer_come()
+	_first_customer_come()
 	
 	if level_param.is_tutorial:
 		welcome_panel.show()
@@ -67,11 +69,11 @@ func _ready() -> void:
 		level_timer.set_paused(true)
 		customer_timer.set_paused(true)
 
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		var hovered = get_viewport().gui_get_hovered_control()
-		if hovered:
-			print("Hovered:", hovered.get_path())
+#func _input(event):
+	#if event is InputEventMouseButton and event.pressed:
+		#var hovered = get_viewport().gui_get_hovered_control()
+		#if hovered:
+			#print("Hovered:", hovered.get_path())
 			
 func _hide_tutorial():
 	blind.hide()
@@ -91,7 +93,10 @@ func _customer_come():
 		print("no more customer")
 		customer_container.update_layout()
 		return
-
+		
+	if level_param.is_tutorial && is_instance_valid(tutorial_panel):
+		return
+		
 	var customer = CUSTOMER_PREFAB.instantiate() as Customer
 	customer_container.add_child(customer)
 	#customer.z_index -= customer_container.get_child_count()
@@ -99,6 +104,14 @@ func _customer_come():
 	
 	level_param.total_customer -= 1
 
+func _first_customer_come():
+	var customer = CUSTOMER_PREFAB.instantiate() as Customer
+	customer_container.add_child(customer)
+	#customer.z_index -= customer_container.get_child_count()
+	customer_container.update_layout()
+	
+	level_param.total_customer -= 1
+	
 func _arrange_tables():
 	var count = level_param.total_table
 
@@ -147,16 +160,19 @@ func _level_finished():
 	
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")
 
-func _tween_appear(obj: Object):
+func _tween_appear(obj: Node):
 	var tween := get_tree().create_tween()
 	obj.set("scale", 0.0)
 	tween.tween_property(obj, "scale", Vector2(1.2, 1.2), 0.12)
 	tween.tween_property(obj, "scale", Vector2(1.0, 1.0), 0.08)
 
-func _tween_disappear(obj: Object):
+func _tween_disappear(obj: Node):
 	var tween := get_tree().create_tween()
 	tween.tween_property(obj, "scale", Vector2(1.1, 1.1), 0.05)
 	tween.tween_property(obj, "scale", Vector2(0.0, 0.0), 0.08)
+
+	%Typing.stop()
+	obj.queue_free()
 	
 func _on_button_pressed() -> void:
 	level_timer.set_paused(false)
@@ -164,30 +180,42 @@ func _on_button_pressed() -> void:
 	welcome_panel.hide()
 	tutorial_panel.show()
 	_tween_appear(tutorial_panel)
-	show_tutorial_text(1)
+	show_tutorial_text()
 
-func show_tutorial_text(num: int):
-	var panel := $UILayer/Tutorial/TutorialPanel/PanelContainer
-	for child in panel.get_children():
-		child.hide()
-	
-	if num < 1:
-		_tween_disappear(tutorial_panel)
+func show_tutorial_text():
+	if !is_instance_valid(tutorial_panel):
 		return
 		
-	if num >= 1 and num < panel.get_child_count() + 1:
-		panel.get_child(num-1).show()
-		_type_text(panel.get_child(num-1))
+	tutorial_index += 1
+	var panel := $UILayer/Tutorial/TutorialPanel/PanelContainer
+
+	for child in panel.get_children():
+		child.hide()
+		
+	if tutorial_index >= 1 and tutorial_index < panel.get_child_count() + 1:
+		panel.get_child(tutorial_index-1).show()
+		_type_text(panel.get_child(tutorial_index-1))
+		
+		if tutorial_index == 1:
+			%Hello.play()
+		elif tutorial_index >= 2 && tutorial_index <= 4:
+			%Giggle.play()
+		elif tutorial_index == 5:
+			%Goodbye.play()
+			await get_tree().create_timer(3.5).timeout
+			_tween_disappear(tutorial_panel)
 
 func _type_text(label: Label):
 	label.visible_ratio = 0.0
 
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
-
+	
+	%Typing.play()
 	# 0.04 sec per character
-	var duration := label.text.length() * 0.02
+	var duration := label.text.length() * 0.01
 	tween.tween_property(label, "visible_ratio", 1.0, duration)
+	tween.finished.connect(func():%Typing.stop())
 	
 func set_level_dark(value: bool):
 	blind.visible = value

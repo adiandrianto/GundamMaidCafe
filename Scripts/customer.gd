@@ -92,7 +92,7 @@ func end_drag():
 		request_maid = true
 		popup_maid()
 		if GameManager.current_level.level_param.is_tutorial:
-			GameManager.current_level.show_tutorial_text(2)
+			GameManager.current_level.show_tutorial_text()
 	else:
 		emit_signal("put_down")
 	

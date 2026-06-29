@@ -4,7 +4,10 @@ class_name Table
 const CUSTOMER_ANIMATED_1 = preload("uid://ssw78jxehmyu")
 const CUSTOMER_ANIMATED_2 = preload("uid://b3evsf67w634m")
 
-const COIN = preload("uid://bo30edhdjf15p")
+const COIN_SPRITE = preload("uid://crfgi778ek4ed")
+const HEART_SPRITE = preload("uid://daaxcuywsh6y6")
+
+#const COIN = preload("uid://bo30edhdjf15p")
 
 @onready var maid_spot: Marker2D = %MaidSpot
 @onready var customer_spot: Marker2D = %CustomerSpot
@@ -17,7 +20,7 @@ const COIN = preload("uid://bo30edhdjf15p")
 @onready var payment_icon: TextureButton = %PaymentIcon
 @onready var eating_timer: Timer = $EatingTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var coin_sprite: Sprite2D = $CoinSprite
+@onready var pop_sprite: Sprite2D = $PopSprite
 
 var assigned_customer: Customer
 var assigned_maid: Maid
@@ -35,7 +38,7 @@ func _ready() -> void:
 	eating_timer.timeout.connect(_request_bill)
 	order_icon.hide()
 	payment_icon.hide()
-	coin_sprite.hide()
+	pop_sprite.hide()
 
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
@@ -68,7 +71,7 @@ func order_from_menu():
 	await get_tree().create_timer(0.8).timeout
 	_show_order_icon()
 	if GameManager.current_level.level_param.is_tutorial:
-		GameManager.current_level.show_tutorial_text(3)
+		GameManager.current_level.show_tutorial_text()
 
 func _show_order_icon():
 	order_icon.texture_normal = assigned_customer.order.icon
@@ -87,16 +90,17 @@ func customer_leave():
 	#get_tree().add_child(coin)
 	
 	#add table bill to income and reset to 0
-	if assigned_customer.customerPreference != assigned_maid.personality and assigned_customer.customerPreference != GlobalConstants.Personality.ULTIMATE:
-		multiplier = 0.5
-	elif assigned_customer.customerPreference == GlobalConstants.Personality.ULTIMATE:
-		multiplier = 1
+	if assigned_customer.customer_preference == assigned_maid.maid_resource.personality || GameManager.ignore_personality:
+		multiplier = 1.3
 	else:
 		multiplier = 1
+
 	GameManager.current_level.add_income(bill * multiplier) 
 	bill = 0
 	#animasi bill
-	animation_player.play("payment_done")
+	
+	pop_sprite.texture = COIN_SPRITE
+	animation_player.play("sprite_pop")
 	
 	assigned_customer.leave()
 	
@@ -104,10 +108,14 @@ func customer_leave():
 		assigned_maid.back_to_station()
 		
 	if GameManager.current_level.level_param.is_tutorial:
-		GameManager.current_level.show_tutorial_text(5)
-		await get_tree().create_timer(4.0).timeout
-		GameManager.current_level.show_tutorial_text(-1)
+		GameManager.current_level.show_tutorial_text()
 
+func show_matched_preference(value: bool):
+	if value:
+		%Satisfied.play()
+	else:
+		%Dissatisfied.play()
+		
 func _on_mini_game_finished(score):
 	bill += score
 	eating_timer.start()
@@ -118,7 +126,7 @@ func _request_bill():
 	animation_player.play("payment_appear")
 	payment_icon.pressed.connect(_on_payment_icon_pressed, CONNECT_ONE_SHOT)
 	if GameManager.current_level.level_param.is_tutorial:
-		GameManager.current_level.show_tutorial_text(4)
+		GameManager.current_level.show_tutorial_text()
 
 func _on_payment_icon_pressed():
 	var cashier_maid: CashierMaid = get_tree().get_first_node_in_group("cashier_maid")

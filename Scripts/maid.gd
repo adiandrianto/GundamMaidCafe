@@ -87,8 +87,11 @@ func service_table(table: Table):
 	#if maid match customer preference table_bill nambah 1.5 kali
 	if table.assigned_maid.maid_resource.personality == table.assigned_customer.customer_preference:
 		print("matched")
-		table.bill += 5
+		# multiplier dihandle di table.gd
+		table.pop_sprite.texture = table.HEART_SPRITE
+		table.animation_player.play("sprite_pop")
 	
+	table.show_matched_preference(table.assigned_maid.maid_resource.personality == table.assigned_customer.customer_preference)
 	#service_timer.wait_time = maid_resource.service_duration
 	#service_timer.start()
 	#progress_bar.show()
