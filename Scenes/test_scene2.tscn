@@ -1,0 +1,471 @@
+[gd_scene format=3 uid="uid://bnh4kreoanadk"]
+
+[ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="1_8paxn"]
+[ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="2_hdkc7"]
+[ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="3_hcx3o"]
+[ext_resource type="PackedScene" uid="uid://bttcbb83uabeq" path="res://Scenes/maidlist_item.tscn" id="4_hpupd"]
+[ext_resource type="Resource" uid="uid://bytkn0kbdeg6h" path="res://Resources/Maids/kuudere.tres" id="5_5u4ts"]
+[ext_resource type="Resource" uid="uid://qxleno2wpc82" path="res://Resources/Maids/tsundere.tres" id="6_n0bxt"]
+[ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="7_d6ofe"]
+[ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="8_v2bwr"]
+[ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="9_t51oa"]
+[ext_resource type="Texture2D" uid="uid://drop2d8nm5yea" path="res://Assets/Visual/Timer/over.png" id="10_j3bjr"]
+[ext_resource type="Texture2D" uid="uid://diwus1qbvuo2l" path="res://Assets/Visual/Mecha/pink_portrait.png" id="11_hpupd"]
+[ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_ut7mj"]
+[ext_resource type="Texture2D" uid="uid://dmut8ggrrqqht" path="res://Assets/Visual/Mecha/kuudere.png" id="12_5u4ts"]
+[ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="12_fwvne"]
+[ext_resource type="Script" uid="uid://cu3tmeqdxr0ru" path="res://Scripts/UI/maid_skill.gd" id="12_n0bxt"]
+[ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="13_htuml"]
+[ext_resource type="Texture2D" uid="uid://bf1kc5w2fq1om" path="res://Assets/Visual/Mecha/tsundere_portrait.png" id="13_n0bxt"]
+[ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="14_4xgp2"]
+[ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_p0343"]
+[ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="16_avi5q"]
+[ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="17_5cai3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpupd"]
+bg_color = Color(0.05490196, 0.05490196, 0.05490196, 0.63529414)
+
+[sub_resource type="GDScript" id="GDScript_ioaeq"]
+script/source = "extends Node2D
+
+#static var selected_maid: Maid
+static var selected_table: Table
+static var current_level: Level = null
+
+#static var minigameScene_omurice : PackedScene = preload(\"res://Scenes/MiniGame/Minigame O/minigame_o.tscn\")
+#var scene_node
+
+func instantiate_order_scene(order_res: Order) -> MiniGame:
+	var order = order_res.mini_game_scene.instantiate()
+
+	current_level.mini_game_container.add_child(order)
+	current_level.mini_game_played.append(order_res)
+	return order
+	#order.global_position = current_level.mini_game_container.global_position
+
+#func instantiate_scene(scene: PackedScene):
+	#scene_node = scene.instantiate()
+	#add_child(scene_node)
+#
+#func instantiate_omurice_minigame():
+	#instantiate_scene(minigameScene_omurice)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnsmo"]
+radius = 32.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
+vertices = PackedVector2Array(1112, 308, 1175, 268.02344, 1447.9609, 267.0078, 1445.0313, 684.03125, 1109, 205, 1175, 144, 70.96094, 144.99219, 160, 205, 67.03125, 693.96094, 161, 303)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(3, 8, 9, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
+agent_radius = 5.0
+
+[node name="Level" type="Node" unique_id=633166089]
+script = ExtResource("1_8paxn")
+level_param = ExtResource("2_hdkc7")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
+layer = 99
+
+[node name="UI" type="Control" parent="UILayer" unique_id=935409973]
+z_index = 99
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_hcx3o")
+
+[node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
+layout_mode = 1
+offset_right = 264.0
+offset_bottom = 1032.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MaidListPanel" type="PanelContainer" parent="UILayer/UI/MaidList" unique_id=1294003327]
+custom_minimum_size = Vector2(160, 800)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/MaidList/MaidListPanel" unique_id=539526337]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer" unique_id=122858569]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 10
+
+[node name="Maid0" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=1641049626 instance=ExtResource("4_hpupd")]
+layout_mode = 2
+
+[node name="Maid1" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=435120177 instance=ExtResource("4_hpupd")]
+layout_mode = 2
+maid_res = ExtResource("5_5u4ts")
+
+[node name="Maid2" parent="UILayer/UI/MaidList/MaidListPanel/MarginContainer/GridContainer" unique_id=2029397387 instance=ExtResource("4_hpupd")]
+layout_mode = 2
+maid_res = ExtResource("6_n0bxt")
+
+[node name="UpperContainer" type="MarginContainer" parent="UILayer/UI" unique_id=1126750196]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 138.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+mouse_filter = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer" unique_id=627021523]
+layout_mode = 2
+
+[node name="DayContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1790414617]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/DayContainer" unique_id=142163728]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Day"
+
+[node name="DayLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/DayContainer" unique_id=538932913]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "1"
+
+[node name="GoalContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=683685058]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=567597413]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=2088499103]
+layout_mode = 2
+text = "Goal : "
+
+[node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=787618044]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_hcx3o")
+text = "123"
+
+[node name="IncomeLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=443870063]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "333"
+
+[node name="LevelDurationLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1216051790]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "02.00"
+
+[node name="TimerProgress" type="TextureProgressBar" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=821193855]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+value = 7.0
+fill_mode = 5
+texture_under = ExtResource("7_d6ofe")
+texture_progress = ExtResource("8_v2bwr")
+script = ExtResource("9_t51oa")
+
+[node name="JarumJam" type="TextureRect" parent="UILayer/UI/UpperContainer/HBoxContainer/TimerProgress" unique_id=317627819]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -6.2831855
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("10_j3bjr")
+
+[node name="Tooltip" type="PanelContainer" parent="UILayer/UI" unique_id=2072478291]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 120)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 888.0
+offset_right = 524.0
+offset_bottom = 1008.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UI/Tooltip" unique_id=1777033957]
+layout_mode = 2
+
+[node name="NameContainer" type="HBoxContainer" parent="UILayer/UI/Tooltip/VBoxContainer" unique_id=77741551]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/NameContainer" unique_id=370171456]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "Name : "
+fit_content = true
+
+[node name="NameLabel" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/NameContainer" unique_id=1181932038]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 22
+
+[node name="PersonalityContainer" type="HBoxContainer" parent="UILayer/UI/Tooltip/VBoxContainer" unique_id=1311103444]
+layout_mode = 2
+
+[node name="Personality" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/PersonalityContainer" unique_id=1363346450]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Personality : "
+fit_content = true
+
+[node name="PersonalityLabel" type="RichTextLabel" parent="UILayer/UI/Tooltip/VBoxContainer/PersonalityContainer" unique_id=809835435]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillsList" type="PanelContainer" parent="UILayer/UI" unique_id=922681777]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 874.0
+offset_right = 1424.0
+offset_bottom = 1066.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/SkillsList" unique_id=1449609039]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 60
+
+[node name="GridContainer" type="GridContainer" parent="UILayer/UI/SkillsList/MarginContainer" unique_id=2143389051]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 10
+columns = 3
+
+[node name="MaidSkill1" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1131170099 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("11_hpupd")
+script = ExtResource("12_n0bxt")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown1")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive1")
+progress_bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill1" unique_id=1102066007]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
+
+[node name="MaidSkill2" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=420656217 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("12_5u4ts")
+script = ExtResource("12_n0bxt")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown2")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive2")
+progress_bar = NodePath("ProgressBar")
+skill_index = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill2" unique_id=1535301859]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
+
+[node name="MaidSkill3" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=276908379 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("13_n0bxt")
+script = ExtResource("12_n0bxt")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown3")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive3")
+progress_bar = NodePath("ProgressBar")
+skill_index = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill3" unique_id=1560258330]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hpupd")
+
+[node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
+layer = -99
+
+[node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_ut7mj")
+
+[node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("12_fwvne")
+
+[node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[node name="LevelTimer" type="Timer" parent="." unique_id=407583532]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TableArea" type="Control" parent="." unique_id=128824394]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1100, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 551.0
+offset_top = 528.0
+offset_right = 1810.0
+offset_bottom = 888.0
+mouse_filter = 2
+
+[node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
+unique_name_in_owner = true
+script = SubResource("GDScript_ioaeq")
+
+[node name="MiniGameContainer" type="Control" parent="." unique_id=1923355782]
+unique_name_in_owner = true
+process_mode = 3
+z_index = 999
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Audio" type="Node" parent="." unique_id=97091192]
+process_mode = 3
+
+[node name="BGM" type="AudioStreamPlayer" parent="Audio" unique_id=1104635781]
+stream = ExtResource("13_htuml")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
+position = Vector2(1407, 390)
+
+[node name="Cashier" type="Area2D" parent="." unique_id=1806836965]
+unique_name_in_owner = true
+position = Vector2(1393, 423)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("14_4xgp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cashier" unique_id=476751996]
+shape = SubResource("CircleShape2D_gnsmo")
+
+[node name="YSort" type="Node2D" parent="." unique_id=836971320]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort" unique_id=296566991]
+position = Vector2(1036, 458)
+texture = ExtResource("15_p0343")
+
+[node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("16_avi5q")]
+position = Vector2(1448, 375)
+
+[node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(402, 215)
+navigation_polygon = SubResource("NavigationPolygon_m1efj")
+
+[node name="TableContainer" type="Node2D" parent="YSort/NavRegion" unique_id=548928484]
+unique_name_in_owner = true
+position = Vector2(-402, -215)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="YSort/NavRegion" unique_id=1846329806]
+vertices = PackedVector2Array(160, 205, 1109, 205, 1112, 308, 161, 303)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="CustomerContainer" type="Marker2D" parent="YSort" unique_id=1653582437]
+unique_name_in_owner = true
+position = Vector2(1758, 768)
+script = ExtResource("17_5cai3")
+
+[node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(369, 454)
+
+[node name="SkillTimers" type="Node" parent="." unique_id=968595107]
+
+[node name="SkillCooldown1" type="Timer" parent="SkillTimers" unique_id=1508311925]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive1" type="Timer" parent="SkillTimers" unique_id=1899413268]
+wait_time = 5.0
+one_shot = true
+
+[node name="SkillCooldown2" type="Timer" parent="SkillTimers" unique_id=861267987]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive2" type="Timer" parent="SkillTimers" unique_id=1095551262]
+wait_time = 5.0
+one_shot = true
+
+[node name="SkillCooldown3" type="Timer" parent="SkillTimers" unique_id=120773302]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive3" type="Timer" parent="SkillTimers" unique_id=2004824206]
+wait_time = 5.0
+one_shot = true

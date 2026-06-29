@@ -23,6 +23,7 @@ var assigned_customer: Customer
 var assigned_maid: Maid
 
 var bill: int = 0
+var multiplier: float = 1
 
 #func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	#return data is Maid
@@ -86,7 +87,13 @@ func customer_leave():
 	#get_tree().add_child(coin)
 	
 	#add table bill to income and reset to 0
-	GameManager.current_level.add_income(bill)
+	if assigned_customer.customerPreference != assigned_maid.personality and assigned_customer.customerPreference != GlobalConstants.Personality.ULTIMATE:
+		multiplier = 0.5
+	elif assigned_customer.customerPreference == GlobalConstants.Personality.ULTIMATE:
+		multiplier = 1
+	else:
+		multiplier = 1
+	GameManager.current_level.add_income(bill * multiplier) 
 	bill = 0
 	#animasi bill
 	animation_player.play("payment_done")
