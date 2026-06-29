@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://df5fx48uwm57h" path="res://Resources/Maids/maid_resource.gd" id="1_537jd"]
 [ext_resource type="Texture2D" uid="uid://bf1kc5w2fq1om" path="res://Assets/Visual/Mecha/tsundere_portrait.png" id="1_bw6n7"]
+[ext_resource type="Texture2D" uid="uid://dvsfqggio5ruk" path="res://Assets/Visual/Mecha/tsundere_portrait_hover.png" id="2_hp0db"]
 [ext_resource type="Texture2D" uid="uid://clh61b628ro6c" path="res://Assets/Visual/Mecha/tsundere-Sheet.png" id="3_bw6n7"]
 
 [resource]
@@ -9,6 +10,7 @@ script = ExtResource("1_537jd")
 maid_name = &"Red"
 personality = 1
 portrait = ExtResource("1_bw6n7")
+portrait_hovered = ExtResource("2_hp0db")
 sprite = ExtResource("3_bw6n7")
 service_duration = 10.0
 metadata/_custom_type_script = "uid://df5fx48uwm57h"

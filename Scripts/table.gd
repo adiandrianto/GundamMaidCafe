@@ -36,6 +36,12 @@ func _ready() -> void:
 	payment_icon.hide()
 	coin_sprite.hide()
 
+	if sprite.material:
+		sprite.material = sprite.material.duplicate()
+		
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	
 func assign_customer(customer: Customer):
 	assigned_customer = customer
 	customer.reparent(self, true)
@@ -60,6 +66,8 @@ func order_from_menu():
 	
 	await get_tree().create_timer(0.8).timeout
 	_show_order_icon()
+	if GameManager.current_level.level_param.is_tutorial:
+		GameManager.current_level.show_tutorial_text(3)
 
 func _show_order_icon():
 	order_icon.texture_normal = assigned_customer.order.icon
@@ -87,6 +95,11 @@ func customer_leave():
 	
 	if assigned_maid:
 		assigned_maid.back_to_station()
+		
+	if GameManager.current_level.level_param.is_tutorial:
+		GameManager.current_level.show_tutorial_text(5)
+		await get_tree().create_timer(4.0).timeout
+		GameManager.current_level.show_tutorial_text(-1)
 
 func _on_mini_game_finished(score):
 	bill += score
@@ -97,11 +110,29 @@ func _request_bill():
 	assigned_customer.animated_sprite.play("sitting")
 	animation_player.play("payment_appear")
 	payment_icon.pressed.connect(_on_payment_icon_pressed, CONNECT_ONE_SHOT)
+	if GameManager.current_level.level_param.is_tutorial:
+		GameManager.current_level.show_tutorial_text(4)
 
 func _on_payment_icon_pressed():
 	var cashier_maid: CashierMaid = get_tree().get_first_node_in_group("cashier_maid")
 	cashier_maid.add_target(self)
 	animation_player.play("payment_disappear")
+
+func _set_outline(enable: bool):
+	var mat := sprite.material as ShaderMaterial
+	if mat && enable:
+		mat.set_shader_parameter("width", 3.0)
+	else:
+		mat.set_shader_parameter("width", 0.0)
+		
+func _on_mouse_entered():
+	if GameManager.dragged_customer == null || assigned_customer:
+		return
+
+	_set_outline(true)
+
+func _on_mouse_exited():
+	_set_outline(false)
 
 #func assign_maid(maid: Maid):
 	#print("Assigned maid to table")

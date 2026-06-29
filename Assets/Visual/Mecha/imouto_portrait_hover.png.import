@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxmrklwtgy4hw"
-path="res://.godot/imported/knightcafe_.jpg-7d6e7bdadb47f4ea820536a3cf1ec795.ctex"
+uid="uid://dj6udiks6hgfw"
+path="res://.godot/imported/imouto_portrait_hover.png-56b8ac9ad41cb5ef2626b1e7f2d2e3d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visual/Mecha/knightcafe_.jpg"
-dest_files=["res://.godot/imported/knightcafe_.jpg-7d6e7bdadb47f4ea820536a3cf1ec795.ctex"]
+source_file="res://Assets/Visual/Mecha/imouto_portrait_hover.png"
+dest_files=["res://.godot/imported/imouto_portrait_hover.png-56b8ac9ad41cb5ef2626b1e7f2d2e3d5.ctex"]
 
 [params]
 

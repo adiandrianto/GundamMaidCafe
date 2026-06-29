@@ -3,34 +3,34 @@ extends TextureButton
 @export var maidIndex: int
 @export var maid_res : MaidResource
 
-@onready var tooltip: PanelContainer = %Tooltip
-@onready var name_label: RichTextLabel = %NameLabel
+#@onready var tooltip: PanelContainer = %Tooltip
+#@onready var name_label: RichTextLabel = %NameLabel
 @onready var personality_label: RichTextLabel = %PersonalityLabel
 
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 @onready var color_rect: ColorRect = $ColorRect
 
 func _ready() -> void:
-	tooltip.hide()
+	#tooltip.hide()
 	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
+	#mouse_exited.connect(_on_mouse_exited)
 	
 	texture_normal = maid_res.portrait
 	color_rect.size = maid_res.portrait.get_size()
 	color_rect.hide()
 
 func _on_mouse_entered():
-	name_label.text = maid_res.maid_name
+	#name_label.text = maid_res.maid_name
 	personality_label.text = GlobalConstants.Personality.keys()[maid_res.personality]
-	tooltip.show()
+	#tooltip.show()
 	
-func _on_mouse_exited():
-	tooltip.hide()
+#func _on_mouse_exited():
+	#tooltip.hide()
 	
 func _pressed() -> void:
 	if not maid_res:
 		return
-	
+
 	if GameManager.selected_table == null :
 		return
 	

@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="1_iacmt"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="2_6ev3c"]
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_huasi"]
-[ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
+[ext_resource type="Resource" uid="uid://bw8ckamgvrm0d" path="res://Resources/Levels/level_00.tres" id="2_oyb3p"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
 [ext_resource type="PackedScene" uid="uid://bttcbb83uabeq" path="res://Scenes/maidlist_item.tscn" id="4_2ebs2"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
@@ -12,7 +12,9 @@
 [ext_resource type="Resource" uid="uid://qxleno2wpc82" path="res://Resources/Maids/tsundere.tres" id="9_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
+[ext_resource type="Texture2D" uid="uid://bv0arqhmawhfj" path="res://Assets/Visual/Opening/dialog_portrait_human.png" id="11_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
+[ext_resource type="Theme" uid="uid://dlwh2icb47jc8" path="res://Resources/ui_tutorial.tres" id="11_oyb3p"]
 [ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="15_gnsmo"]
 [ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
 [ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_psl12"]
@@ -86,7 +88,7 @@ _data = {
 
 [node name="Level" type="Node" unique_id=633166089]
 script = ExtResource("2_huasi")
-level_param = ExtResource("3_m1efj")
+level_param = ExtResource("2_oyb3p")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
 layer = 99
@@ -257,6 +259,7 @@ texture = ExtResource("5_m1efj")
 
 [node name="Tooltip" type="PanelContainer" parent="UILayer/UI" unique_id=2072478291]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(500, 120)
 layout_mode = 0
 offset_left = 24.0
@@ -296,6 +299,166 @@ fit_content = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Tutorial" type="Control" parent="UILayer" unique_id=1637316197]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("11_oyb3p")
+
+[node name="Welcome" type="PanelContainer" parent="UILayer/Tutorial" unique_id=988631160]
+visible = false
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -170.5
+offset_right = 300.0
+offset_bottom = 170.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Tutorial/Welcome" unique_id=1312409347]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[u][wave]Welcome to Mecha Maid Café![/wave][/u]
+
+As the manager of our one-of-a-kind Mecha Maid Café, your mission is simple:
+
+keep customers happy, 
+assign the right maid to each table, 
+and earn enough income before closing time.
+
+Reach the Daily Revenue Goal to clear the day!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="UILayer/Tutorial/Welcome" unique_id=1336104471]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Understood"
+
+[node name="TutorialPanel" type="Control" parent="UILayer/Tutorial" unique_id=1336282069]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/Tutorial/TutorialPanel" unique_id=1289648687]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -823.0
+offset_top = -829.0
+offset_right = 651.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("11_2ebs2")
+flip_h = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/Tutorial/TutorialPanel" unique_id=427348741]
+custom_minimum_size = Vector2(700, 260)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="TutorialLabel1" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=492738629]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Customers will line up at the entrance
+throughout the day.
+
+Drag your customer to one of the tables!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TutorialLabel2" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1614249431]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Very good !
+Now click on \"Maid Button\" to assign Mecha Maid
+
+Pay attention to what kind of maid they're looking for, matching the customer's preferred maid personality will increases satisfaction and tips. "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TutorialLabel3" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=659886315]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Once a maid takes a customer's order, click the Order icon to begin preparing the meal.
+Each order has its own unique minigame!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TutorialLabel4" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=530182525]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Time to cash out!
+
+Satisfied customers are ready to pay. Click the Coin icon above the table, and the Cashier Mecha will head over to collect the bill."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TutorialLabel5" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1689902767]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Wow, you're a fast learner, are'nt you?!
+I think you are ready now.
+Go ahead and finish the level!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
 unique_name_in_owner = true
@@ -376,7 +539,6 @@ position = Vector2(-402, -215)
 
 [node name="MaidContainer" type="Node2D" parent="YSort/NavRegion/TableContainer" unique_id=626099701]
 unique_name_in_owner = true
-y_sort_enabled = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="YSort/NavRegion" unique_id=1846329806]
 vertices = PackedVector2Array(160, 205, 1109, 205, 1112, 308, 161, 303)
@@ -419,3 +581,15 @@ texture = ExtResource("9_mai8y")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1195572387]
 libraries/ = SubResource("AnimationLibrary_oyb3p")
 autoplay = &"background"
+
+[node name="Blind" type="ColorRect" parent="." unique_id=1966988896]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[connection signal="pressed" from="UILayer/Tutorial/Welcome/Button" to="." method="_on_button_pressed"]

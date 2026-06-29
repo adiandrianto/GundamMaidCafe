@@ -14,6 +14,7 @@ const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 
 @onready var goal_label: Label = %GoalLabel
 @onready var income_label: Label = %IncomeLabel
+@onready var blind: ColorRect = %Blind
 
 @onready var table_area: Control = %TableArea
 @onready var table_container: Node = %TableContainer
@@ -32,6 +33,13 @@ const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 @onready var cashier_spot: Marker2D = $CashierSpot
 @onready var cashier: Cashier = %Cashier
 
+@onready var welcome_panel: PanelContainer = $UILayer/Tutorial/Welcome
+@onready var tutorial_panel: Control = %TutorialPanel
+@onready var tutorial_label_1: Label = %TutorialLabel1
+@onready var tutorial_label_2: Label = %TutorialLabel2
+@onready var tutorial_label_3: Label = %TutorialLabel3
+
+
 var table_columns: int = 3
 var income: int = 0
 var mini_game_played: Array[Order] = []
@@ -47,8 +55,28 @@ func _ready() -> void:
 	level_timer.wait_time = level_param.level_duration
 	level_timer.start()
 	_arrange_tables()
+	_hide_tutorial()
+	
 	await get_tree().create_timer(0.5).timeout
+	
 	_customer_come()
+	
+	if level_param.is_tutorial:
+		welcome_panel.show()
+		_tween_appear(welcome_panel)
+		level_timer.set_paused(true)
+		customer_timer.set_paused(true)
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		var hovered = get_viewport().gui_get_hovered_control()
+		if hovered:
+			print("Hovered:", hovered.get_path())
+			
+func _hide_tutorial():
+	blind.hide()
+	welcome_panel.hide()
+	tutorial_panel.hide()
 	
 func _init_hud():
 	goal_label.text = str(level_param.total_goal)
@@ -118,3 +146,48 @@ func _level_finished():
 	#implement here for scoring
 	
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")
+
+func _tween_appear(obj: Object):
+	var tween := get_tree().create_tween()
+	obj.set("scale", 0.0)
+	tween.tween_property(obj, "scale", Vector2(1.2, 1.2), 0.12)
+	tween.tween_property(obj, "scale", Vector2(1.0, 1.0), 0.08)
+
+func _tween_disappear(obj: Object):
+	var tween := get_tree().create_tween()
+	tween.tween_property(obj, "scale", Vector2(1.1, 1.1), 0.05)
+	tween.tween_property(obj, "scale", Vector2(0.0, 0.0), 0.08)
+	
+func _on_button_pressed() -> void:
+	level_timer.set_paused(false)
+	customer_timer.set_paused(false)
+	welcome_panel.hide()
+	tutorial_panel.show()
+	_tween_appear(tutorial_panel)
+	show_tutorial_text(1)
+
+func show_tutorial_text(num: int):
+	var panel := $UILayer/Tutorial/TutorialPanel/PanelContainer
+	for child in panel.get_children():
+		child.hide()
+	
+	if num < 1:
+		_tween_disappear(tutorial_panel)
+		return
+		
+	if num >= 1 and num < panel.get_child_count() + 1:
+		panel.get_child(num-1).show()
+		_type_text(panel.get_child(num-1))
+
+func _type_text(label: Label):
+	label.visible_ratio = 0.0
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+
+	# 0.04 sec per character
+	var duration := label.text.length() * 0.02
+	tween.tween_property(label, "visible_ratio", 1.0, duration)
+	
+func set_level_dark(value: bool):
+	blind.visible = value

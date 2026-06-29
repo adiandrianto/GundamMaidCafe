@@ -74,6 +74,7 @@ func _process(_delta):
 
 func begin_drag():
 	dragging = true
+	GameManager.dragged_customer = self
 	give_outline()
 
 func end_drag():
@@ -81,6 +82,7 @@ func end_drag():
 		return
 		
 	dragging = false
+	GameManager.dragged_customer = null
 	remove_outline()
 	if table_entered:
 		if table_entered[0].assigned_customer != null:
@@ -89,6 +91,8 @@ func end_drag():
 		table_entered[0].assign_customer(self)
 		request_maid = true
 		popup_maid()
+		if GameManager.current_level.level_param.is_tutorial:
+			GameManager.current_level.show_tutorial_text(2)
 	else:
 		emit_signal("put_down")
 	
@@ -97,7 +101,7 @@ func give_outline():
 		return
 	var mat := animated_sprite.material as ShaderMaterial
 	if mat:
-		mat.set_shader_parameter("width", 2)
+		mat.set_shader_parameter("width", 3)
 
 func remove_outline():
 	if not animated_sprite:
@@ -136,20 +140,20 @@ func _on_maid_prompt_pressed() -> void:
 		
 	GameManager.selected_table = table_entered[0]
 	maid_popup.hide()
-	print("ordering")
-	dialogue_popup.show()
-	get_tree().paused = true
-	await get_tree().create_timer(5.0).timeout
-	dialogue_popup.hide()
+	#print("ordering")
+	#dialogue_popup.show()
+	#get_tree().paused = true
+	#await get_tree().create_timer(5.0).timeout
+	#dialogue_popup.hide()
 
-	#var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
-	#maid_select_panel.table_ordered = table_entered[0]
-	#GameManager.current_level.mini_game_container.add_child(maid_select_panel)
+	var maid_select_panel = GameManager.current_level.MAID_SELECTION.instantiate() as MaidSelectWindow
+	maid_select_panel.table_ordered = table_entered[0]
+	GameManager.current_level.mini_game_container.add_child(maid_select_panel)
+	GameManager.current_level.set_level_dark(true)
 
 func popup_maid() -> void:
 	if request_maid == true:
-		maid_popup.show()
-		print("maid request")
+		animation_player.play("maid_icon_appear")
 
 func leave():
 	$Pay.play()
