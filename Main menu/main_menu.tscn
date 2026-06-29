@@ -242,7 +242,6 @@ layout_mode = 2
 texture_normal = ExtResource("4_jh8tq")
 
 [node name="Options" parent="." unique_id=1394221663 instance=ExtResource("1_bh62r")]
-visible = false
 layout_mode = 1
 
 [connection signal="mouse_entered" from="Menu_btn/Play" to="." method="_on_play_mouse_entered"]
