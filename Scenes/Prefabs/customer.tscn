@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dkgx2c7uaka0h" path="res://Scripts/customer.gd" id="1_678vv"]
 [ext_resource type="Material" uid="uid://btrnlfjgv1glg" path="res://Resources/outline_shader.tres" id="2_678vv"]
+[ext_resource type="SpriteFrames" uid="uid://c18ny6rqyx556" path="res://Resources/SpriteFrames/2_customer.tres" id="3_sv7a0"]
 [ext_resource type="Texture2D" uid="uid://c8ero8i4lg7gr" path="res://Assets/Visual/UI/icon_maid.png" id="4_g1rta"]
-[ext_resource type="AudioStream" uid="uid://yjc3dx3dm2vo" path="res://Assets/Audio/SFX/Cash Register 1-2.wav" id="5_8njvi"]
 [ext_resource type="AudioStream" uid="uid://doq21bcjtwsd4" path="res://Assets/Audio/SFX/Power_Up_Bar_02.wav" id="5_jwomw"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g1rta"]
+[ext_resource type="Texture2D" uid="uid://b30yuh5h7d6b5" path="res://Assets/Visual/UI/customer_wait_time_frame.png" id="7_fa4bl"]
+[ext_resource type="Texture2D" uid="uid://pes12ukc76hf" path="res://Assets/Visual/UI/customer_wait_time_fill.png" id="8_hfohv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_678vv"]
 size = Vector2(140, 100)
@@ -130,7 +130,7 @@ _data = {
 &"maid_icon_appear": SubResource("Animation_dsgnx")
 }
 
-[node name="Customer" type="Area2D" unique_id=1912775747 node_paths=PackedStringArray("dialogue_popup")]
+[node name="Customer" type="Area2D" unique_id=1912775747 node_paths=PackedStringArray("dialogue_popup") groups=["customers"]]
 process_mode = 1
 z_index = 50
 input_pickable = false
@@ -140,7 +140,8 @@ dialogue_popup = NodePath("UI/Dialogue")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=5775372]
 unique_name_in_owner = true
 material = ExtResource("2_678vv")
-sprite_frames = SubResource("SpriteFrames_g1rta")
+sprite_frames = ExtResource("3_sv7a0")
+animation = &"eating"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621003456]
 shape = SubResource("RectangleShape2D_678vv")
@@ -189,11 +190,31 @@ autowrap_mode = 3
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=1962699756]
 libraries/ = SubResource("AnimationLibrary_dsgnx")
 
-[node name="Pay" type="AudioStreamPlayer" parent="." unique_id=1229977655]
-stream = ExtResource("5_8njvi")
-
 [node name="Error" type="AudioStreamPlayer" parent="." unique_id=2000564425]
 stream = ExtResource("5_jwomw")
+
+[node name="WaitProgressBar" type="TextureProgressBar" parent="." unique_id=2126602970]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.0
+offset_top = -78.0
+offset_right = 81.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+max_value = 1.0
+step = 0.1
+texture_under = ExtResource("7_fa4bl")
+texture_progress = ExtResource("8_hfohv")
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=1739778513]
+wait_time = 10.0
+one_shot = true
+autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

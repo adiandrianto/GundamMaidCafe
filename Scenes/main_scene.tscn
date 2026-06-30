@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dvsfqggio5ruk" path="res://Assets/Visual/Mecha/tsundere_portrait_hover.png" id="17_s8qe6"]
 [ext_resource type="FontFile" uid="uid://djg0wrscw5676" path="res://Assets/TrueType (.ttf)/DeltaBlock-Regular.ttf" id="20_rpyod"]
 [ext_resource type="AudioStream" uid="uid://yxvduqaejejq" path="res://Assets/Audio/Voice/01-hey.wav" id="21_urcnp"]
+[ext_resource type="AudioStream" uid="uid://bh67anfnj8mab" path="res://Assets/Audio/SFX/leenn792-drum-roll-sound-effect-trommelwirbel-snare-crash-preisverleihung-drumroll-sound-13883.mp3.ogg" id="22_mplvr"]
 [ext_resource type="AudioStream" uid="uid://crg8vs8x66qxl" path="res://Assets/Audio/Voice/01-laughter.wav" id="22_rpyod"]
 [ext_resource type="AudioStream" uid="uid://wevhxhl6k6c3" path="res://Assets/Audio/Voice/02-laughter.wav" id="23_mplvr"]
 [ext_resource type="AudioStream" uid="uid://0g53k84pnccb" path="res://Assets/Audio/Voice/03-laughter.wav" id="24_vggli"]
@@ -139,7 +140,7 @@ _data = {
 &"background": SubResource("Animation_2ebs2")
 }
 
-[node name="Level" type="Node" unique_id=633166089]
+[node name="Level" type="Node" unique_id=1819073832]
 script = ExtResource("2_huasi")
 level_param = ExtResource("2_oyb3p")
 
@@ -674,6 +675,10 @@ volume_db = -5.0
 autoplay = true
 bus = &"Music"
 parameters/looping = true
+
+[node name="DrumRoll" type="AudioStreamPlayer" parent="Audio" unique_id=389110021]
+stream = ExtResource("22_mplvr")
+bus = &"Music"
 
 [node name="Hello" type="AudioStreamPlayer" parent="Audio" unique_id=1513686126]
 unique_name_in_owner = true

@@ -10,6 +10,8 @@ const POURING_TEA_MINI_GAME: PackedScene = preload("uid://bcoafo2w7e5cl")
 const SHAKE_RHYTHM_MINI_GAME: PackedScene = preload("uid://bvnuvd6l7klfg")
 const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 
+const SCORE_SECTION = preload("uid://yjxoe2er5y6n")
+
 @export var level_param: LevelParam
 
 @onready var goal_label: Label = %GoalLabel
@@ -39,10 +41,11 @@ const OMELETTE_MINI_GAME: PackedScene = preload("uid://b6voidpbr24bo")
 @onready var tutorial_label_2: Label = %TutorialLabel2
 @onready var tutorial_label_3: Label = %TutorialLabel3
 
-
 var table_columns: int = 3
 var income: int = 0
 var mini_game_played: Array[Order] = []
+var is_closed: bool = false
+var customer_inside: int = 0
 
 var tutorial_index: int = 0
 
@@ -53,7 +56,7 @@ func _ready() -> void:
 	_init_hud()
 	GameManager.current_level = self
 	customer_timer.timeout.connect(_customer_come)
-	level_timer.timeout.connect(_level_finished)
+	level_timer.timeout.connect(_closing)
 	level_timer.wait_time = level_param.level_duration
 	level_timer.start()
 	_arrange_tables()
@@ -69,12 +72,26 @@ func _ready() -> void:
 		level_timer.set_paused(true)
 		customer_timer.set_paused(true)
 
+func _physics_process(delta: float) -> void:
+	if is_closed && customer_inside <= 0:
+		print("level complete")
+		_level_completed()
+		set_physics_process(false)
+		
 #func _input(event):
 	#if event is InputEventMouseButton and event.pressed:
 		#var hovered = get_viewport().gui_get_hovered_control()
 		#if hovered:
 			#print("Hovered:", hovered.get_path())
 			
+func _level_completed():
+	Scores.table_income = income
+	var score_panel = SCORE_SECTION.instantiate() as Scores
+	$UILayer.add_child(score_panel)
+	$Audio/BGM.stop()
+	$Audio/DrumRoll.stream.loop = false
+	$Audio/DrumRoll.play()
+	
 func _hide_tutorial():
 	blind.hide()
 	welcome_panel.hide()
@@ -89,7 +106,7 @@ func add_income(sum: int):
 	income_label.text = str(income)
 	
 func _customer_come():
-	if level_param.total_customer <= 0:
+	if level_param.total_customer <= 0 || is_closed:
 		print("no more customer")
 		customer_container.update_layout()
 		return
@@ -103,6 +120,7 @@ func _customer_come():
 	customer_container.update_layout()
 	
 	level_param.total_customer -= 1
+	customer_inside += 1
 
 func _first_customer_come():
 	var customer = CUSTOMER_PREFAB.instantiate() as Customer
@@ -111,6 +129,7 @@ func _first_customer_come():
 	customer_container.update_layout()
 	
 	level_param.total_customer -= 1
+	customer_inside += 1
 	
 func _arrange_tables():
 	var count = level_param.total_table
@@ -154,10 +173,8 @@ func maid_come_to_table(maid: Maid, table: Table) -> void:
 	
 	maid.take_order(table)
 	
-func _level_finished():
-	var mini_game_played_names: Array[String] = []
-	#implement here for scoring
-	
+func _closing():
+	is_closed = true
 	close_sign.texture  = preload("uid://dh58rpyvq2rcy")
 
 func _tween_appear(obj: Node):

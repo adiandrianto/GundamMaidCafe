@@ -36,14 +36,17 @@ func modify_multiplier(new_multiplier: int) -> void:
 		table.multiplier = new_multiplier
 		print("multiplier = ", table.multiplier)
 
-func modify_personality(personality: GlobalConstants.Personality) -> void:
-	var customer_nodes: Array[Node] = get_tree().get_nodes_in_group("customers")
-	for customer in customer_nodes:
-		customer.customerPreference = personality
-		print("personality = ", customer.customerPreference)
+func ignore_preference(duration: float) -> void:
+	GameManager.ignore_personality = true
+	await get_tree().create_timer(duration).timeout
+	GameManager.ignore_personality = false
+	#var customer_nodes: Array[Node] = get_tree().get_nodes_in_group("customers")
+	#for customer in customer_nodes:
+		#customer.customerPreference = personality
+		#print("personality = ", customer.customerPreference)
 
 func patience_reset() -> void:
 	var customer_nodes: Array[Node] = get_tree().get_nodes_in_group("customers")
 	for customer in customer_nodes:
-		customer.customerWaitTime.start() #resets waitTime
+		customer.restart_timer()
 		print("wait time reset")

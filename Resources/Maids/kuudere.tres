@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_e2axl")
-maid_name = &"Blue"
+maid_name = &"AR-05 \"Defender\""
 personality = 2
 portrait = ExtResource("1_x6pru")
 portrait_hovered = ExtResource("2_6mplv")

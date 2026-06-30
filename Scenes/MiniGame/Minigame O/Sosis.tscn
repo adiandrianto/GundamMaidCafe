@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://k3gqnyg76dbe"]
 
-[ext_resource type="Texture2D" uid="uid://cceumhj6hodav" path="res://Minigame O/Sprite/C7BAE55F-9B03-430A-8441-239E40104C232.png" id="1_ev7li"]
+[ext_resource type="Texture2D" uid="uid://cceumhj6hodav" path="res://Scenes/MiniGame/Minigame O/Sprite/C7BAE55F-9B03-430A-8441-239E40104C232.png" id="1_ev7li"]
 
 [node name="Sosis" type="Node2D" unique_id=1326812826]
 
@@ -12,7 +12,7 @@ texture = ExtResource("1_ev7li")
 [node name="Area2D" type="Area2D" parent="." unique_id=592183292]
 scale = Vector2(5.9375, 5.9374995)
 collision_layer = 3
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=799329926]
 position = Vector2(0.5052632, -0.5052632)

@@ -3,7 +3,7 @@ class_name MaidSelectWindow
 
 @export var table_ordered: Table = null
 @onready var portrait_container: GridContainer = %PortraitContainer
-@onready var label: RichTextLabel = %Label
+@onready var label: Label = %Label
 @onready var tooltip: PanelContainer = %Tooltip
 #@onready var name_label: RichTextLabel = %NameLabel
 @onready var personality_label: RichTextLabel = %PersonalityLabel
@@ -12,9 +12,9 @@ func _ready() -> void:
 	global_position = table_ordered.global_position + Vector2(0, -100)
 	get_tree().paused = true
 	tooltip.hide()
-	
+
 	label.text = table_ordered.assigned_customer.customer_line
-	
+
 	for maid_res in GlobalConstants.maid_roster:
 		var portrait = TextureButton.new()
 		portrait.texture_normal = maid_res.portrait

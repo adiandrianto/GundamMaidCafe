@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cgkdsw3flnj17" path="res://Assets/Audio/Voice/Ha haa!.wav" id="10_p41as"]
 [ext_resource type="AudioStream" uid="uid://c7dumubbkjimr" path="res://Assets/Audio/Voice/Dissapointment_1.wav" id="11_vrgyk"]
 [ext_resource type="AudioStream" uid="uid://0vv2cdtut5av" path="res://Assets/Audio/Voice/Hmm_2.wav" id="12_sj87q"]
+[ext_resource type="AudioStream" uid="uid://yjc3dx3dm2vo" path="res://Assets/Audio/SFX/Cash Register 1-2.wav" id="13_vrgyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqgb"]
 size = Vector2(170, 116)
@@ -380,3 +381,6 @@ volume_db = -10.0
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_jj8op")
 volume_db = -10.0
+
+[node name="Pay" type="AudioStreamPlayer" parent="." unique_id=1519126084]
+stream = ExtResource("13_vrgyk")

@@ -95,7 +95,7 @@ func customer_leave():
 	else:
 		multiplier = 1
 
-	GameManager.current_level.add_income(bill * multiplier) 
+	GameManager.current_level.add_income(bill * multiplier)
 	bill = 0
 	#animasi bill
 	
@@ -103,6 +103,7 @@ func customer_leave():
 	animation_player.play("sprite_pop")
 	
 	assigned_customer.leave()
+	$Pay.play()
 	
 	if assigned_maid:
 		assigned_maid.back_to_station()

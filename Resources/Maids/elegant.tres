@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_1nutb")
-maid_name = &"Pink"
+maid_name = &"MU-04 Mark 4"
 portrait = ExtResource("1_5ntfn")
 portrait_hovered = ExtResource("2_hulbf")
 sprite = ExtResource("3_hulbf")

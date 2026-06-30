@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dasxsf31f2jyp"]
+
+[ext_resource type="Script" uid="uid://bcsp5ld5ross6" path="res://tes.gd" id="1_wtcfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+
+[node name="Node2D" type="Node2D" unique_id=897279707]
+script = ExtResource("1_wtcfe")
+
+[node name="detect" type="Area2D" parent="." unique_id=1579293534]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect" unique_id=1536793626]
+shape = SubResource("CircleShape2D_0e48y")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=250476307]
+position = Vector2(9, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1170301078]
+shape = SubResource("CircleShape2D_0e48y")

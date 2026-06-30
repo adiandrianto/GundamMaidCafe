@@ -85,5 +85,6 @@ func _evaluate_result():
 	await get_tree().create_timer(1.2).timeout
 
 	finished.emit(final_score)
+	Scores.juice += final_score
 	show_tutorial = false
 	animation_player.play("disappear")

@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://baju6xbb2lbsx"]
 
 [ext_resource type="Script" uid="uid://cgva8a32qv6x5" path="res://Scripts/UI/maid_selection.gd" id="1_lkfp8"]
-[ext_resource type="FontFile" uid="uid://cgq1ory6b4y6v" path="res://Assets/static/Orbitron-Medium.ttf" id="2_kbe0a"]
+[ext_resource type="Texture2D" uid="uid://rlon72txis0b" path="res://Assets/Visual/UI/preference_box.png" id="2_xhyut"]
+[ext_resource type="FontFile" uid="uid://seafyh4l5hyw" path="res://Assets/static/Orbitron-Black.ttf" id="3_w2dhk"]
 [ext_resource type="AudioStream" uid="uid://ddwt3wdj4v7qa" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Cursor - 4.ogg" id="3_xhyut"]
 [ext_resource type="AudioStream" uid="uid://we1cls73gejy" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="4_w2dhk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w2dhk"]
+texture = ExtResource("2_xhyut")
 
 [node name="MaidSelection" type="Node2D" unique_id=1645081262]
 process_mode = 3
@@ -20,20 +24,31 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 1)
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=2037191896]
-custom_minimum_size = Vector2(320, 150)
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=140818849]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="VBoxContainer/PanelContainer" unique_id=644917673]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1289048303]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_kbe0a")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" unique_id=2037191896]
+custom_minimum_size = Vector2(320, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_w2dhk")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer" unique_id=2058738387]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 120)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_w2dhk")
 text = "I need a certain maid who is a little grumpy but also cute to cheer"
-fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1175268041]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="MaidSelectList" type="PanelContainer" parent="VBoxContainer" unique_id=109739563]
 layout_mode = 2

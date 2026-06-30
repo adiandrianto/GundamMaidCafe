@@ -2,6 +2,7 @@ extends Node
 class_name MiniGame
 
 signal finished(score: int)
+
 var final_score
 var mini_game_name
 

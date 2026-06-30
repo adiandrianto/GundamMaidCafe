@@ -18,10 +18,12 @@ signal put_down
 @onready var animated_sprite: AnimatedSprite2D = %Sprite
 @onready var animation_player: AnimationPlayer = $Animation
 @onready var preference_label: Label = %PreferenceLabel
+@onready var wait_progress_bar: TextureProgressBar = $WaitProgressBar
+@onready var wait_timer: Timer = $WaitTimer
 
 var customer_preference: GlobalConstants.Personality = GlobalConstants.Personality.values().pick_random()
 var customer_line: String 
-
+var wait_time: float = 10.0
 var table_entered: Array[Table] = []
 var dragging: bool = false
 var request_maid: bool = false
@@ -30,6 +32,7 @@ var order: Order
 var total_person: int = 0
 
 func _ready() -> void:
+	wait_timer.timeout.connect(leave, CONNECT_ONE_SHOT)
 	_randomize_customer_number()
 	
 	$UI/MaidPrompt.hide()
@@ -54,6 +57,11 @@ func _input(event):
 		elif event.button_index == MOUSE_BUTTON_LEFT and !event.pressed:
 			end_drag()
 
+func restart_timer():
+	wait_timer.stop()
+	wait_timer.start()
+	print(wait_timer.time_left)
+	
 func get_area_under_mouse() -> Area2D:
 	var space = get_world_2d().direct_space_state
 
@@ -71,6 +79,8 @@ func get_area_under_mouse() -> Area2D:
 func _process(_delta):
 	if dragging:
 		global_position = get_global_mouse_position()
+	
+	wait_progress_bar.value = wait_timer.time_left / wait_timer.wait_time
 
 func begin_drag():
 	dragging = true
@@ -89,6 +99,8 @@ func end_drag():
 			emit_signal("put_down")
 			return
 		table_entered[0].assign_customer(self)
+		wait_progress_bar.hide()
+		wait_timer.stop()
 		request_maid = true
 		popup_maid()
 		if GameManager.current_level.level_param.is_tutorial:
@@ -156,5 +168,5 @@ func popup_maid() -> void:
 		animation_player.play("maid_icon_appear")
 
 func leave():
-	$Pay.play()
 	animation_player.play("leave")
+	GameManager.current_level.customer_inside -= 1

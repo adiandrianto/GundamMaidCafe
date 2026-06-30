@@ -35,7 +35,7 @@ func _pressed() -> void:
 			GlobalConstants.Skills.MATCHING:
 				start_skill_timer()
 				start_cooldown_timer()
-				GameManager.ignore_personality = true
+				GameManager.ignore_preference(skill_timer.wait_time)
 			GlobalConstants.Skills.PATIENCE:
 				print("patience skill")
 				start_skill_timer()

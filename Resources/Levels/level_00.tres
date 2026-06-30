@@ -6,7 +6,7 @@
 script = ExtResource("1_dnc16")
 total_table = 2
 total_goal = 10
-level_duration = 80.0
-total_customer = 2
+level_duration = 20.0
+total_customer = 1
 is_tutorial = true
 metadata/_custom_type_script = "uid://exowwjnkm4qb"
