@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b56wnyk2vvkky" path="res://Resources/ui_typography.tres" id="1_iacmt"]
 [ext_resource type="Texture2D" uid="uid://bwewcyswgkccw" path="res://Assets/Visual/Timer/under.png" id="2_6ev3c"]
 [ext_resource type="Script" uid="uid://djukkam3b3ipd" path="res://Scenes/Prefabs/level.gd" id="2_huasi"]
-[ext_resource type="Resource" uid="uid://dd578tonen54x" path="res://Resources/Levels/level_01.tres" id="3_m1efj"]
+[ext_resource type="Resource" uid="uid://bw8ckamgvrm0d" path="res://Resources/Levels/level_00.tres" id="2_oyb3p"]
 [ext_resource type="Texture2D" uid="uid://gqrwyfcrtey5" path="res://Assets/Visual/Timer/progress.png" id="3_maf8m"]
 [ext_resource type="PackedScene" uid="uid://bttcbb83uabeq" path="res://Scenes/maidlist_item.tscn" id="4_2ebs2"]
 [ext_resource type="Script" uid="uid://bd0silew467al" path="res://Scripts/timer.gd" id="4_huasi"]
@@ -12,50 +12,171 @@
 [ext_resource type="Resource" uid="uid://qxleno2wpc82" path="res://Resources/Maids/tsundere.tres" id="9_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://drlbsa1jv41uh" path="res://Assets/Visual/LevelBG/open.png" id="9_mai8y"]
 [ext_resource type="Script" uid="uid://dpihwoxs0dphu" path="res://Scenes/customer_queue.gd" id="10_76v2p"]
+[ext_resource type="Texture2D" uid="uid://bv0arqhmawhfj" path="res://Assets/Visual/Opening/dialog_portrait_human.png" id="11_2ebs2"]
 [ext_resource type="Texture2D" uid="uid://d0ikfsihf455n" path="res://Assets/Visual/LevelBG/level_bg.png" id="11_7ewk0"]
+[ext_resource type="Theme" uid="uid://dlwh2icb47jc8" path="res://Resources/ui_tutorial.tres" id="11_oyb3p"]
+[ext_resource type="Script" uid="uid://cu3tmeqdxr0ru" path="res://Scripts/UI/maid_skill.gd" id="12_nt2eh"]
+[ext_resource type="Texture2D" uid="uid://dmut8ggrrqqht" path="res://Assets/Visual/Mecha/kuudere.png" id="13_5cm5d"]
+[ext_resource type="Texture2D" uid="uid://bf1kc5w2fq1om" path="res://Assets/Visual/Mecha/tsundere_portrait.png" id="14_5bov3"]
+[ext_resource type="Shader" uid="uid://l3c7h1nckmag" path="res://Scenes/skill.gdshader" id="14_xle81"]
 [ext_resource type="AudioStream" uid="uid://d1xqvp8yjjskw" path="res://Assets/Audio/mondamusic-coffee-morning-coffee-shop-music-499186.mp3" id="15_gnsmo"]
 [ext_resource type="PackedScene" uid="uid://6nykgar5bwbb" path="res://Scenes/Prefabs/cashier_maid.tscn" id="15_lhp3t"]
 [ext_resource type="Texture2D" uid="uid://esqojafo0mat" path="res://Assets/Visual/LevelBG/counter.png" id="15_psl12"]
+[ext_resource type="Texture2D" uid="uid://clqbo1ff4o7t8" path="res://Assets/Visual/Mecha/pink_bust.png" id="15_s8qe6"]
+[ext_resource type="Texture2D" uid="uid://cw0ttrrxfkbpj" path="res://Assets/Visual/Mecha/kuudere_portrait_hover.png" id="15_xle81"]
 [ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
+[ext_resource type="Texture2D" uid="uid://dvsfqggio5ruk" path="res://Assets/Visual/Mecha/tsundere_portrait_hover.png" id="17_s8qe6"]
+[ext_resource type="Texture2D" uid="uid://qsx2clcrjlr7" path="res://Assets/Visual/UI/Confirmation +Score Box/bg_tv_confirmBox.png" id="19_kbbok"]
+[ext_resource type="Texture2D" uid="uid://6a8qicraj141" path="res://Assets/Visual/UI/Confirmation +Score Box/confirmButton.png" id="20_m0uwk"]
+[ext_resource type="FontFile" uid="uid://djg0wrscw5676" path="res://Assets/TrueType (.ttf)/DeltaBlock-Regular.ttf" id="20_rpyod"]
+[ext_resource type="Texture2D" uid="uid://b1xij73olu68b" path="res://Assets/Visual/UI/Confirmation +Score Box/confirmButton_hover.png" id="21_mffef"]
+[ext_resource type="AudioStream" uid="uid://yxvduqaejejq" path="res://Assets/Audio/Voice/01-hey.wav" id="21_urcnp"]
+[ext_resource type="FontFile" uid="uid://ca303pihim86a" path="res://Assets/PressStart2P-Regular.ttf" id="22_2h5y0"]
+[ext_resource type="LabelSettings" uid="uid://bvk56kbppykag" path="res://Resources/button_label_setting.tres" id="22_kbbok"]
+[ext_resource type="AudioStream" uid="uid://crg8vs8x66qxl" path="res://Assets/Audio/Voice/01-laughter.wav" id="22_rpyod"]
+[ext_resource type="AudioStream" uid="uid://wevhxhl6k6c3" path="res://Assets/Audio/Voice/02-laughter.wav" id="23_mplvr"]
+[ext_resource type="AudioStream" uid="uid://0g53k84pnccb" path="res://Assets/Audio/Voice/03-laughter.wav" id="24_vggli"]
+[ext_resource type="AudioStream" uid="uid://balt3l70ddnj1" path="res://Assets/Audio/Voice/01-okay.wav" id="25_r0xgx"]
+[ext_resource type="AudioStream" uid="uid://b1i6mgb0ihx6u" path="res://Assets/Audio/Voice/01-see ya later.wav" id="26_nrumr"]
+[ext_resource type="AudioStream" uid="uid://d31e50uybx6wr" path="res://Assets/Audio/SFX/Retro2.ogg" id="27_kbbok"]
+[ext_resource type="AudioStream" uid="uid://ddwt3wdj4v7qa" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Cursor - 4.ogg" id="33_m0uwk"]
+[ext_resource type="AudioStream" uid="uid://we1cls73gejy" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="34_mffef"]
+[ext_resource type="AudioStream" uid="uid://qjllbwf4bxol" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="35_mffef"]
 
-[sub_resource type="GDScript" id="GDScript_ioaeq"]
-script/source = "extends Node2D
+[sub_resource type="LabelSettings" id="LabelSettings_2h5y0"]
+font = ExtResource("22_2h5y0")
+font_size = 32
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
 
-#static var selected_maid: Maid
-static var selected_table: Table
-static var current_level: Level = null
+[sub_resource type="LabelSettings" id="LabelSettings_y0lwx"]
+font = ExtResource("22_2h5y0")
+font_size = 30
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
 
-#static var minigameScene_omurice : PackedScene = preload(\"res://Scenes/MiniGame/Minigame O/minigame_o.tscn\")
-#var scene_node
+[sub_resource type="LabelSettings" id="LabelSettings_igw8g"]
+font = ExtResource("22_2h5y0")
+font_size = 26
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
 
-func instantiate_order_scene(order_res: Order) -> MiniGame:
-	var order = order_res.mini_game_scene.instantiate()
+[sub_resource type="LabelSettings" id="LabelSettings_rlvbq"]
+font = ExtResource("22_2h5y0")
+font_size = 26
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
 
-	current_level.mini_game_container.add_child(order)
-	current_level.mini_game_played.append(order_res)
-	return order
-	#order.global_position = current_level.mini_game_container.global_position
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xle81"]
+bg_color = Color(0.05490196, 0.05490196, 0.05490196, 0.63529414)
 
-#func instantiate_scene(scene: PackedScene):
-	#scene_node = scene.instantiate()
-	#add_child(scene_node)
-#
-#func instantiate_omurice_minigame():
-	#instantiate_scene(minigameScene_omurice)
-"
+[sub_resource type="Gradient" id="Gradient_5bov3"]
+offsets = PackedFloat32Array(0, 0.7234042, 1)
+colors = PackedColorArray(1, 0.28298548, 0.53240716, 1, 0.9999998, 0.8541821, 0.29846147, 1, 1, 0.9640803, 0.9166973, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xle81"]
+gradient = SubResource("Gradient_5bov3")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8qe6"]
+shader = ExtResource("14_xle81")
+shader_parameter/ScaleMult = Vector2(1, 1)
+shader_parameter/AuraProgres = 0.5000000074506
+shader_parameter/TextureLaodMult = 8.0
+shader_parameter/Tilling = 26.0
+shader_parameter/MovementDirSpeed = Vector2(-0.6, 1)
+shader_parameter/MovementDirSpeed2 = Vector2(0.6, 1)
+shader_parameter/color_gradiant = SubResource("GradientTexture2D_xle81")
+shader_parameter/Noise_Seed = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0lwx"]
+texture = ExtResource("19_kbbok")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m0uwk"]
+streams_count = 4
+stream_0/stream = ExtResource("22_rpyod")
+stream_1/stream = ExtResource("23_mplvr")
+stream_2/stream = ExtResource("24_vggli")
+stream_2/weight = 0.8
+stream_3/stream = ExtResource("25_r0xgx")
+stream_3/weight = 1.5
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_urcnp"]
+playback_mode = 1
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("27_kbbok")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnsmo"]
 radius = 32.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m1efj"]
-vertices = PackedVector2Array(1112, 308, 1175, 268.02344, 1447.9609, 267.0078, 1445.0313, 684.03125, 1109, 205, 1175, 144, 70.96094, 144.99219, 160, 205, 67.03125, 693.96094, 161, 303)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(3, 8, 9, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(66, 140, 1180, 139, 1180, 263, 1453, 262, 1450, 689, 62, 699)])
+vertices = PackedVector2Array(1112, 308, 1175, 268.02344, 1447.9609, 267.0078, 1445.0313, 683.9922, 1109, 205, 1175, 144, 78.78906, 145.99219, 160, 205, 73.78906, 261.96875, 161, 303, -78.859375, 682, -68.11719, 262.96094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 6, 7, 9), PackedInt32Array(0, 3, 10, 9), PackedInt32Array(9, 10, 11, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(74, 141, 1180, 139, 1180, 263, 1453, 262, 1450, 689, -84, 687, -73, 258, 69, 257)])
 agent_radius = 5.0
 
-[node name="Level" type="Node" unique_id=633166089]
+[sub_resource type="Gradient" id="Gradient_psl12"]
+offsets = PackedFloat32Array(0, 0.27952754, 0.68503934)
+colors = PackedColorArray(0.95596343, 0.9559633, 0.95596343, 1, 0.9804089, 0.98040885, 0.9804089, 0.44488192, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ebs2"]
+gradient = SubResource("Gradient_psl12")
+width = 400
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_psl12"]
+gradient = SubResource("Gradient_psl12")
+width = 540
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_psl12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG/PointLight2D2:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.42]
+}
+
+[sub_resource type="Animation" id="Animation_2ebs2"]
+resource_name = "background"
+length = 10.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BG/PointLight2D2:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.0666666, 3.3, 3.55, 8.35, 8.5, 8.6, 8.75, 8.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.42, 1.42, 0.2, 1.42, 1.42, 0.1, 1.0, 0.1, 1.42]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oyb3p"]
+_data = {
+&"RESET": SubResource("Animation_psl12"),
+&"background": SubResource("Animation_2ebs2")
+}
+
+[node name="Level" type="Node" unique_id=1819073832]
 script = ExtResource("2_huasi")
-level_param = ExtResource("3_m1efj")
+level_param = ExtResource("2_oyb3p")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=306838911]
 layer = 99
@@ -69,12 +190,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_iacmt")
+theme = ExtResource("11_oyb3p")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -516.0
 offset_right = 264.0
-offset_bottom = 1032.0
+offset_bottom = 516.0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 20
@@ -113,9 +242,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -250.0
-offset_right = 250.0
-offset_bottom = 138.0
+offset_left = -260.0
+offset_top = 13.0
+offset_right = 260.0
+offset_bottom = 151.0
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0)
 mouse_filter = 2
@@ -124,10 +254,11 @@ theme_override_constants/margin_bottom = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer" unique_id=627021523]
 layout_mode = 2
+alignment = 1
 
 [node name="DayContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1790414617]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 6
 size_flags_vertical = 0
 alignment = 1
 
@@ -136,6 +267,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Day"
+label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="DayLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/DayContainer" unique_id=538932913]
 unique_name_in_owner = true
@@ -143,6 +275,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "1"
+label_settings = SubResource("LabelSettings_y0lwx")
 
 [node name="GoalContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=683685058]
 layout_mode = 2
@@ -153,18 +286,32 @@ alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=567597413]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 6
+alignment = 1
 
 [node name="Label" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=2088499103]
 layout_mode = 2
-text = "Goal : "
+theme_override_font_sizes/font_size = 24
+text = "GOAL:"
+label_settings = SubResource("LabelSettings_igw8g")
 
-[node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=787618044]
-unique_name_in_owner = true
+[node name="Control" type="Control" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=384938597]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+
+[node name="GoalLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer/Control" unique_id=787618044]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("1_iacmt")
+theme_override_font_sizes/font_size = 24
 text = "123"
+label_settings = SubResource("LabelSettings_rlvbq")
 
 [node name="IncomeLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=443870063]
 unique_name_in_owner = true
@@ -172,12 +319,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "333"
+label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="LevelDurationLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1216051790]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
 text = "02.00"
+label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="TimerProgress" type="TextureProgressBar" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=821193855]
 visible = false
@@ -209,6 +359,7 @@ texture = ExtResource("5_m1efj")
 
 [node name="Tooltip" type="PanelContainer" parent="UILayer/UI" unique_id=2072478291]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(500, 120)
 layout_mode = 0
 offset_left = 24.0
@@ -251,24 +402,330 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BGLayer" type="CanvasLayer" parent="." unique_id=1436563397]
-layer = -99
+[node name="SkillsList" type="PanelContainer" parent="UILayer/UI" unique_id=196697542]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -612.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
 
-[node name="BG" type="TextureRect" parent="BGLayer" unique_id=103873384]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/UI/SkillsList" unique_id=1572937197]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="UILayer/UI/SkillsList/MarginContainer" unique_id=1024383491]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+theme_override_constants/h_separation = 10
+columns = 3
+
+[node name="MaidSkill1" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1417973617 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("15_s8qe6")
+script = ExtResource("12_nt2eh")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown1")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive1")
+progress_bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill1" unique_id=146455612]
+visible = false
+layout_mode = 0
+offset_right = 182.0
+offset_bottom = 179.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xle81")
+max_value = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill1" unique_id=1029723032]
+texture_filter = 4
+material = SubResource("ShaderMaterial_s8qe6")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("15_s8qe6")
+
+[node name="MaidSkill2" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=1025104427 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("13_5cm5d")
+texture_hover = ExtResource("15_xle81")
+script = ExtResource("12_nt2eh")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown2")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive2")
+progress_bar = NodePath("ProgressBar")
+skill_index = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill2" unique_id=1394967288]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xle81")
+max_value = 1.0
+
+[node name="MaidSkill3" type="TextureButton" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer" unique_id=2088565340 node_paths=PackedStringArray("cooldown_timer", "skill_timer", "progress_bar")]
+layout_mode = 2
+action_mode = 0
+texture_normal = ExtResource("14_5bov3")
+texture_hover = ExtResource("17_s8qe6")
+script = ExtResource("12_nt2eh")
+cooldown_timer = NodePath("../../../../../../SkillTimers/SkillCooldown3")
+skill_timer = NodePath("../../../../../../SkillTimers/SkillActive3")
+progress_bar = NodePath("ProgressBar")
+skill_index = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/UI/SkillsList/MarginContainer/GridContainer/MaidSkill3" unique_id=1373086948]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 186.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xle81")
+max_value = 1.0
+
+[node name="Tutorial" type="Control" parent="UILayer" unique_id=1637316197]
+process_mode = 3
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("11_7ewk0")
+theme = ExtResource("11_oyb3p")
 
-[node name="CloseSign" type="TextureRect" parent="BGLayer" unique_id=16970312]
-unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Welcome" type="PanelContainer" parent="UILayer/Tutorial" unique_id=988631160]
+process_mode = 3
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
-texture = ExtResource("9_mai8y")
+theme_override_styles/panel = SubResource("StyleBoxTexture_y0lwx")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/Tutorial/Welcome" unique_id=68185488]
+layout_mode = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 260
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Tutorial/Welcome/MarginContainer" unique_id=196711329]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1312409347]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.54806167, 0.31733572, 0.95391315, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[u][wave]Welcome to Mecha Maid Café![/wave][/u]
+
+As the manager of our Mecha Maid Café, here are your mission :"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1568756614]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.54806167, 0.31733572, 0.95391315, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "
+> keep customers happy
+> assign the right maid to each table
+> Earn enough income before closing time
+
+"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1902952643]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.54806167, 0.31733572, 0.95391315, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Reach the Daily Revenue Goal
+to clear the day!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button" type="TextureButton" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1401946241]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+texture_normal = ExtResource("20_m0uwk")
+texture_hover = ExtResource("21_mffef")
+
+[node name="Label" type="Label" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer/Button" unique_id=1241940801]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -11.5
+offset_right = -1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UNDERSTOOD"
+label_settings = ExtResource("22_kbbok")
+horizontal_alignment = 1
+
+[node name="TutorialPanel" type="Control" parent="UILayer/Tutorial" unique_id=1336282069]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/Tutorial/TutorialPanel" unique_id=1289648687]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -829.0
+offset_right = 1474.0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("11_2ebs2")
+flip_h = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UILayer/Tutorial/TutorialPanel" unique_id=427348741]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -228.0
+offset_right = 320.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="TutorialLabel1" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=492738629]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = -8
+theme_override_constants/paragraph_spacing = 0
+theme_override_fonts/font = ExtResource("20_rpyod")
+theme_override_font_sizes/font_size = 28
+text = "Customers will line up at the entrancethroughout the day.
+
+Drag your customer to one of the tables!"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="TutorialLabel2" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1614249431]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = -8
+theme_override_fonts/font = ExtResource("20_rpyod")
+theme_override_font_sizes/font_size = 28
+text = "Very good !
+Now click on \"Maid Button\" to assign Mecha Maid
+
+Matching the customer's preferred maid personality will increases satisfaction and tips. "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="TutorialLabel3" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=659886315]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = -8
+theme_override_fonts/font = ExtResource("20_rpyod")
+theme_override_font_sizes/font_size = 28
+text = "Once a maid takes a customer's order, click the Order icon to begin preparing the meal.
+Each order has its own unique minigame!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+autowrap_trim_flags = 0
+clip_text = true
+
+[node name="TutorialLabel4" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=530182525]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = -8
+theme_override_fonts/font = ExtResource("20_rpyod")
+theme_override_font_sizes/font_size = 28
+text = "Time to cash out!
+Satisfied customers are ready to pay. 
+Click the Coin icon above the table, and the Cashier Mecha will head over to collect the bill."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+autowrap_trim_flags = 0
+clip_text = true
+
+[node name="TutorialLabel5" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1689902767]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = -8
+theme_override_fonts/font = ExtResource("20_rpyod")
+theme_override_font_sizes/font_size = 28
+text = "Wow, you're a fast learner, are'nt you..
+I think you are ready now,
+Go ahead and finish the level!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 0
+clip_text = true
 
 [node name="CustomerTimer" type="Timer" parent="." unique_id=131248599]
 unique_name_in_owner = true
@@ -284,15 +741,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(1100, 360)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 551.0
-offset_top = 528.0
-offset_right = 1810.0
-offset_bottom = 888.0
+offset_left = 446.0
+offset_top = 552.0
+offset_right = 1705.0
+offset_bottom = 912.0
 mouse_filter = 2
-
-[node name="GameManager" type="Node2D" parent="." unique_id=1346760032]
-unique_name_in_owner = true
-script = SubResource("GDScript_ioaeq")
 
 [node name="MiniGameContainer" type="Control" parent="." unique_id=1923355782]
 unique_name_in_owner = true
@@ -316,8 +769,43 @@ autoplay = true
 bus = &"Music"
 parameters/looping = true
 
+[node name="Hello" type="AudioStreamPlayer" parent="Audio" unique_id=1513686126]
+unique_name_in_owner = true
+stream = ExtResource("21_urcnp")
+bus = &"Effect"
+
+[node name="Giggle" type="AudioStreamPlayer" parent="Audio" unique_id=1858238281]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_m0uwk")
+bus = &"Effect"
+
+[node name="Goodbye" type="AudioStreamPlayer" parent="Audio" unique_id=1975702181]
+unique_name_in_owner = true
+stream = ExtResource("26_nrumr")
+bus = &"Effect"
+
+[node name="Typing" type="AudioStreamPlayer" parent="Audio" unique_id=1103751066]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_urcnp")
+bus = &"Effect"
+
+[node name="Hover" type="AudioStreamPlayer" parent="Audio" unique_id=320319008]
+unique_name_in_owner = true
+stream = ExtResource("33_m0uwk")
+bus = &"Effect"
+
+[node name="Select" type="AudioStreamPlayer" parent="Audio" unique_id=276856775]
+unique_name_in_owner = true
+stream = ExtResource("34_mffef")
+bus = &"Effect"
+
+[node name="Appear" type="AudioStreamPlayer" parent="Audio" unique_id=980575871]
+unique_name_in_owner = true
+stream = ExtResource("35_mffef")
+bus = &"Effect"
+
 [node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
-position = Vector2(1407, 390)
+position = Vector2(1471, 365)
 
 [node name="Cashier" type="Area2D" parent="." unique_id=1806836965]
 unique_name_in_owner = true
@@ -334,11 +822,11 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="YSort" unique_id=296566991]
-position = Vector2(1036, 458)
+position = Vector2(955, 440)
 texture = ExtResource("15_psl12")
 
 [node name="Maid" parent="YSort" unique_id=57393834 instance=ExtResource("15_lhp3t")]
-position = Vector2(1448, 375)
+position = Vector2(1424, 407)
 
 [node name="NavRegion" type="NavigationRegion2D" parent="YSort" unique_id=1761120032]
 unique_name_in_owner = true
@@ -348,7 +836,11 @@ navigation_polygon = SubResource("NavigationPolygon_m1efj")
 
 [node name="TableContainer" type="Node2D" parent="YSort/NavRegion" unique_id=548928484]
 unique_name_in_owner = true
+y_sort_enabled = true
 position = Vector2(-402, -215)
+
+[node name="MaidContainer" type="Node2D" parent="YSort/NavRegion/TableContainer" unique_id=626099701]
+unique_name_in_owner = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="YSort/NavRegion" unique_id=1846329806]
 vertices = PackedVector2Array(160, 205, 1109, 205, 1112, 308, 161, 303)
@@ -362,5 +854,72 @@ script = ExtResource("10_76v2p")
 
 [node name="MaidSpawnPoint" type="Marker2D" parent="YSort" unique_id=1490220203]
 unique_name_in_owner = true
-z_index = 1
 position = Vector2(369, 454)
+
+[node name="BG" type="Sprite2D" parent="." unique_id=574094526]
+z_index = -99
+texture = ExtResource("11_7ewk0")
+centered = false
+
+[node name="PointLight2D" type="PointLight2D" parent="BG" unique_id=701011735]
+position = Vector2(557, 186)
+color = Color(0.8609489, 0.38739008, 0.30315542, 1)
+energy = 1.42
+texture = SubResource("GradientTexture2D_2ebs2")
+
+[node name="PointLight2D2" type="PointLight2D" parent="BG" unique_id=288894966]
+position = Vector2(953, 207)
+color = Color(0.8609489, 0.38739008, 0.30315542, 1)
+energy = 1.42
+texture = SubResource("GradientTexture2D_psl12")
+
+[node name="CloseSign" type="TextureRect" parent="BG" unique_id=16970312]
+unique_name_in_owner = true
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("9_mai8y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1195572387]
+libraries/ = SubResource("AnimationLibrary_oyb3p")
+autoplay = &"background"
+
+[node name="Blind" type="ColorRect" parent="." unique_id=1966988896]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.47058824)
+metadata/_edit_lock_ = true
+
+[node name="SkillTimers" type="Node" parent="." unique_id=1778352167]
+
+[node name="SkillCooldown1" type="Timer" parent="SkillTimers" unique_id=664309757]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive1" type="Timer" parent="SkillTimers" unique_id=596040174]
+wait_time = 5.0
+one_shot = true
+
+[node name="SkillCooldown2" type="Timer" parent="SkillTimers" unique_id=1682401876]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive2" type="Timer" parent="SkillTimers" unique_id=2080844408]
+wait_time = 5.0
+one_shot = true
+
+[node name="SkillCooldown3" type="Timer" parent="SkillTimers" unique_id=850938062]
+wait_time = 20.0
+one_shot = true
+
+[node name="SkillActive3" type="Timer" parent="SkillTimers" unique_id=504477139]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="mouse_entered" from="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

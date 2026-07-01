@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b3evsf67w634m"]
+
+[ext_resource type="SpriteFrames" uid="uid://c18ny6rqyx556" path="res://Resources/SpriteFrames/2_customer.tres" id="1_wccjm"]
+
+[node name="Customer" type="AnimatedSprite2D" unique_id=455181442]
+sprite_frames = ExtResource("1_wccjm")
+animation = &"sitting"

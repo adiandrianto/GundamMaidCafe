@@ -4,24 +4,106 @@
 [ext_resource type="PackedScene" uid="uid://bgackixkfq4k2" path="res://Scenes/MiniGame/Minigame O/veg.tscn" id="1_dhqqs"]
 [ext_resource type="PackedScene" uid="uid://b63r404f2qos3" path="res://Scenes/MiniGame/Minigame O/score_1.tscn" id="1_j8jj4"]
 [ext_resource type="Script" uid="uid://c8mmbo02v2oku" path="res://Scenes/MiniGame/Minigame O/object.gd" id="1_n67nu"]
+[ext_resource type="Texture2D" uid="uid://m5i7472gj65r" path="res://Scenes/MiniGame/Minigame O/Sprite/BA6EC3B8-3BFC-44DA-9C8C-08144F36E0FA.png" id="2_8xff7"]
 [ext_resource type="PackedScene" uid="uid://s63csenwisgd" path="res://Scenes/MiniGame/Minigame O/score_2.tscn" id="3_4ybrk"]
 [ext_resource type="PackedScene" uid="uid://k3gqnyg76dbe" path="res://Scenes/MiniGame/Minigame O/Sosis.tscn" id="6_4ybrk"]
 [ext_resource type="AudioStream" uid="uid://qjllbwf4bxol" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="9_h1uie"]
 [ext_resource type="AudioStream" uid="uid://b6is1lspd2cre" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Swipe - 1.ogg" id="10_8xff7"]
 [ext_resource type="AudioStream" uid="uid://cdyfklpn1qnp4" path="res://Assets/Audio/SFX/Positive_Pop_05.wav" id="11_fryds"]
 [ext_resource type="AudioStream" uid="uid://c8vf50df4cxoi" path="res://Assets/Audio/SFX/Negative_Pop_06.wav" id="12_2dxhl"]
+[ext_resource type="FontFile" uid="uid://bc2l58j7isag7" path="res://Assets/BitcountInk-VariableFont_CRSV,ELSH,ELXP,SZP1,SZP2,XPN1,XPN2,YPN1,YPN2,slnt,wght.ttf" id="13_6vpwh"]
+[ext_resource type="AudioStream" uid="uid://d1o8664poue3l" path="res://Assets/Audio/SFX/Negative_Pop_04.wav" id="13_wsod1"]
+[ext_resource type="FontFile" uid="uid://cgoll8fsf06e0" path="res://Assets/static/Orbitron-Bold.ttf" id="14_wsod1"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fryds"]
+[sub_resource type="GDScript" id="GDScript_j8jj4"]
+resource_name = "scoring"
+script/source = "extends Node2D
+
+@onready var objects: Node = $\"../Objects\"
+@onready var minigame_o: Node = $\"..\"
+@onready var score_1: Node2D = $Score1
+@onready var score_2: Node2D = $Score2
+@onready var score_3: Node2D = $Score3
+@onready var tomat: Node2D = $\"../Objects/Tomat\"
+@onready var sosis: Node2D = $\"../Objects/Sosis\"
+@onready var sosis_2: Node2D = $\"../Objects/Sosis2\"
+
+var score1
+var score2
+var score3
+var total_score
+var total_score_text : String
+
+func _ready() -> void:
+	#%Objects.all_object_moved.connect(_finished)
+	score1 = get_node(\"Score1\")
+	print(score1)
+	score2 = get_node(\"Score2\")
+	print(score2)
+	score3 = get_node(\"Score3\")
+	print(score3)
+
+func _process(delta):
+	score_z_index_reset()
+
+func get_score() -> int:
+	if score1.score >= 100:
+		score1.score = 100
+	if score2.score >= 100:
+		score2.score = 100
+	if score3.score >= 100:
+		score3.score = 100
+
+	print(\"Score1 = \", score1.score)
+	print(\"Score2 = \", score2.score)
+	print(\"Score3 = \", score3.score)
+	total_score = (score1.score + score2.score + score3.score)/3
+	print(\"Total score = \", total_score)
+
+	return total_score
+
+#func _finished() -> void:
+	##get_tree().change_scene_to_file(\"res://Scenes/score_section.tscn\")
+	#objects.z_index = 0
+	#minigame_o.z_index = 0
+	#self.z_index = 0
+	#object_z_index_reset()
+	#get_score()
+	#
+	#get_owner().call(\"scoring\")
+
+func score_z_index_reset():
+	score_1.z_index = 0
+	score_2.z_index = 0
+	score_3.z_index = 0
+
+func object_z_index_reset():
+	tomat.z_index = 0
+	sosis.z_index = 0
+	sosis_2.z_index = 0
+"
 
 [sub_resource type="Animation" id="Animation_2dxhl"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:scale")
+tracks/0/path = NodePath("Panel:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -57,6 +139,18 @@ tracks/1/keys = {
 "args": [0.0],
 "method": &"play"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6vpwh"]
@@ -103,91 +197,72 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Score:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Objects:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cybad"]
+resource_name = "shake"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.12217304763960309, -0.08726646259971647, 0.05235987755982989, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cybad"]
 _data = {
 &"RESET": SubResource("Animation_2dxhl"),
 &"appear": SubResource("Animation_wsod1"),
-&"disappear": SubResource("Animation_6vpwh")
+&"disappear": SubResource("Animation_6vpwh"),
+&"shake": SubResource("Animation_cybad")
 }
 
-[sub_resource type="GDScript" id="GDScript_j8jj4"]
-resource_name = "scoring"
-script/source = "extends Node2D
-
-@onready var objects: Node2D = $\"../Objects\"
-@onready var minigame_o: Control = $\"..\"
-@onready var score_1: Node2D = $Score1
-@onready var score_2: Node2D = $Score2
-@onready var score_3: Node2D = $Score3
-@onready var tomat: Node2D = $\"../Objects/Tomat\"
-@onready var sosis: Node2D = $\"../Objects/Sosis\"
-@onready var sosis_2: Node2D = $\"../Objects/Sosis2\"
-
-var score1
-var score2
-var score3
-var total_score
-var total_score_text : String
-
-func _ready() -> void:
-	score1 = get_node(\"Score1\")
-	print(score1)
-	score2 = get_node(\"Score2\")
-	print(score2)
-	score3 = get_node(\"Score3\")
-	print(score3)
-
-func _process(delta):
-	score_z_index_reset()
-
-func get_score() -> int:
-	if score1.score >= 100:
-		score1.score = 100
-	if score2.score >= 100:
-		score2.score = 100
-	if score3.score >= 100:
-		score3.score = 100
-
-	print(\"Score1 = \", score1.score)
-	print(\"Score2 = \", score2.score)
-	print(\"Score3 = \", score3.score)
-	total_score = (score1.score + score2.score + score3.score)/3
-	print(\"Total score = \", total_score)
-
-	return total_score
-
-func _on_button_pressed() -> void:
-	objects.z_index = 0
-	minigame_o.z_index = 0
-	self.z_index = 0
-	object_z_index_reset()
-	get_score()
-	
-	get_owner().call(\"scoring\")
-
-func score_z_index_reset():
-	score_1.z_index = 0
-	score_2.z_index = 0
-	score_3.z_index = 0
-
-func object_z_index_reset():
-	tomat.z_index = 0
-	sosis.z_index = 0
-	sosis_2.z_index = 0
-"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsod1"]
+size = Vector2(300, 600)
 
 [node name="Minigame_O" type="Control" unique_id=1346840594]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+scale = Vector2(1e-05, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_3u6p0")
 
-[node name="Panel" type="PanelContainer" parent="." unique_id=1215786490]
+[node name="Panel" type="TextureRect" parent="." unique_id=483321046]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -196,10 +271,62 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_fryds")
+texture = ExtResource("2_8xff7")
+
+[node name="ScoreLabel" type="Label" parent="Panel" unique_id=677427606]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 896.0
+offset_top = 154.0
+offset_right = 1165.0
+offset_bottom = 232.0
+theme_override_fonts/font = ExtResource("13_6vpwh")
+theme_override_font_sizes/font_size = 64
+text = "PERFECT"
 
 [node name="Tutorial" type="Label" parent="Panel" unique_id=161906960]
-layout_mode = 2
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 161.0
+offset_right = 1924.0
+offset_bottom = 202.0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("14_wsod1")
+theme_override_font_sizes/font_size = 32
+text = "Drag the tomato and sausages to the plate!"
+horizontal_alignment = 1
+
+[node name="Score" type="Node2D" parent="." unique_id=2012455061]
+unique_name_in_owner = true
+position = Vector2(960, 540)
+script = SubResource("GDScript_j8jj4")
+
+[node name="Score1" parent="Score" unique_id=1115083666 instance=ExtResource("1_j8jj4")]
+z_as_relative = true
+position = Vector2(453, -111)
+
+[node name="Score2" parent="Score" unique_id=1748698441 instance=ExtResource("3_4ybrk")]
+z_as_relative = true
+position = Vector2(77, 27)
+
+[node name="Score3" parent="Score" unique_id=1871193299 instance=ExtResource("3_4ybrk")]
+z_as_relative = true
+position = Vector2(171, 70)
+
+[node name="Objects" type="Node2D" parent="." unique_id=593706817]
+unique_name_in_owner = true
+position = Vector2(960, 540)
+script = ExtResource("1_n67nu")
+
+[node name="Tomat" parent="Objects" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
+position = Vector2(-385, -195)
+
+[node name="Sosis" parent="Objects" unique_id=593931390 instance=ExtResource("6_4ybrk")]
+position = Vector2(-386, 10)
+
+[node name="Sosis2" parent="Objects" unique_id=1234232517 instance=ExtResource("6_4ybrk")]
+position = Vector2(-388, 196)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=614103007]
 libraries/ = SubResource("AnimationLibrary_cybad")
@@ -217,33 +344,23 @@ bus = &"Effect"
 stream = ExtResource("11_fryds")
 bus = &"Effect"
 
+[node name="Good" type="AudioStreamPlayer" parent="." unique_id=1214923831]
+stream = ExtResource("13_wsod1")
+bus = &"Effect"
+
 [node name="Bad" type="AudioStreamPlayer" parent="." unique_id=397995528]
 stream = ExtResource("12_2dxhl")
 bus = &"Effect"
 
-[node name="Score" type="Node2D" parent="." unique_id=2012455061]
-script = SubResource("GDScript_j8jj4")
+[node name="ObjectDetection" type="Area2D" parent="." unique_id=713151269]
+unique_name_in_owner = true
+process_mode = 3
+position = Vector2(588, 756)
+collision_layer = 0
+collision_mask = 17
+collision_priority = 4.045
+input_pickable = false
 
-[node name="Score1" parent="Score" unique_id=1115083666 instance=ExtResource("1_j8jj4")]
-z_as_relative = true
-position = Vector2(1418, 423)
-
-[node name="Score2" parent="Score" unique_id=1748698441 instance=ExtResource("3_4ybrk")]
-z_as_relative = true
-position = Vector2(1042, 561)
-
-[node name="Score3" parent="Score" unique_id=1871193299 instance=ExtResource("3_4ybrk")]
-z_as_relative = true
-position = Vector2(1115, 600)
-
-[node name="Objects" type="Node2D" parent="." unique_id=734038055]
-script = ExtResource("1_n67nu")
-
-[node name="Tomat" parent="Objects" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
-position = Vector2(563, 335)
-
-[node name="Sosis" parent="Objects" unique_id=593931390 instance=ExtResource("6_4ybrk")]
-position = Vector2(562, 540)
-
-[node name="Sosis2" parent="Objects" unique_id=1234232517 instance=ExtResource("6_4ybrk")]
-position = Vector2(560, 726)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDetection" unique_id=718748032]
+position = Vector2(-17, -229)
+shape = SubResource("RectangleShape2D_wsod1")

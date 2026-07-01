@@ -1,9 +1,13 @@
 extends Area2D
 class_name Table
 
-const CUSTOMER_1_SITTING = preload("uid://j7qi843et0h6")
-const CUSTOMER_2_SITTING = preload("uid://whsyp345tyiu")
-const COIN = preload("uid://bo30edhdjf15p")
+const CUSTOMER_ANIMATED_1 = preload("uid://ssw78jxehmyu")
+const CUSTOMER_ANIMATED_2 = preload("uid://b3evsf67w634m")
+
+const COIN_SPRITE = preload("uid://crfgi778ek4ed")
+const HEART_SPRITE = preload("uid://daaxcuywsh6y6")
+
+#const COIN = preload("uid://bo30edhdjf15p")
 
 @onready var maid_spot: Marker2D = %MaidSpot
 @onready var customer_spot: Marker2D = %CustomerSpot
@@ -16,7 +20,7 @@ const COIN = preload("uid://bo30edhdjf15p")
 @onready var payment_icon: TextureButton = %PaymentIcon
 @onready var eating_timer: Timer = $EatingTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var coin_sprite: Sprite2D = $CoinSprite
+@onready var pop_sprite: Sprite2D = $PopSprite
 
 var assigned_customer: Customer
 var assigned_maid: Maid
@@ -24,6 +28,7 @@ var assigned_maid: Maid
 var multiplier: float = 1
 
 var bill: int = 0
+var multiplier: float = 1
 
 #func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	#return data is Maid
@@ -37,15 +42,18 @@ func _ready() -> void:
 	payment_icon.hide()
 	coin_sprite.hide()
 	add_to_group("tables")
+	pop_sprite.hide()
 
+	if sprite.material:
+		sprite.material = sprite.material.duplicate()
+		
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	
 func assign_customer(customer: Customer):
 	assigned_customer = customer
 	customer.reparent(self, true)
-	if customer.total_person == 1: # differentiate the texture based on jumlah orang
-		customer.sprite.texture = CUSTOMER_1_SITTING
-	else:
-		customer.sprite.texture = CUSTOMER_2_SITTING
-
+	customer.animated_sprite.play("sitting")
 	customer.global_position = customer_spot.global_position
 	customer.input_pickable = false
 	$CustomerSit.play()
@@ -66,9 +74,10 @@ func order_from_menu():
 	
 	await get_tree().create_timer(0.8).timeout
 	_show_order_icon()
+	if GameManager.current_level.level_param.is_tutorial:
+		GameManager.current_level.show_tutorial_text()
 
 func _show_order_icon():
-	print(assigned_customer.order)
 	order_icon.texture_normal = assigned_customer.order.icon
 	animation_player.play("order_appear")
 	order_icon.pressed.connect(_on_order_icon_pressed, CONNECT_ONE_SHOT)
@@ -85,34 +94,65 @@ func customer_leave():
 	#get_tree().add_child(coin)
 	
 	#add table bill to income and reset to 0
-	if assigned_customer.customerPreference != assigned_maid.personality and assigned_customer.customerPreference != GlobalConstants.Personality.ULTIMATE:
-		multiplier = 0.5
-	elif assigned_customer.customerPreference == GlobalConstants.Personality.ULTIMATE:
-		multiplier = 1
+	if assigned_customer.customer_preference == assigned_maid.maid_resource.personality || GameManager.ignore_personality:
+		multiplier = 1.3
 	else:
 		multiplier = 1
-	GameManager.current_level.add_income(bill * multiplier) 
+
+	GameManager.current_level.add_income(bill * multiplier)
 	bill = 0
 	#animasi bill
-	animation_player.play("payment_done")
+	
+	pop_sprite.texture = COIN_SPRITE
+	animation_player.play("sprite_pop")
 	
 	assigned_customer.leave()
+	$Pay.play()
 	
 	if assigned_maid:
 		assigned_maid.back_to_station()
+		
+	if GameManager.current_level.level_param.is_tutorial:
+		GameManager.current_level.show_tutorial_text()
 
+func show_matched_preference(value: bool):
+	if value:
+		%Satisfied.play()
+	else:
+		%Dissatisfied.play()
+		
 func _on_mini_game_finished(score):
 	bill += score
 	eating_timer.start()
+	assigned_customer.animated_sprite.play("eating")
 
 func _request_bill():
+	assigned_customer.animated_sprite.play("sitting")
 	animation_player.play("payment_appear")
 	payment_icon.pressed.connect(_on_payment_icon_pressed, CONNECT_ONE_SHOT)
+	if GameManager.current_level.level_param.is_tutorial:
+		GameManager.current_level.show_tutorial_text()
 
 func _on_payment_icon_pressed():
 	var cashier_maid: CashierMaid = get_tree().get_first_node_in_group("cashier_maid")
 	cashier_maid.add_target(self)
 	animation_player.play("payment_disappear")
+
+func _set_outline(enable: bool):
+	var mat := sprite.material as ShaderMaterial
+	if mat && enable:
+		mat.set_shader_parameter("width", 3.0)
+	else:
+		mat.set_shader_parameter("width", 0.0)
+		
+func _on_mouse_entered():
+	if GameManager.dragged_customer == null || assigned_customer:
+		return
+
+	_set_outline(true)
+
+func _on_mouse_exited():
+	_set_outline(false)
 
 #func assign_maid(maid: Maid):
 	#print("Assigned maid to table")

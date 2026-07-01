@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cld1yd6me2d0x"]
+
+[ext_resource type="FontFile" uid="uid://cfe5xbkvov220" path="res://Assets/static/Orbitron-ExtraBold.ttf" id="1_2n6q4"]
+
+[resource]
+line_spacing = 4.0
+font = ExtResource("1_2n6q4")
+font_size = 32
+outline_size = 8
+outline_color = Color(0.6358766, 0.00031111718, 0.6390996, 1)

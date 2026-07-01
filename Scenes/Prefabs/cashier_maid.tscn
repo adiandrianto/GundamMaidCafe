@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://6nykgar5bwbb"]
 
 [ext_resource type="Script" uid="uid://cq8h1h7ysx262" path="res://Scripts/cashier_maid.gd" id="1_t7mtf"]
-[ext_resource type="Texture2D" uid="uid://db1bmf0r4chki" path="res://Assets/Visual/Mecha/mechaAnim-Sheet.png" id="2_cv0qd"]
+[ext_resource type="Texture2D" uid="uid://brjg0yidq60eb" path="res://Assets/Visual/Mecha/cashier_sheet.png" id="2_t7mtf"]
 [ext_resource type="AudioStream" uid="uid://cfu28by1k0ej2" path="res://Assets/Audio/SFX/Footsteps/Linoleum_Mono_01.wav" id="3_qmvqt"]
 [ext_resource type="AudioStream" uid="uid://c3tqgkxhvh0bg" path="res://Assets/Audio/SFX/Footsteps/Linoleum_Mono_02.wav" id="4_rtbrb"]
 [ext_resource type="AudioStream" uid="uid://df1d3hrobjcjs" path="res://Assets/Audio/SFX/Footsteps/Linoleum_Mono_03.wav" id="5_4g3ai"]
@@ -428,7 +428,7 @@ debug_path_custom_color = Color(0.77400655, 0.6942356, 1.92523e-06, 1)
 libraries/ = SubResource("AnimationLibrary_vplwr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2065030654]
-texture = ExtResource("2_cv0qd")
+texture = ExtResource("2_t7mtf")
 hframes = 4
 vframes = 4
 

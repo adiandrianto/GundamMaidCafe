@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://ck30wxkjgcwfb"]
 
-[ext_resource type="PackedScene" uid="uid://begwrjh6kagwe" path="res://Main menu/options.tscn" id="1_bh62r"]
-[ext_resource type="Texture2D" uid="uid://1mkmabggebtt" path="res://Main menu/Asset_main_menu/bg_1.png" id="2_ape7v"]
-[ext_resource type="Texture2D" uid="uid://c53eltt0flveg" path="res://Main menu/Asset_main_menu/b_play.png" id="2_is1af"]
-[ext_resource type="Texture2D" uid="uid://d0u50f3vb03cg" path="res://Main menu/Asset_main_menu/bg_4.png" id="2_skept"]
-[ext_resource type="Texture2D" uid="uid://dhaqo1mqc27eh" path="res://Main menu/Asset_main_menu/bg_2.png" id="3_5xekc"]
-[ext_resource type="Texture2D" uid="uid://bxbti73u5g0ag" path="res://Main menu/Asset_main_menu/B_option.png" id="3_skept"]
-[ext_resource type="Texture2D" uid="uid://dyugx4fdjvv3c" path="res://Main menu/Asset_main_menu/bg_3.png" id="4_f5at7"]
-[ext_resource type="Texture2D" uid="uid://bg332go18aj7g" path="res://Main menu/Asset_main_menu/b_quit.png" id="4_jh8tq"]
-[ext_resource type="Texture2D" uid="uid://ckc47aq2n7uwn" path="res://Main menu/Asset_main_menu/bg_logo.png" id="5_luq4s"]
+[ext_resource type="PackedScene" uid="uid://begwrjh6kagwe" path="res://Scenes/Main menu/options.tscn" id="1_bh62r"]
+[ext_resource type="Texture2D" uid="uid://1mkmabggebtt" path="res://Scenes/Main menu/Asset_main_menu/bg_1.png" id="2_ape7v"]
+[ext_resource type="Texture2D" uid="uid://c53eltt0flveg" path="res://Scenes/Main menu/Asset_main_menu/b_play.png" id="2_is1af"]
+[ext_resource type="Texture2D" uid="uid://d0u50f3vb03cg" path="res://Scenes/Main menu/Asset_main_menu/bg_4.png" id="2_skept"]
+[ext_resource type="Texture2D" uid="uid://dhaqo1mqc27eh" path="res://Scenes/Main menu/Asset_main_menu/bg_2.png" id="3_5xekc"]
+[ext_resource type="Texture2D" uid="uid://bxbti73u5g0ag" path="res://Scenes/Main menu/Asset_main_menu/B_option.png" id="3_skept"]
+[ext_resource type="Texture2D" uid="uid://dyugx4fdjvv3c" path="res://Scenes/Main menu/Asset_main_menu/bg_3.png" id="4_f5at7"]
+[ext_resource type="Texture2D" uid="uid://bg332go18aj7g" path="res://Scenes/Main menu/Asset_main_menu/b_quit.png" id="4_jh8tq"]
+[ext_resource type="Texture2D" uid="uid://ckc47aq2n7uwn" path="res://Scenes/Main menu/Asset_main_menu/bg_logo.png" id="5_luq4s"]
+[ext_resource type="AudioStream" uid="uid://b4fqf0io5je27" path="res://Assets/Audio/memoryarcade-burning-skyline-480100.ogg" id="10_d7bdm"]
+[ext_resource type="AudioStream" uid="uid://we1cls73gejy" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="11_pqibc"]
+[ext_resource type="AudioStream" uid="uid://ddwt3wdj4v7qa" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Cursor - 4.ogg" id="12_4x183"]
+[ext_resource type="AudioStream" uid="uid://c0yfk3xykh8ri" path="res://Assets/Audio/SFX/start_play.ogg" id="13_pqibc"]
 
 [sub_resource type="GDScript" id="GDScript_5yeqd"]
 resource_name = "Main_menu"
@@ -27,6 +31,7 @@ var tween
 var delay
 
 func _ready() -> void:
+	_deactivate_buttons()
 	menu_btn.modulate = Color(0, 0, 0, 0)
 	background.modulate = Color(0, 0, 0, 1)
 	bg_title.modulate = Color(1, 1, 1, 0)
@@ -35,15 +40,23 @@ func _ready() -> void:
 	tween_background()
 	options.visible = false
 
-
-func _process(delta: float) -> void:
-	pass
-
+func _activate_buttons():
+	play.disabled = false
+	option.disabled = false
+	quit.disabled = false
+	play.mouse_entered.connect(_on_play_mouse_entered)
+	option.mouse_entered.connect(_on_option_mouse_entered)
+	quit.mouse_entered.connect(_on_quit_mouse_entered)
+	
+func _deactivate_buttons():
+	play.disabled = true
+	option.disabled = true
+	quit.disabled = true
 
 func menu_start():
 	tween = get_tree().create_tween()
 	tween.tween_property(background, \"modulate\", Color(1, 1, 1, 1), 4)
-	tween.parallel().tween_property(background, \"position\", Vector2(-250, 0), 6).set_delay(0.1).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(background, \"position\", Vector2(-250, 0), 4.5).set_delay(0.1).set_trans(Tween.TRANS_SINE)
 	
 	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0.5), 0.1)
 	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0), 0.1)
@@ -52,6 +65,8 @@ func menu_start():
 	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 1), 0.1)
 	print(\"tween title op\")
 	tween.tween_property(menu_btn, \"modulate\", Color(1, 1, 1, 1), 1).set_delay(0.25)
+	await tween.finished
+	_activate_buttons()
 
 func tween_title():
 	tween = get_tree().create_tween()
@@ -71,12 +86,14 @@ func tween_background():
 func play_trans():
 	tween = get_tree().create_tween()
 	tween.tween_property(menu_btn, \"modulate\", Color(1, 1, 1, 0), 0.5)
-	tween.parallel().tween_property(background, \"position\", Vector2(-150, 0), 3)
-	tween.tween_property(background, \"scale\", Vector2(1.25, 1.25), 2).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(background, \"position\", Vector2(-150, 0), 2)
+	tween.tween_property(background, \"scale\", Vector2(1.25, 1.25), 1.5).set_trans(Tween.TRANS_SINE)
 	tween.parallel().tween_property(background, \"modulate\", Color(0, 0, 0, 1), 2)
 	#tween.parallel().tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0), 1).set_delay(8)
 
 func _on_play_pressed() -> void:
+	%StartPlay.play()
+	$BGM.stop()
 	background.pivot_offset_ratio = Vector2(0.5, 0.5)
 	play_trans()
 	await get_tree().create_timer(5.5).timeout
@@ -84,30 +101,31 @@ func _on_play_pressed() -> void:
 
 func _on_option_pressed() -> void:
 	options.visible = true
+	%Select.play()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
-
 func _on_play_mouse_entered() -> void:
 	play.pivot_offset_ratio = Vector2(0.5, 0.5)
 	play.scale = Vector2(1.1, 1.1)
-
+	%Hover.play()
+	
 func _on_play_mouse_exited() -> void:
 	play.scale = Vector2(1, 1)
-
 
 func _on_option_mouse_entered() -> void:
 	option.pivot_offset_ratio = Vector2(0.5, 0.5)
 	option.scale = Vector2(1.1, 1.1)
+	%Hover.play()
 
 func _on_option_mouse_exited() -> void:
 	option.scale = Vector2(1, 1)
 
-
 func _on_quit_mouse_entered() -> void:
 	quit.pivot_offset_ratio = Vector2(0.5, 0.5)
 	quit.scale = Vector2(1.1, 1.1)
+	%Hover.play()
 
 func _on_quit_mouse_exited() -> void:
 	quit.scale = Vector2(1, 1)
@@ -245,12 +263,27 @@ texture_normal = ExtResource("4_jh8tq")
 visible = false
 layout_mode = 1
 
-[connection signal="mouse_entered" from="Menu_btn/Play" to="." method="_on_play_mouse_entered"]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=225485148]
+stream = ExtResource("10_d7bdm")
+autoplay = true
+bus = &"Music"
+
+[node name="Select" type="AudioStreamPlayer" parent="." unique_id=1132987846]
+unique_name_in_owner = true
+stream = ExtResource("11_pqibc")
+volume_db = -5.0
+
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=372550444]
+unique_name_in_owner = true
+stream = ExtResource("12_4x183")
+
+[node name="StartPlay" type="AudioStreamPlayer" parent="." unique_id=1269786234]
+unique_name_in_owner = true
+stream = ExtResource("13_pqibc")
+
 [connection signal="mouse_exited" from="Menu_btn/Play" to="." method="_on_play_mouse_exited"]
 [connection signal="pressed" from="Menu_btn/Play" to="." method="_on_play_pressed"]
-[connection signal="mouse_entered" from="Menu_btn/Option" to="." method="_on_option_mouse_entered"]
 [connection signal="mouse_exited" from="Menu_btn/Option" to="." method="_on_option_mouse_exited"]
 [connection signal="pressed" from="Menu_btn/Option" to="." method="_on_option_pressed"]
-[connection signal="mouse_entered" from="Menu_btn/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_exited" from="Menu_btn/Quit" to="." method="_on_quit_mouse_exited"]
 [connection signal="pressed" from="Menu_btn/Quit" to="." method="_on_quit_pressed"]
