@@ -1,22 +1,56 @@
 [gd_scene format=3 uid="uid://begwrjh6kagwe"]
 
+[ext_resource type="Texture2D" uid="uid://d3y0a3cjnf02y" path="res://Main menu/Asset_main_menu/option_text.png" id="1_8wpix"]
+[ext_resource type="Texture2D" uid="uid://bg332go18aj7g" path="res://Main menu/Asset_main_menu/b_quit.png" id="2_2v6a3"]
+[ext_resource type="Texture2D" uid="uid://kwqo005vw265" path="res://Main menu/Asset_main_menu/board.png" id="2_3s7ss"]
+
 [sub_resource type="GDScript" id="GDScript_2v6a3"]
 resource_name = "Options"
-script/source = "extends Panel
+script/source = "extends TextureRect
 
+@onready var bg_title: TextureRect = $\"../Background/Bg_title\"
+@onready var menu_btn: VBoxContainer = $\"../Menu_btn\"
+@onready var close: TextureButton = $Close
+
+var tween
 
 func _on_close_pressed() -> void:
+	tween = get_tree().create_tween()
 	$\".\".visible = false
-"
+	bg_title.modulate = Color(1, 1, 1, 0)
+	bg_title.visible = true
+	menu_btn.visible = true
+	
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0.75), 0.1)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 0), 0.1)
+	tween.tween_property(bg_title, \"modulate\", Color(1, 1, 1, 1), 0.1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5r8cy"]
-bg_color = Color(0.92535293, 0.9253528, 0.9253529, 1)
+
+func _on_close_mouse_entered() -> void:
+	close.pivot_offset_ratio = Vector2(0.5, 0.5)
+	close.scale = Vector2(1.1, 1.1)
+
+func _on_close_mouse_exited() -> void:
+	close.scale = Vector2(1, 1)
+"
 
 [sub_resource type="GDScript" id="GDScript_5r8cy"]
 resource_name = "master_volume"
 script/source = "extends HSlider
 
 @export var audio_bus_name: String
+@onready var mv_1: TextureRect = $HBoxContainer/mv1
+@onready var mv_2: TextureRect = $HBoxContainer/mv2
+@onready var mv_3: TextureRect = $HBoxContainer/mv3
+@onready var mv_4: TextureRect = $HBoxContainer/mv4
+@onready var mv_5: TextureRect = $HBoxContainer/mv5
+@onready var mv_6: TextureRect = $HBoxContainer/mv6
+@onready var mv_7: TextureRect = $HBoxContainer/mv7
+@onready var mv_8: TextureRect = $HBoxContainer/mv8
+@onready var mv_9: TextureRect = $HBoxContainer/mv9
+@onready var mv_10: TextureRect = $HBoxContainer/mv10
+const VOLUME_ON = preload(\"uid://bm6wnlbgiyifg\")
+const VOLUME_OFF = preload(\"uid://dj6xd1muwahrg\")
 
 var audio_bus_id
 
@@ -28,16 +62,77 @@ func _ready() -> void:
 func _on_value_changed(value: float) -> void:
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(audio_bus_id, db)
+	
+	if value >= 0.1:
+		mv_1.texture = VOLUME_ON
+	if value < 0.1:
+		mv_1.texture = VOLUME_OFF
+	if value >= 0.2:
+		mv_2.texture = VOLUME_ON
+	if value < 0.2:
+		mv_2.texture = VOLUME_OFF
+	if value >= 0.3:
+		mv_3.texture = VOLUME_ON
+	if value < 0.3:
+		mv_3.texture = VOLUME_OFF
+	if value >= 0.4:
+		mv_4.texture = VOLUME_ON
+	if value < 0.4:
+		mv_4.texture = VOLUME_OFF
+	if value >= 0.5:
+		mv_5.texture = VOLUME_ON
+	if value < 0.5:
+		mv_5.texture = VOLUME_OFF
+	if value >= 0.6:
+		mv_6.texture = VOLUME_ON
+	if value < 0.6:
+		mv_6.texture = VOLUME_OFF
+	if value >= 0.7:
+		mv_7.texture = VOLUME_ON
+	if value < 0.7:
+		mv_7.texture = VOLUME_OFF
+	if value >= 0.8:
+		mv_8.texture = VOLUME_ON
+	if value < 0.8:
+		mv_8.texture = VOLUME_OFF
+	if value >= 0.9:
+		mv_9.texture = VOLUME_ON
+	if value < 0.9:
+		mv_9.texture = VOLUME_OFF
+	if value >= 1.0:
+		mv_10.texture = VOLUME_ON
+	if value < 1.0:
+		mv_10.texture = VOLUME_OFF
 "
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3s7ss"]
+load_path = "res://.godot/imported/button.png-b2bd2e8262a25720cb73df44381669ea.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2v6a3"]
+load_path = "res://.godot/imported/button.png-b2bd2e8262a25720cb73df44381669ea.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j28db"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
 
 [sub_resource type="GDScript" id="GDScript_8wpix"]
 resource_name = "Music"
 script/source = "extends HSlider
 
 @export var audio_bus_name: String
+@onready var m_1: TextureRect = $HBoxContainer/m1
+@onready var m_2: TextureRect = $HBoxContainer/m2
+@onready var m_3: TextureRect = $HBoxContainer/m3
+@onready var m_4: TextureRect = $HBoxContainer/m4
+@onready var m_5: TextureRect = $HBoxContainer/m5
+@onready var m_6: TextureRect = $HBoxContainer/m6
+@onready var m_7: TextureRect = $HBoxContainer/m7
+@onready var m_8: TextureRect = $HBoxContainer/m8
+@onready var m_9: TextureRect = $HBoxContainer/m9
+@onready var m_10: TextureRect = $HBoxContainer/m10
 
 var audio_bus_id
-
+const VOLUME_ON = preload(\"uid://bm6wnlbgiyifg\")
+const VOLUME_OFF = preload(\"uid://dj6xd1muwahrg\")
 
 func _ready() -> void:
 	audio_bus_id = AudioServer.get_bus_index(\"Music\")
@@ -46,16 +141,107 @@ func _ready() -> void:
 func _on_value_changed(value: float) -> void:
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(audio_bus_id, db)
+	
+	if value >= 0.1:
+		m_1.texture = VOLUME_ON
+	if value < 0.1:
+		m_1.texture = VOLUME_OFF
+	if value >= 0.2:
+		m_2.texture = VOLUME_ON
+	if value < 0.2:
+		m_2.texture = VOLUME_OFF
+	if value >= 0.3:
+		m_3.texture = VOLUME_ON
+	if value < 0.3:
+		m_3.texture = VOLUME_OFF
+	if value >= 0.4:
+		m_4.texture = VOLUME_ON
+	if value < 0.4:
+		m_4.texture = VOLUME_OFF
+	if value >= 0.5:
+		m_5.texture = VOLUME_ON
+	if value < 0.5:
+		m_5.texture = VOLUME_OFF
+	if value >= 0.6:
+		m_6.texture = VOLUME_ON
+	if value < 0.6:
+		m_6.texture = VOLUME_OFF
+	if value >= 0.7:
+		m_7.texture = VOLUME_ON
+	if value < 0.7:
+		m_7.texture = VOLUME_OFF
+	if value >= 0.8:
+		m_8.texture = VOLUME_ON
+	if value < 0.8:
+		m_8.texture = VOLUME_OFF
+	if value >= 0.9:
+		m_9.texture = VOLUME_ON
+	if value < 0.9:
+		m_9.texture = VOLUME_OFF
+	if value >= 1.0:
+		m_10.texture = VOLUME_ON
+	if value < 1.0:
+		m_10.texture = VOLUME_OFF
 "
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3nhmq"]
+load_path = "res://.godot/imported/board.png-08e841e6c4f7a32b33f9bbfae991105f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y0er8"]
+load_path = "res://.godot/imported/button.png-b2bd2e8262a25720cb73df44381669ea.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tb26q"]
+load_path = "res://.godot/imported/button.png-b2bd2e8262a25720cb73df44381669ea.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1kj1c"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s162k"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1pu0e"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rmv74"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sx8f6"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s7r4c"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w5m2n"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5nev8"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqsov"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fcc0t"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
 
 [sub_resource type="GDScript" id="GDScript_3s7ss"]
 resource_name = "Effect"
 script/source = "extends HSlider
 
 @export var audio_bus_name: String
+@onready var fx_1: TextureRect = $HBoxContainer/fx1
+@onready var fx_2: TextureRect = $HBoxContainer/fx2
+@onready var fx_3: TextureRect = $HBoxContainer/fx3
+@onready var fx_4: TextureRect = $HBoxContainer/fx4
+@onready var fx_5: TextureRect = $HBoxContainer/fx5
+@onready var fx_6: TextureRect = $HBoxContainer/fx6
+@onready var fx_7: TextureRect = $HBoxContainer/fx7
+@onready var fx_8: TextureRect = $HBoxContainer/fx8
+@onready var fx_9: TextureRect = $HBoxContainer/fx9
+@onready var fx_10: TextureRect = $HBoxContainer/fx10
 
 var audio_bus_id
-
+const VOLUME_ON = preload(\"uid://bm6wnlbgiyifg\")
+const VOLUME_OFF = preload(\"uid://dj6xd1muwahrg\")
 
 func _ready() -> void:
 	audio_bus_id = AudioServer.get_bus_index(\"Effect\")
@@ -64,23 +250,103 @@ func _ready() -> void:
 func _on_value_changed(value: float) -> void:
 	var db = linear_to_db(value)
 	AudioServer.set_bus_volume_db(audio_bus_id, db)
+	
+	if value >= 0.1:
+		fx_1.texture = VOLUME_ON
+	if value < 0.1:
+		fx_1.texture = VOLUME_OFF
+	if value >= 0.2:
+		fx_2.texture = VOLUME_ON
+	if value < 0.2:
+		fx_2.texture = VOLUME_OFF
+	if value >= 0.3:
+		fx_3.texture = VOLUME_ON
+	if value < 0.3:
+		fx_3.texture = VOLUME_OFF
+	if value >= 0.4:
+		fx_4.texture = VOLUME_ON
+	if value < 0.4:
+		fx_4.texture = VOLUME_OFF
+	if value >= 0.5:
+		fx_5.texture = VOLUME_ON
+	if value < 0.5:
+		fx_5.texture = VOLUME_OFF
+	if value >= 0.6:
+		fx_6.texture = VOLUME_ON
+	if value < 0.6:
+		fx_6.texture = VOLUME_OFF
+	if value >= 0.7:
+		fx_7.texture = VOLUME_ON
+	if value < 0.7:
+		fx_7.texture = VOLUME_OFF
+	if value >= 0.8:
+		fx_8.texture = VOLUME_ON
+	if value < 0.8:
+		fx_8.texture = VOLUME_OFF
+	if value >= 0.9:
+		fx_9.texture = VOLUME_ON
+	if value < 0.9:
+		fx_9.texture = VOLUME_OFF
+	if value >= 1.0:
+		fx_10.texture = VOLUME_ON
+	if value < 1.0:
+		fx_10.texture = VOLUME_OFF
 "
 
-[node name="Options" type="Panel" unique_id=1394221663]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h00pn"]
+load_path = "res://.godot/imported/board.png-08e841e6c4f7a32b33f9bbfae991105f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n2pcy"]
+load_path = "res://.godot/imported/button.png-b2bd2e8262a25720cb73df44381669ea.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nmln8"]
+load_path = "res://.godot/imported/button.png-b2bd2e8262a25720cb73df44381669ea.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lheen"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pgbxv"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yka0h"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vbs6u"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x67ho"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iywiq"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jfsfk"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lk4fj"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1pkr7"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_watnw"]
+load_path = "res://.godot/imported/volume_off.png-34ccb3c22a776d19c5a27f09a51d1ca5.ctex"
+
+[node name="Options" type="TextureRect" unique_id=1280696310]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -472.0
-offset_top = -237.0
+offset_top = -338.0
 offset_right = 472.0
-offset_bottom = 237.0
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_2v6a3")
 
-[node name="Label" type="Label" parent="." unique_id=1258778459]
+[node name="Label" type="TextureRect" parent="." unique_id=490034757]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,26 +359,22 @@ offset_right = 67.5
 offset_bottom = -137.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "Setting"
+texture = ExtResource("1_8wpix")
 
-[node name="Close" type="Button" parent="." unique_id=746078150]
+[node name="Close" type="TextureButton" parent="." unique_id=1746955408]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -86.0
-offset_top = -81.0
-offset_right = 86.0
-offset_bottom = -46.0
+offset_left = 637.0
+offset_top = -285.0
+offset_right = 992.0
+offset_bottom = -168.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_5r8cy")
-text = "Close"
+texture_normal = ExtResource("2_2v6a3")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=101566122]
 layout_mode = 1
@@ -121,17 +383,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -386.5
-offset_top = -84.5
-offset_right = 386.5
-offset_bottom = 84.5
+offset_left = -327.0
+offset_top = -49.5
+offset_right = 327.0
+offset_bottom = 211.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 35
 
 [node name="Text" type="VBoxContainer" parent="HBoxContainer" unique_id=559090262]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 75
 
 [node name="Master_volume" type="Label" parent="HBoxContainer/Text" unique_id=286886717]
 layout_mode = 2
@@ -149,39 +411,277 @@ theme_override_font_sizes/font_size = 27
 text = "Effect"
 
 [node name="Slider" type="VBoxContainer" parent="HBoxContainer" unique_id=1548637326]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-theme_override_constants/separation = 32
+size_flags_horizontal = 10
+theme_override_constants/separation = 75
 
 [node name="Master_volume" type="HSlider" parent="HBoxContainer/Slider" unique_id=135503274]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 max_value = 1.0
-step = 0.05
+step = 0.1
 value = 1.0
 script = SubResource("GDScript_5r8cy")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/Slider/Master_volume" unique_id=1885904055]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -29.5
+offset_right = 407.0
+offset_bottom = 48.5
+texture = ExtResource("2_3s7ss")
+region_rect = Rect2(7, 4, 426, 79)
+patch_margin_left = 83
+patch_margin_top = 37
+patch_margin_right = 84
+patch_margin_bottom = 41
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Slider/Master_volume" unique_id=1079341195]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -34.5
+offset_right = 16.0
+offset_bottom = 8.5
+texture = SubResource("CompressedTexture2D_3s7ss")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Slider/Master_volume" unique_id=1693855629]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 11.5
+offset_right = 416.0
+offset_bottom = 54.5
+texture = SubResource("CompressedTexture2D_2v6a3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Slider/Master_volume" unique_id=212805298]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 329.0
+offset_bottom = 31.5
+scale = Vector2(1.0666609, 1.0666609)
+theme_override_constants/separation = -19
+
+[node name="mv1" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=659150728]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv2" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=1695990084]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv3" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=933448765]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv4" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=1090094112]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv5" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=1532168009]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv6" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=452633314]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv7" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=155874012]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv8" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=1960593074]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv9" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=2109996336]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
+[node name="mv10" type="TextureRect" parent="HBoxContainer/Slider/Master_volume/HBoxContainer" unique_id=699013840]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j28db")
+
 [node name="Music" type="HSlider" parent="HBoxContainer/Slider" unique_id=2052822955]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 max_value = 1.0
-step = 0.05
+step = 0.1
 value = 1.0
 script = SubResource("GDScript_8wpix")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/Slider/Music" unique_id=770577519]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -29.5
+offset_right = 407.0
+offset_bottom = 48.5
+texture = SubResource("CompressedTexture2D_3nhmq")
+region_rect = Rect2(7, 4, 426, 79)
+patch_margin_left = 83
+patch_margin_top = 37
+patch_margin_right = 84
+patch_margin_bottom = 41
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Slider/Music" unique_id=1482349411]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -34.5
+offset_right = 16.0
+offset_bottom = 8.5
+texture = SubResource("CompressedTexture2D_y0er8")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Slider/Music" unique_id=928344465]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 11.5
+offset_right = 416.0
+offset_bottom = 54.5
+texture = SubResource("CompressedTexture2D_tb26q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Slider/Music" unique_id=1420398068]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 329.0
+offset_bottom = 31.5
+scale = Vector2(1.0666609, 1.0666609)
+theme_override_constants/separation = -19
+
+[node name="m1" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=82350613]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_1kj1c")
+
+[node name="m2" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1318594797]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_s162k")
+
+[node name="m3" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=614738190]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_1pu0e")
+
+[node name="m4" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1745154741]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_rmv74")
+
+[node name="m5" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1622945677]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_sx8f6")
+
+[node name="m6" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1558826525]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_s7r4c")
+
+[node name="m7" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=228685203]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_w5m2n")
+
+[node name="m8" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1248480567]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_5nev8")
+
+[node name="m9" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1410920719]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_kqsov")
+
+[node name="m10" type="TextureRect" parent="HBoxContainer/Slider/Music/HBoxContainer" unique_id=1082542233]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_fcc0t")
+
 [node name="Effect" type="HSlider" parent="HBoxContainer/Slider" unique_id=304599344]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 max_value = 1.0
-step = 0.05
+step = 0.1
 value = 1.0
 script = SubResource("GDScript_3s7ss")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/Slider/Effect" unique_id=285091454]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -29.5
+offset_right = 407.0
+offset_bottom = 48.5
+texture = SubResource("CompressedTexture2D_h00pn")
+region_rect = Rect2(7, 4, 426, 79)
+patch_margin_left = 83
+patch_margin_top = 37
+patch_margin_right = 84
+patch_margin_bottom = 41
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Slider/Effect" unique_id=403438014]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -34.5
+offset_right = 16.0
+offset_bottom = 8.5
+texture = SubResource("CompressedTexture2D_n2pcy")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Slider/Effect" unique_id=1181533632]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 11.5
+offset_right = 416.0
+offset_bottom = 54.5
+texture = SubResource("CompressedTexture2D_nmln8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Slider/Effect" unique_id=1270893156]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -11.5
+offset_right = 329.0
+offset_bottom = 31.5
+scale = Vector2(1.0666609, 1.0666609)
+theme_override_constants/separation = -19
+
+[node name="fx1" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=1794041298]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_lheen")
+
+[node name="fx2" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=118033855]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_pgbxv")
+
+[node name="fx3" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=1450404937]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_yka0h")
+
+[node name="fx4" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=63147971]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_vbs6u")
+
+[node name="fx5" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=652370040]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_x67ho")
+
+[node name="fx6" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=1219254048]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_iywiq")
+
+[node name="fx7" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=218301691]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_jfsfk")
+
+[node name="fx8" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=1704123862]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_lk4fj")
+
+[node name="fx9" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=1355968215]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_1pkr7")
+
+[node name="fx10" type="TextureRect" parent="HBoxContainer/Slider/Effect/HBoxContainer" unique_id=941876957]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_watnw")
+
+[connection signal="mouse_entered" from="Close" to="." method="_on_close_mouse_entered"]
+[connection signal="mouse_exited" from="Close" to="." method="_on_close_mouse_exited"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="value_changed" from="HBoxContainer/Slider/Master_volume" to="HBoxContainer/Slider/Master_volume" method="_on_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Slider/Music" to="HBoxContainer/Slider/Music" method="_on_value_changed"]

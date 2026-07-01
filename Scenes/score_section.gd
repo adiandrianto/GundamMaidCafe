@@ -5,6 +5,8 @@ class_name  Scores
 @onready var juice_score: Label = $MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Juice/juice_score
 @onready var omelette_score: Label = $MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Omelette/omelette_score
 @onready var totalscores: Label = $MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Total_score/Total_scores
+@onready var quit: TextureButton = $Quit
+@onready var continue_btn: TextureButton = $Continue
 
 static var table = 0
 static var juice = 0
@@ -47,9 +49,26 @@ func all_scorring():
 	print("Total score: ", total_score)
 
 
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Minigame O/minigame_o.tscn")
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main menu/main_menu.tscn")
+
+func _on_continue_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_scene.tscn")
 
 
-func _on_button_2_pressed() -> void:
-	get_tree().quit()
+func _on_quit_mouse_entered() -> void:
+	quit.pivot_offset_ratio = Vector2(0.5, 0.5)
+	quit.scale = Vector2(1.1, 1.1)
+
+
+func _on_quit_mouse_exited() -> void:
+	quit.scale = Vector2(1, 1)
+
+
+func _on_continue_mouse_entered() -> void:
+	continue_btn.pivot_offset_ratio = Vector2(0.5, 0.5)
+	continue_btn.scale = Vector2(1.1, 1.1)
+
+func _on_continue_mouse_exited() -> void:
+	continue_btn.scale = Vector2(1, 1)
