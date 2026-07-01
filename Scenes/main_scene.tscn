@@ -26,15 +26,46 @@
 [ext_resource type="Texture2D" uid="uid://cw0ttrrxfkbpj" path="res://Assets/Visual/Mecha/kuudere_portrait_hover.png" id="15_xle81"]
 [ext_resource type="Script" uid="uid://3dfgj663a1de" path="res://Scenes/cashier.gd" id="16_gnsmo"]
 [ext_resource type="Texture2D" uid="uid://dvsfqggio5ruk" path="res://Assets/Visual/Mecha/tsundere_portrait_hover.png" id="17_s8qe6"]
+[ext_resource type="Texture2D" uid="uid://qsx2clcrjlr7" path="res://Assets/Visual/UI/Confirmation +Score Box/bg_tv_confirmBox.png" id="19_kbbok"]
+[ext_resource type="Texture2D" uid="uid://6a8qicraj141" path="res://Assets/Visual/UI/Confirmation +Score Box/confirmButton.png" id="20_m0uwk"]
 [ext_resource type="FontFile" uid="uid://djg0wrscw5676" path="res://Assets/TrueType (.ttf)/DeltaBlock-Regular.ttf" id="20_rpyod"]
+[ext_resource type="Texture2D" uid="uid://b1xij73olu68b" path="res://Assets/Visual/UI/Confirmation +Score Box/confirmButton_hover.png" id="21_mffef"]
 [ext_resource type="AudioStream" uid="uid://yxvduqaejejq" path="res://Assets/Audio/Voice/01-hey.wav" id="21_urcnp"]
-[ext_resource type="AudioStream" uid="uid://bh67anfnj8mab" path="res://Assets/Audio/SFX/leenn792-drum-roll-sound-effect-trommelwirbel-snare-crash-preisverleihung-drumroll-sound-13883.mp3.ogg" id="22_mplvr"]
+[ext_resource type="FontFile" uid="uid://ca303pihim86a" path="res://Assets/PressStart2P-Regular.ttf" id="22_2h5y0"]
+[ext_resource type="LabelSettings" uid="uid://bvk56kbppykag" path="res://Resources/button_label_setting.tres" id="22_kbbok"]
 [ext_resource type="AudioStream" uid="uid://crg8vs8x66qxl" path="res://Assets/Audio/Voice/01-laughter.wav" id="22_rpyod"]
 [ext_resource type="AudioStream" uid="uid://wevhxhl6k6c3" path="res://Assets/Audio/Voice/02-laughter.wav" id="23_mplvr"]
 [ext_resource type="AudioStream" uid="uid://0g53k84pnccb" path="res://Assets/Audio/Voice/03-laughter.wav" id="24_vggli"]
 [ext_resource type="AudioStream" uid="uid://balt3l70ddnj1" path="res://Assets/Audio/Voice/01-okay.wav" id="25_r0xgx"]
 [ext_resource type="AudioStream" uid="uid://b1i6mgb0ihx6u" path="res://Assets/Audio/Voice/01-see ya later.wav" id="26_nrumr"]
 [ext_resource type="AudioStream" uid="uid://d31e50uybx6wr" path="res://Assets/Audio/SFX/Retro2.ogg" id="27_kbbok"]
+[ext_resource type="AudioStream" uid="uid://ddwt3wdj4v7qa" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Cursor - 4.ogg" id="33_m0uwk"]
+[ext_resource type="AudioStream" uid="uid://we1cls73gejy" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="34_mffef"]
+[ext_resource type="AudioStream" uid="uid://qjllbwf4bxol" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="35_mffef"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2h5y0"]
+font = ExtResource("22_2h5y0")
+font_size = 32
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y0lwx"]
+font = ExtResource("22_2h5y0")
+font_size = 30
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igw8g"]
+font = ExtResource("22_2h5y0")
+font_size = 26
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rlvbq"]
+font = ExtResource("22_2h5y0")
+font_size = 26
+outline_size = 8
+outline_color = Color(0.66378814, 0.4401143, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xle81"]
 bg_color = Color(0.05490196, 0.05490196, 0.05490196, 0.63529414)
@@ -58,6 +89,9 @@ shader_parameter/MovementDirSpeed = Vector2(-0.6, 1)
 shader_parameter/MovementDirSpeed2 = Vector2(0.6, 1)
 shader_parameter/color_gradiant = SubResource("GradientTexture2D_xle81")
 shader_parameter/Noise_Seed = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0lwx"]
+texture = ExtResource("19_kbbok")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m0uwk"]
 streams_count = 4
@@ -156,7 +190,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_iacmt")
+theme = ExtResource("11_oyb3p")
 
 [node name="MaidList" type="MarginContainer" parent="UILayer/UI" unique_id=2088886791]
 unique_name_in_owner = true
@@ -208,9 +242,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -250.0
-offset_right = 250.0
-offset_bottom = 138.0
+offset_left = -260.0
+offset_top = 13.0
+offset_right = 260.0
+offset_bottom = 151.0
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0)
 mouse_filter = 2
@@ -219,10 +254,11 @@ theme_override_constants/margin_bottom = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer" unique_id=627021523]
 layout_mode = 2
+alignment = 1
 
 [node name="DayContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1790414617]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 6
 size_flags_vertical = 0
 alignment = 1
 
@@ -231,6 +267,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Day"
+label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="DayLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/DayContainer" unique_id=538932913]
 unique_name_in_owner = true
@@ -238,6 +275,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "1"
+label_settings = SubResource("LabelSettings_y0lwx")
 
 [node name="GoalContainer" type="VBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=683685058]
 layout_mode = 2
@@ -248,12 +286,14 @@ alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=567597413]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 6
+alignment = 1
 
 [node name="Label" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=2088499103]
 layout_mode = 2
-text = "Goal : "
+theme_override_font_sizes/font_size = 24
+text = "GOAL:"
+label_settings = SubResource("LabelSettings_igw8g")
 
 [node name="Control" type="Control" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer/HBoxContainer" unique_id=384938597]
 custom_minimum_size = Vector2(80, 0)
@@ -269,7 +309,9 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("1_iacmt")
+theme_override_font_sizes/font_size = 24
 text = "123"
+label_settings = SubResource("LabelSettings_rlvbq")
 
 [node name="IncomeLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer/GoalContainer" unique_id=443870063]
 unique_name_in_owner = true
@@ -277,12 +319,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "333"
+label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="LevelDurationLabel" type="Label" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=1216051790]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
 text = "02.00"
+label_settings = SubResource("LabelSettings_2h5y0")
 
 [node name="TimerProgress" type="TextureProgressBar" parent="UILayer/UI/UpperContainer/HBoxContainer" unique_id=821193855]
 visible = false
@@ -468,49 +513,94 @@ mouse_filter = 2
 theme = ExtResource("11_oyb3p")
 
 [node name="Welcome" type="PanelContainer" parent="UILayer/Tutorial" unique_id=988631160]
-visible = false
+process_mode = 3
 custom_minimum_size = Vector2(900, 600)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -170.5
-offset_right = 300.0
-offset_bottom = 170.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_y0lwx")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Tutorial/Welcome" unique_id=1312409347]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/Tutorial/Welcome" unique_id=68185488]
+layout_mode = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 260
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Tutorial/Welcome/MarginContainer" unique_id=196711329]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1312409347]
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.54806167, 0.31733572, 0.95391315, 1)
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[u][wave]Welcome to Mecha Maid Café![/wave][/u]
 
-As the manager of our one-of-a-kind Mecha Maid Café, your mission is simple:
-
-keep customers happy, 
-assign the right maid to each table, 
-and earn enough income before closing time.
-
-Reach the Daily Revenue Goal to clear the day!"
+As the manager of our Mecha Maid Café, here are your mission :"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="UILayer/Tutorial/Welcome" unique_id=1336104471]
+[node name="RichTextLabel2" type="RichTextLabel" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1568756614]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.54806167, 0.31733572, 0.95391315, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "
+> keep customers happy
+> assign the right maid to each table
+> Earn enough income before closing time
+
+"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1902952643]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 0.8901961, 1)
+theme_override_colors/font_outline_color = Color(0.54806167, 0.31733572, 0.95391315, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Reach the Daily Revenue Goal
+to clear the day!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button" type="TextureButton" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer" unique_id=1401946241]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "Understood"
+size_flags_vertical = 10
+texture_normal = ExtResource("20_m0uwk")
+texture_hover = ExtResource("21_mffef")
+
+[node name="Label" type="Label" parent="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer/Button" unique_id=1241940801]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -11.5
+offset_right = -1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UNDERSTOOD"
+label_settings = ExtResource("22_kbbok")
+horizontal_alignment = 1
 
 [node name="TutorialPanel" type="Control" parent="UILayer/Tutorial" unique_id=1336282069]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -620,6 +710,7 @@ clip_text = true
 
 [node name="TutorialLabel5" type="Label" parent="UILayer/Tutorial/TutorialPanel/PanelContainer" unique_id=1689902767]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 size_flags_vertical = 1
@@ -676,10 +767,6 @@ autoplay = true
 bus = &"Music"
 parameters/looping = true
 
-[node name="DrumRoll" type="AudioStreamPlayer" parent="Audio" unique_id=389110021]
-stream = ExtResource("22_mplvr")
-bus = &"Music"
-
 [node name="Hello" type="AudioStreamPlayer" parent="Audio" unique_id=1513686126]
 unique_name_in_owner = true
 stream = ExtResource("21_urcnp")
@@ -698,6 +785,21 @@ bus = &"Effect"
 [node name="Typing" type="AudioStreamPlayer" parent="Audio" unique_id=1103751066]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_urcnp")
+bus = &"Effect"
+
+[node name="Hover" type="AudioStreamPlayer" parent="Audio" unique_id=320319008]
+unique_name_in_owner = true
+stream = ExtResource("33_m0uwk")
+bus = &"Effect"
+
+[node name="Select" type="AudioStreamPlayer" parent="Audio" unique_id=276856775]
+unique_name_in_owner = true
+stream = ExtResource("34_mffef")
+bus = &"Effect"
+
+[node name="Appear" type="AudioStreamPlayer" parent="Audio" unique_id=980575871]
+unique_name_in_owner = true
+stream = ExtResource("35_mffef")
 bus = &"Effect"
 
 [node name="CashierSpot" type="Marker2D" parent="." unique_id=50758693]
@@ -789,6 +891,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.47058824)
+metadata/_edit_lock_ = true
 
 [node name="SkillTimers" type="Node" parent="." unique_id=1778352167]
 
@@ -816,4 +919,5 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
-[connection signal="pressed" from="UILayer/Tutorial/Welcome/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="UILayer/Tutorial/Welcome/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

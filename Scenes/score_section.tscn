@@ -3,17 +3,129 @@
 [ext_resource type="Script" uid="uid://cq454safrjc0e" path="res://Scenes/score_section.gd" id="1_j8lq8"]
 [ext_resource type="FontFile" uid="uid://djg0wrscw5676" path="res://Assets/TrueType (.ttf)/DeltaBlock-Regular.ttf" id="2_1q3by"]
 [ext_resource type="AudioStream" uid="uid://dy2rv4h8yc56l" path="res://Assets/Audio/SFX/Coins 2-1.wav.ogg" id="2_drds5"]
+[ext_resource type="Texture2D" uid="uid://qsx2clcrjlr7" path="res://Assets/Visual/UI/Confirmation +Score Box/bg_tv_confirmBox.png" id="2_fdbq1"]
 [ext_resource type="AudioStream" uid="uid://dnqyx5tmwr6ui" path="res://Assets/Audio/SFX/Collective_Coins_02.wav" id="2_p1qt2"]
+[ext_resource type="LabelSettings" uid="uid://cld1yd6me2d0x" path="res://Resources/orbitron_label_settings.tres" id="3_sli3l"]
 [ext_resource type="AudioStream" uid="uid://qr1vkscwypc0" path="res://Assets/Audio/SFX/Collective_Coins_03.wav" id="4_g58dj"]
+[ext_resource type="FontFile" uid="uid://cfe5xbkvov220" path="res://Assets/static/Orbitron-ExtraBold.ttf" id="4_t27hm"]
 [ext_resource type="AudioStream" uid="uid://bh67anfnj8mab" path="res://Assets/Audio/SFX/leenn792-drum-roll-sound-effect-trommelwirbel-snare-crash-preisverleihung-drumroll-sound-13883.mp3.ogg" id="5_g58dj"]
+[ext_resource type="Texture2D" uid="uid://6a8qicraj141" path="res://Assets/Visual/UI/Confirmation +Score Box/confirmButton.png" id="6_sl1sr"]
+[ext_resource type="Texture2D" uid="uid://b1xij73olu68b" path="res://Assets/Visual/UI/Confirmation +Score Box/confirmButton_hover.png" id="7_awwbu"]
+[ext_resource type="LabelSettings" uid="uid://bvk56kbppykag" path="res://Resources/button_label_setting.tres" id="8_flovo"]
+[ext_resource type="AudioStream" uid="uid://ddwt3wdj4v7qa" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Cursor - 4.ogg" id="13_sl1sr"]
+[ext_resource type="AudioStream" uid="uid://we1cls73gejy" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="14_awwbu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnrys"]
-bg_color = Color(0.8220222, 0.5097946, 0.6940073, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c2qve"]
+texture = ExtResource("2_fdbq1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_sli3l"]
+line_spacing = 4.0
+font = ExtResource("4_t27hm")
+font_size = 48
+outline_size = 8
+outline_color = Color(0.6358766, 0.00031111718, 0.6390996, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_st1ir"]
+line_spacing = 4.0
+font = ExtResource("4_t27hm")
+font_size = 36
+outline_size = 8
+outline_color = Color(0.6358766, 0.00031111718, 0.6390996, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t27hm"]
+line_spacing = 4.0
+font = ExtResource("4_t27hm")
+font_size = 60
+outline_size = 12
+outline_color = Color(0.6358766, 0.00031111718, 0.6390996, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 11
+stacked_outline_0/color = Color(0.9151783, 0.8211826, 0.87868863, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7hfh7"]
 random_pitch = 1.122462
 streams_count = 1
 stream_0/stream = ExtResource("2_drds5")
+
+[sub_resource type="Animation" id="Animation_t27hm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sl1sr"]
+resource_name = "shake"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.03490658503988659, -0.01745329251994329, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_sli3l"]
+resource_name = "shake_all"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.10000001, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.06981317007977318, 0.05235987755982989, -0.03490658503988659, 0.01745329251994329, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t27hm"]
+_data = {
+&"RESET": SubResource("Animation_t27hm"),
+&"shake": SubResource("Animation_sl1sr"),
+&"super_shake": SubResource("Animation_sli3l")
+}
 
 [node name="Score_section" type="Control" unique_id=135151918]
 z_index = 999
@@ -23,40 +135,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_j8lq8")
+
+[node name="Panel" type="Panel" parent="." unique_id=547961144]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_c2qve")
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1330719341]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 348.44446
-offset_top = 196.0
-offset_right = -348.44446
-offset_bottom = -196.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1187360504]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="MarginContainer" unique_id=547961144]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xnrys")
+theme_override_constants/margin_left = 550
+theme_override_constants/margin_top = 260
+theme_override_constants/margin_right = 550
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1676959708]
 layout_mode = 2
 theme_override_constants/separation = 35
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=174999293]
-layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="Level" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1786090753]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 60
 text = "DAY 1"
+label_settings = SubResource("LabelSettings_sli3l")
 
 [node name="Score_display" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=285344630]
 layout_mode = 2
@@ -67,6 +181,7 @@ theme_override_constants/margin_left = 200
 theme_override_constants/margin_right = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer" unique_id=1546310494]
+custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
 
 [node name="Table" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer" unique_id=2069792551]
@@ -79,15 +194,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "Table"
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Table" unique_id=747751043]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
 
 [node name="table_score" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Table" unique_id=1391587878]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
 
 [node name="Juice" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer" unique_id=754954700]
 layout_mode = 2
@@ -99,15 +212,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "Juice"
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Juice" unique_id=225561753]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
 
 [node name="juice_score" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Juice" unique_id=2094068209]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
+
+[node name="Shaker" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer" unique_id=46229279]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Shaker" unique_id=450539698]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Shaker"
+label_settings = ExtResource("3_sli3l")
+
+[node name="shaker_score" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Shaker" unique_id=2132831216]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
 
 [node name="Omelette" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer" unique_id=662501662]
 layout_mode = 2
@@ -119,17 +248,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 50
 text = "Omelette"
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Omelette" unique_id=681786538]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
 
 [node name="omelette_score" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Omelette" unique_id=548862996]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_sli3l")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer" unique_id=1927250787]
+[node name="Label" type="Control" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer" unique_id=1921057502]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
@@ -140,38 +267,68 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Total_score" unique_id=1723874664]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "Total Score"
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Total_score" unique_id=109143775]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+label_settings = SubResource("LabelSettings_st1ir")
 
 [node name="Total_scores" type="Label" parent="MarginContainer/VBoxContainer/Score_display/MarginContainer/VBoxContainer/Total_score" unique_id=1708928288]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_1q3by")
 theme_override_font_sizes/font_size = 72
+label_settings = SubResource("LabelSettings_t27hm")
+autowrap_trim_flags = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=721498129]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 92
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=697110220]
+[node name="ContinueBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=200502352]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(306, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 40
-text = "Continue"
+texture_normal = ExtResource("6_sl1sr")
+texture_hover = ExtResource("7_awwbu")
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1407329201]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ContinueBtn" unique_id=322152573]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+label_settings = ExtResource("8_flovo")
+horizontal_alignment = 1
+
+[node name="QuitBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1045474637]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_sl1sr")
+texture_hover = ExtResource("7_awwbu")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/QuitBtn" unique_id=593337548]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Quit"
+label_settings = ExtResource("8_flovo")
+horizontal_alignment = 1
 
 [node name="CoinDone" type="AudioStreamPlayer" parent="." unique_id=1785928331]
 stream = ExtResource("2_p1qt2")
@@ -184,8 +341,20 @@ stream = ExtResource("4_g58dj")
 
 [node name="DrumRoll" type="AudioStreamPlayer" parent="." unique_id=802977366]
 stream = ExtResource("5_g58dj")
-volume_db = -4.0
+volume_db = -5.0
 bus = &"Music"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=430295715]
+stream = ExtResource("13_sl1sr")
+bus = &"Effect"
+
+[node name="Select" type="AudioStreamPlayer" parent="." unique_id=1660152000]
+stream = ExtResource("14_awwbu")
+bus = &"Effect"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1568951575]
+libraries/ = SubResource("AnimationLibrary_t27hm")
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/ContinueBtn" to="." method="_on_continue_btn_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ContinueBtn" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/QuitBtn" to="." method="_on_button_2_pressed"]

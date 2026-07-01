@@ -1,6 +1,8 @@
 extends Node2D
 class_name MaidSelectWindow
 
+const MAIDLIST_ITEM = preload("uid://bttcbb83uabeq")
+
 @export var table_ordered: Table = null
 @onready var portrait_container: GridContainer = %PortraitContainer
 @onready var label: Label = %Label
@@ -16,14 +18,17 @@ func _ready() -> void:
 	label.text = table_ordered.assigned_customer.customer_line
 
 	for maid_res in GlobalConstants.maid_roster:
-		var portrait = TextureButton.new()
-		portrait.texture_normal = maid_res.portrait
-		portrait.texture_hover = maid_res.portrait_hovered
-		portrait_container.add_child(portrait)
+		var maid = MAIDLIST_ITEM.instantiate() as MaidlistItem
+		maid.maid_res = maid_res
+		portrait_container.add_child(maid)
+		#var portrait = TextureButton.new()
+		#portrait.texture_normal = maid_res.portrait
+		#portrait.texture_hover = maid_res.portrait_hovered
+		#portrait_container.add_child(portrait)
 		
-		portrait.mouse_entered.connect(_on_portrait_mouse_entered.bind(maid_res))
-		portrait.mouse_exited.connect(func(): tooltip.hide())
-		portrait.pressed.connect(_on_pressed.bind(maid_res))
+		maid.mouse_entered.connect(_on_portrait_mouse_entered.bind(maid_res))
+		maid.mouse_exited.connect(func(): tooltip.hide())
+		maid.pressed.connect(_on_pressed.bind(maid_res))
 
 func _exit_tree() -> void:
 	get_tree().paused = false

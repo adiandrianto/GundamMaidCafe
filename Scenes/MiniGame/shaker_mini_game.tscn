@@ -15,6 +15,12 @@
 [ext_resource type="AudioStream" uid="uid://c8vf50df4cxoi" path="res://Assets/Audio/SFX/Negative_Pop_06.wav" id="13_otn6c"]
 [ext_resource type="AudioStream" uid="uid://qjllbwf4bxol" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="13_rdhwr"]
 [ext_resource type="AudioStream" uid="uid://b6is1lspd2cre" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Swipe - 1.ogg" id="14_otn6c"]
+[ext_resource type="AudioStream" uid="uid://cbh1p43ptvvmq" path="res://Assets/Audio/SFX/shaker-001.ogg" id="14_xxcfk"]
+[ext_resource type="AudioStream" uid="uid://dlegoktylbya" path="res://Assets/Audio/SFX/shaker-002.ogg" id="15_ayrx4"]
+[ext_resource type="AudioStream" uid="uid://cd3f5odjaxolt" path="res://Assets/Audio/SFX/shaker-003.ogg" id="16_ma6eo"]
+[ext_resource type="AudioStream" uid="uid://b1u7huvjsjgwn" path="res://Assets/Audio/SFX/shaker-004.ogg" id="17_qvhwb"]
+[ext_resource type="AudioStream" uid="uid://b0kugq37c85cw" path="res://Assets/Audio/SFX/shaker-005.ogg" id="18_rqb6r"]
+[ext_resource type="AudioStream" uid="uid://ddwt3wdj4v7qa" path="res://Assets/Audio/SFX/UI/JDSherbert - Ultimate UI SFX Pack - Cursor - 4.ogg" id="19_ayrx4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnrjx"]
 
@@ -26,6 +32,15 @@ shader = ExtResource("5_4vb4p")
 shader_parameter/beat_speed = 1.74000007939012
 shader_parameter/pulse_strength = 0.2
 shader_parameter/pulse_mode = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gxwkd"]
+random_pitch = 1.0594631
+streams_count = 5
+stream_0/stream = ExtResource("14_xxcfk")
+stream_1/stream = ExtResource("15_ayrx4")
+stream_2/stream = ExtResource("16_ma6eo")
+stream_3/stream = ExtResource("17_qvhwb")
+stream_4/stream = ExtResource("18_rqb6r")
 
 [sub_resource type="Animation" id="Animation_8svcs"]
 length = 0.001
@@ -324,6 +339,14 @@ bus = &"Effect"
 
 [node name="Bad" type="AudioStreamPlayer" parent="." unique_id=1848614984]
 stream = ExtResource("13_otn6c")
+bus = &"Effect"
+
+[node name="ShakerSound" type="AudioStreamPlayer" parent="." unique_id=260557478]
+stream = SubResource("AudioStreamRandomizer_gxwkd")
+bus = &"Effect"
+
+[node name="Tick" type="AudioStreamPlayer" parent="." unique_id=283255931]
+stream = ExtResource("19_ayrx4")
 bus = &"Effect"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1891054785]

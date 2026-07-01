@@ -60,6 +60,7 @@ func countdown():
 	progress_bar.max_value = timer.wait_time
 	timer.start()
 	timer.timeout.connect(_on_timeout, CONNECT_ONE_SHOT)
+	
 #func _process(_delta: float) -> void:
 	#current_beat = floori(_get_current_beat_float())
 	#
@@ -82,6 +83,7 @@ func _on_shaker_pressed() -> void:
 	if not can_shake: 
 		return
 	#_judge_note()
+	$ShakerSound.play()
 	_shake_shaker()
 	current_score += 1
 

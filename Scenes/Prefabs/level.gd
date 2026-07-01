@@ -71,10 +71,10 @@ func _ready() -> void:
 		_tween_appear(welcome_panel)
 		level_timer.set_paused(true)
 		customer_timer.set_paused(true)
+		%Appear.play()
 
-func _physics_process(delta: float) -> void:
-	if is_closed && customer_inside <= 0:
-		print("level complete")
+func _physics_process(_delta: float) -> void:
+	if (is_closed && customer_inside <= 0) || (level_param.total_customer <= 0 && customer_inside <= 0):
 		_level_completed()
 		set_physics_process(false)
 		
@@ -182,6 +182,10 @@ func _tween_appear(obj: Node):
 	obj.set("scale", 0.0)
 	tween.tween_property(obj, "scale", Vector2(1.2, 1.2), 0.12)
 	tween.tween_property(obj, "scale", Vector2(1.0, 1.0), 0.08)
+	
+	if obj == $UILayer/Tutorial/Welcome:
+		await tween.finished
+		get_tree().paused = true
 
 func _tween_disappear(obj: Node):
 	var tween := get_tree().create_tween()
@@ -192,6 +196,8 @@ func _tween_disappear(obj: Node):
 	obj.queue_free()
 	
 func _on_button_pressed() -> void:
+	%Select.play()
+	get_tree().paused = false
 	level_timer.set_paused(false)
 	customer_timer.set_paused(false)
 	welcome_panel.hide()
@@ -236,3 +242,6 @@ func _type_text(label: Label):
 	
 func set_level_dark(value: bool):
 	blind.visible = value
+
+func _on_button_mouse_entered() -> void:
+	%Hover.play()

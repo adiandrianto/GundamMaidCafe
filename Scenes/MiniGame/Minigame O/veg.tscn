@@ -8,8 +8,8 @@
 texture = ExtResource("1_ogvhc")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=592183292]
-collision_layer = 5
-collision_mask = 4
+collision_layer = 7
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=2041853333]
 scale = Vector2(10, 10)

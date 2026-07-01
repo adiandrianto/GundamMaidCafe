@@ -91,6 +91,8 @@ vertical_alignment = 1
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=1784980815]
 stream = ExtResource("3_xhyut")
+bus = &"Effect"
 
 [node name="Select" type="AudioStreamPlayer" parent="." unique_id=2078058770]
 stream = ExtResource("4_w2dhk")
+bus = &"Effect"
