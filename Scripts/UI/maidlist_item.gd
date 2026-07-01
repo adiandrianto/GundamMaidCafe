@@ -6,7 +6,7 @@ class_name MaidlistItem
 
 #@onready var tooltip: PanelContainer = %Tooltip
 #@onready var name_label: RichTextLabel = %NameLabel
-@onready var personality_label: RichTextLabel = %PersonalityLabel
+#@onready var personality_label: RichTextLabel = %PersonalityLabel
 @onready var name_label: Label = %NameLabel
 
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
@@ -23,9 +23,9 @@ func _ready() -> void:
 	color_rect.size = maid_res.portrait.get_size()
 	color_rect.hide()
 
-func _on_mouse_entered():
+#func _on_mouse_entered():
 	#name_label.text = maid_res.maid_name
-	personality_label.text = GlobalConstants.Personality.keys()[maid_res.personality]
+	#personality_label.text = GlobalConstants.Personality.keys()[maid_res.personality]
 	#tooltip.show()
 	
 #func _on_mouse_exited():

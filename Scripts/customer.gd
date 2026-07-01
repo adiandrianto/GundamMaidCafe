@@ -10,6 +10,10 @@ var menu_arr: Array[Order] = [
 const ONE_CUSTOMER = preload("uid://clbhuisd0ei83")
 const TWO_CUSTOMER = preload("uid://c18ny6rqyx556")
 
+const FILLED_HOURGLASS_1 = preload("uid://c1nn2xi4ghagt")
+const FILLED_HOURGLASS_2 = preload("uid://cvqlhy06bpr2v")
+const FILLED_HOURGLASS_3 = preload("uid://dd8ji3uputvvm")
+
 signal put_down
 
 @export var dialogue_popup: Panel
@@ -81,6 +85,7 @@ func _process(_delta):
 		global_position = get_global_mouse_position()
 	
 	wait_progress_bar.value = wait_timer.time_left / wait_timer.wait_time
+	
 
 func begin_drag():
 	dragging = true
@@ -170,3 +175,11 @@ func popup_maid() -> void:
 func leave():
 	animation_player.play("leave")
 	GameManager.current_level.customer_inside -= 1
+
+func _on_wait_progress_bar_value_changed(value: float) -> void:
+	if value < 0.35:
+		wait_progress_bar.texture_progress = FILLED_HOURGLASS_3
+	elif value <= 0.65:
+		wait_progress_bar.texture_progress = FILLED_HOURGLASS_2
+
+		

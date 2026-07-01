@@ -10,12 +10,12 @@ var maid_roster: Array[MaidResource] = [
 #untuk keep track hanya maid yang available / not in service
 var available_maids: Array[MaidResource]
 
-enum Personality{ELEGANT, TSUNDERE, KUUDERE}
+enum Personality{IMOUTO, TSUNDERE, KUUDERE}
 enum Menu{OMURICE, TEA, MIXED_JUICE}
 enum Skills{MULTIPLIER, MATCHING, PATIENCE}
 
 const CUSTOMER_LINES := {
-	Personality.ELEGANT: [
+	Personality.IMOUTO: [
 		"I had such a rough day.. I need someone cute to cheer me up",
 		"I hope there's an adorable little sister type working today",
 		"I'm exhausted. I just want someone who'll make me smile",

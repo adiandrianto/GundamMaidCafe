@@ -123,7 +123,7 @@ func _on_mini_game_finished(score):
 	assigned_customer.animated_sprite.play("eating")
 
 func _request_bill():
-	assigned_customer.animated_sprite.play("sitting")
+	assigned_customer.animated_sprite.play("request_bill")
 	animation_player.play("payment_appear")
 	payment_icon.pressed.connect(_on_payment_icon_pressed, CONNECT_ONE_SHOT)
 	if GameManager.current_level.level_param.is_tutorial:

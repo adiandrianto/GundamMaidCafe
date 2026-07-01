@@ -12,10 +12,10 @@ var object_being_dragged
 func _ready() -> void:
 	screen_size = get_viewport_rect()
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	if object_being_dragged:
-		var mouse_pos = get_global_mouse_position() + Vector2(-960, -540)
-		object_being_dragged.position = mouse_pos
+		var mouse_pos = get_global_mouse_position()# + Vector2(-960, -540)
+		object_being_dragged.global_position = mouse_pos
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -38,7 +38,7 @@ func raycast_check_for_object():
 	parameters.collision_mask = COLLISION_MASK_OBJECT
 	var result = space_state.intersect_point(parameters)
 	if result.size() > 0:
-		print(result[0].collider.get_parent())
+
 		return result[0].collider.get_parent()
 	return null
 
@@ -54,7 +54,6 @@ func are_all_objects_outside() -> bool:
 func is_object_inside_area(obj: Node2D) -> bool:
 	var shape := object_detection.get_node("CollisionShape2D").shape as RectangleShape2D
 
-	var local_pos = object_detection.to_local(obj.global_position)
-	var rect = Rect2(-shape.size / 2.0, shape.size)
-
-	return rect.has_point(local_pos)
+	#var local_pos = object_detection.to_local(obj.global_position)
+	var rect = Rect2(object_detection.global_position - shape.size / 2.0, shape.size)
+	return rect.has_point(obj.global_position)

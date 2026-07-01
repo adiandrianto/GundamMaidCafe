@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://s63csenwisgd"]
 
-[ext_resource type="Script" uid="uid://dmsx48yndq12o" path="res://Minigame O/score_1.gd" id="1_vbk52"]
-[ext_resource type="Texture2D" uid="uid://cceumhj6hodav" path="res://Minigame O/Sprite/C7BAE55F-9B03-430A-8441-239E40104C232.png" id="2_vbk52"]
+[ext_resource type="Script" uid="uid://dmsx48yndq12o" path="res://Scenes/MiniGame/Minigame O/score_1.gd" id="1_vbk52"]
+[ext_resource type="Texture2D" uid="uid://cceumhj6hodav" path="res://Scenes/MiniGame/Minigame O/Sprite/C7BAE55F-9B03-430A-8441-239E40104C232.png" id="2_vbk52"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ajavb"]
 radius = 7.071068

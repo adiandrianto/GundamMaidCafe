@@ -258,7 +258,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_3u6p0")
 
@@ -320,7 +319,7 @@ position = Vector2(960, 540)
 script = ExtResource("1_n67nu")
 
 [node name="Tomat" parent="Objects" unique_id=1326812826 instance=ExtResource("1_dhqqs")]
-position = Vector2(-385, -195)
+position = Vector2(-386, -200)
 
 [node name="Sosis" parent="Objects" unique_id=593931390 instance=ExtResource("6_4ybrk")]
 position = Vector2(-386, 10)
@@ -355,12 +354,11 @@ bus = &"Effect"
 [node name="ObjectDetection" type="Area2D" parent="." unique_id=713151269]
 unique_name_in_owner = true
 process_mode = 3
-position = Vector2(588, 756)
+position = Vector2(570, 529)
 collision_layer = 0
-collision_mask = 17
 collision_priority = 4.045
 input_pickable = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDetection" unique_id=718748032]
-position = Vector2(-17, -229)
 shape = SubResource("RectangleShape2D_wsod1")

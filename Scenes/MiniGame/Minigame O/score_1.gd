@@ -10,14 +10,11 @@ extends Node2D
 @onready var area_2d_8: Area2D = $Area2D8
 @onready var area_2d_9: Area2D = $Area2D9
 @onready var area_2d_10: Area2D = $Area2D10
-var score : int
 
+var score : int
 
 func _ready() -> void:
 	score = 0
-
-func _process(delta: float) -> void:
-	pass
 
 func area_entered():
 	score += 10

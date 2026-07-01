@@ -89,9 +89,7 @@ func _level_completed():
 	var score_panel = SCORE_SECTION.instantiate() as Scores
 	$UILayer.add_child(score_panel)
 	$Audio/BGM.stop()
-	$Audio/DrumRoll.stream.loop = false
-	$Audio/DrumRoll.play()
-	
+
 func _hide_tutorial():
 	blind.hide()
 	welcome_panel.hide()

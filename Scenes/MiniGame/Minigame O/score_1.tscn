@@ -107,7 +107,7 @@ input_pickable = false
 monitorable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D10" unique_id=1516659176]
-modulate = Color(1, 1, 1, 0.65000004)
+modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(-0.3416002, 0.22773348)
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("2_xrhqk")

@@ -12,7 +12,7 @@ texture = ExtResource("1_ev7li")
 [node name="Area2D" type="Area2D" parent="." unique_id=592183292]
 scale = Vector2(5.9375, 5.9374995)
 collision_layer = 3
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=799329926]
 position = Vector2(0.5052632, -0.5052632)

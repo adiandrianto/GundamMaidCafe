@@ -49,7 +49,16 @@ func _on_pressed(maid_res: MaidResource):
 
 func _on_portrait_mouse_entered(maid_res: MaidResource):
 	$Hover.play()
-	personality_label.text = GlobalConstants.Personality.keys()[maid_res.personality]
+	var personality: String = ""
+	match maid_res.personality:
+		GlobalConstants.Personality.IMOUTO:
+			personality = "Sweet"
+		GlobalConstants.Personality.KUUDERE:
+			personality = "Cool"
+		GlobalConstants.Personality.TSUNDERE:
+			personality = "Hotheaded"
+	personality_label.text = personality
+	#GlobalConstants.Personality.keys()[maid_res.personality]
 	tooltip.show()
 	
 	

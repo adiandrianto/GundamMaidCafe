@@ -55,8 +55,8 @@ func _process(_delta: float) -> void:
 func countdown():
 	animation_player.play("count")
 	await animation_player.animation_finished
-	can_shake = true
 	
+	can_shake = true
 	progress_bar.max_value = timer.wait_time
 	timer.start()
 	timer.timeout.connect(_on_timeout, CONNECT_ONE_SHOT)
